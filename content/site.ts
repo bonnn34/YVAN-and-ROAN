@@ -415,7 +415,7 @@ export const siteConfig = {
   googleAPI:{
     messageForm: "https://docs.google.com/forms/d/e/1FAIpQLScW07l2wTfvjtulFPtYoYKyUjSGhxgqAOdi6KbnJ93E_zijIw/formResponse",   //done
     message: "https://script.google.com/macros/s/AKfycbwQTiw6gUFsg9rA8ItmpiXV4K_S75WnWk67Wbd2sxGTAsX6K0ijE3eCshTYxveEK4kr/exec", //done 
-    guestList: "https://script.google.com/macros/s/AKfycby0kjQYxbUs3YUb5dchyMcydDGhtl-28-Gkz4EfbIx7Mr2lQAYuEMvd2mxjKNyrd5wt/exec",  //done
+    guestList: "https://script.google.com/macros/s/AKfycbxQ_Sa2w4zphGzg3-2Yec8SM4mRS5IKetV0-Pwa9vuuIiRkm3uDPAStWIONDgaxgPFo/exec",  //done
     guestRequest: "https://script.google.com/macros/s/AKfycbx1Bxqqwsa3SRB9unHINEcRHfHbmF4cLOeBQBNSgh7fvvVHwO4oZbgREzozGvyvRpNG/exec",  //done
     entourage: "https://script.google.com/macros/s/AKfycbzsBu53v0M6SXYZY0myyILFvXBnIxmQlWYoUtBxZtLNiQDDCujde3dDWuLkr4oR127H/exec",  //done
     sponsors: SPONSORS_API,  //done 
@@ -986,6 +986,11 @@ export const siteConfig = {
       closeButton: "Close",
     },
     form: {
+      nameLabel: "Full Name *",
+      namePlaceholder: "Enter your full name",
+      optional: "(Optional)",
+      emailLabel: "Email Address",
+      emailPlaceholder: "your.email@example.com",
       attendLabel: "Can you attend? *",
       yes: "Yes!",
       no: "Sorry, No",
@@ -1005,7 +1010,7 @@ export const siteConfig = {
       companionsAdded: "{done} of {total} added",
       prevButton: "Back",
       nextButton: "Next guest",
-      phoneLabel: "Phone Number *",
+      phoneLabel: "Phone Number",
       phonePlaceholder: "09XX XXX XXXX",
       phoneNote: "For wedding updates only. Your number stays private and will never be shown to other guests.",
       submitting: "Submitting...",
@@ -1019,8 +1024,24 @@ export const siteConfig = {
       ],
       button: "Add my number",
     },
+    // Shown when someone submits a name that has already confirmed
+    alreadyConfirmed: {
+      title: "You're Already Confirmed",
+      eyebrow: "Welcome back",
+      text: "Your RSVP is already with us — here's what we have on file.",
+      statusLabel: "Response",
+      statusValue: "Attending",
+      seatsLabel: "Seats reserved",
+      companionsLabel: "Coming with you",
+      confirmedOnLabel: "Confirmed on",
+      question: "Plans changed? Let us know below — no worries at all.",
+      keepButton: "Keep my RSVP",
+      cancelButton: "I can no longer attend",
+      cancelling: "Updating...",
+    },
     success: {
       title: "RSVP Confirmed",
+      declinedTitle: "Response Received",
       attending: "We're thrilled you'll be joining us — your spot is saved!",
       declined: "We'll miss you, but thank you for letting us know.",
       neutral: "Thank you for your response!",
@@ -1057,7 +1078,8 @@ export const siteConfig = {
       requestSubmitted: "Request submitted! We'll review and get back to you.",
       loadFailed: "Failed to load guest list",
       selectAttendance: "Please select if you can attend",
-      nameRequired: "Name is required",
+      nameRequired: "Please enter your full name",
+      invalidEmail: "Please enter a valid email address",
       requestFailed: "Failed to submit request. Please try again.",
       submitFailed: "We couldn't save your RSVP. Please check your connection and try again.",
     },
@@ -1091,14 +1113,20 @@ export const siteConfig = {
     listDescription: "A glimpse of the wonderful guests celebrating with us",
     vipLabel: "VIP",
     noTable: "No Table Yet",
-    companionsLabel: "With Them",
+    tableLabel: "Table {table}",
+    partyLabel: "In party",
+    companionsLabel: "Coming with",
+    prevLabel: "Previous guests",
+    nextLabel: "Next guests",
+    pageLabel: "Show page {n}",
     // Shown when a guest has more than 4 companions
     companionsMore: "+{count} more",
     companionsLess: "Show less",
     confirmedLabel: "Confirmed",
     emptyTitle: "Guest list updating",
     emptyText: "Confirmed guests will appear here as RSVPs come in.",
-    // How many guest cards show at once (rotates every few seconds when there are more)
+    // How many guest cards show per page (pages turn every few seconds — paused while
+    // someone is reading or after they use the arrows; swipe works on phones)
     cardsPerView: 4,
     // Corner florals (sized per corner like the loader), sprig above the title and
     // sprig at the end of the section — "" hides any of them.
