@@ -199,8 +199,8 @@ function MessageForm({ onSuccess, onMessageSent }: MessageFormProps) {
     window.setTimeout(() => setIsSubmitted(false), 900)
 
     const googleFormData = new FormData()
-    googleFormData.append("entry.405401269", name)
-    googleFormData.append("entry.893740636", message)
+    googleFormData.append("entry.1798554185", name)
+    googleFormData.append("entry.1750194818", message)
 
     try {
       await fetch(siteConfig.googleAPI.messageForm, {

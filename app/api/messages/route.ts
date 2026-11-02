@@ -70,7 +70,7 @@ export async function GET() {
         name: row[safeIdxName] ?? "",
         message: row[safeIdxMsg] ?? "",
       }))
-      .filter((m) => m.name || m.message || m.timestamp)
+      .filter((m) => m.name.trim() && m.message.trim())
     
     console.log('Parsed messages:', parsed.length)
     return NextResponse.json(parsed, { status: 200 })
