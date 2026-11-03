@@ -590,12 +590,12 @@ export const siteConfig = {
       },
       {
         date: "August 9, 2023",
-        title: "The Day We Became Us",
+        title: "The Day We Made it Official",
         image: "/mobile-background/couple (11).webp",
         imageAlt: "{groom} and {bride} together",
         imagePosition: "center 20%",
         paragraphs: [
-          "From June 13, 2022, to the day we became us on August 9, 2023, God was quietly writing our story.",
+          "From June 13, 2022, to the day we made it official on August 9, 2023, God was quietly writing our story, reminding us that His timing is always perfect.",
             ],
       },
       {
