@@ -28,18 +28,18 @@ const aboveTheBeyond = localFont({
 })
 
 const C = {
-  forest: "#5d6f47",
-  sage: "#949981",
-  mustard: "#eec853",
-  butter: "#f4dd97",
-  cream: "#f7f3e9",
+  forest: "#25253D",
+  sage: "#333C63",
+  mustard: "#EFA27C",
+  butter: "#FBC8AF",
+  cream: "#FFFAF7",
 } as const
 
 const sectionBackground = `
   radial-gradient(920px 520px at 50% 8%, color-mix(in srgb, ${C.butter} 35%, transparent) 0%, transparent 55%),
   radial-gradient(640px 420px at 12% 88%, color-mix(in srgb, ${C.sage} 16%, transparent) 0%, transparent 58%),
   radial-gradient(560px 380px at 92% 78%, color-mix(in srgb, ${C.mustard} 14%, transparent) 0%, transparent 55%),
-  linear-gradient(180deg, ${C.cream} 0%, #faf7ef 48%, ${C.cream} 100%)
+  linear-gradient(180deg, ${C.cream} 0%, #FFFFFF 48%, ${C.cream} 100%)
 `
 
 const detailText = {

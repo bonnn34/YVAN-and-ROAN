@@ -1273,7 +1273,7 @@ type FoldGeo = {
   scale: number;
 };
 
-const FOLD_SHADE = '#2E2A2B';
+const FOLD_SHADE = '#25253D';
 
 /** A paper fold: a crisp dark crease with light catching the edge just below it */
 function FoldCrease({ d }: { d: string }) {

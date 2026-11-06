@@ -88,7 +88,7 @@ const sectionsRevealVariants = {
 }
 
 /** WebGL Silk needs a hex color. */
-const SILK_COLOR = "#172D4E"
+const SILK_COLOR = "#25253D"
 
 type InvitationPageProps = {
   /** Which principal-sponsor sheet the entourage shows (googleAPI.sponsorsInviteOne / Two) */
@@ -201,7 +201,7 @@ export function InvitationPage({ sponsorsList, showEntourage = true }: Invitatio
           >
             {cinematicEntry && (
               <motion.div
-                className="fixed inset-0 z-[28] pointer-events-none bg-[#FBF7F5]"
+                className="fixed inset-0 z-[28] pointer-events-none bg-[#FFFAF7]"
                 aria-hidden="true"
                 initial={{ clipPath: "circle(0% at 50% 46%)", opacity: 0.98 }}
                 animate={{ clipPath: "circle(145% at 50% 46%)", opacity: 0 }}

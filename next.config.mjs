@@ -4,6 +4,8 @@ const withBundleAnalyzer = bundleAnalyzer({ enabled: process.env.ANALYZE === 'tr
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Keep production checks from overwriting a running development server's assets.
+  distDir: process.env.NODE_ENV === 'development' ? '.next-dev' : '.next',
   eslint: {
     ignoreDuringBuilds: true,
   },

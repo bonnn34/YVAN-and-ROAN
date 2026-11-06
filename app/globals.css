@@ -64,89 +64,89 @@
 
 
 :root {
-  --background: #F8F3F1;
-  --foreground: #172D4E;
-  --card: #F8F3F1;
-  --card-foreground: #172D4E;
-  --popover: #F8F3F1;
-  --popover-foreground: #172D4E;
-  /* Primary: Royal Navy #172D4E */
-  --primary: #172D4E;
-  --primary-foreground: #F8F3F1;
-  /* Secondary: Dusty Pink #C58F9D */
-  --secondary: #C58F9D;
-  --secondary-foreground: #172D4E;
-  /* Legacy sage token mapped to Soft Blush Pink */
-  --sage: #E9CAD2;
-  /* Muted / light surfaces: Soft Blush Pink #E9CAD2 */
-  --muted: #E9CAD2;
-  --muted-foreground: #172D4E;
-  /* Accent: Champagne Gold #D4B47C */
-  --accent: #D4B47C;
-  --accent-foreground: #172D4E;
+  --background: #FFFAF7;
+  --foreground: #25253D;
+  --card: #FFFFFF;
+  --card-foreground: #25253D;
+  --popover: #FFFFFF;
+  --popover-foreground: #25253D;
+  /* Primary: midnight navy */
+  --primary: #25253D;
+  --primary-foreground: #FFFAF7;
+  /* Secondary: slate navy */
+  --secondary: #333C63;
+  --secondary-foreground: #FFFFFF;
+  /* Legacy sage token mapped to blush peach */
+  --sage: #FBC8AF;
+  /* Muted / light surfaces: blush peach */
+  --muted: #FBC8AF;
+  --muted-foreground: #25253D;
+  /* Accent: warm peach */
+  --accent: #EFA27C;
+  --accent-foreground: #25253D;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: color-mix(in srgb, #D4B47C 35%, #F8F3F1);
-  --input: color-mix(in srgb, #D4B47C 35%, #F8F3F1);
-  --ring: #D4B47C;
-  --chart-1: #172D4E;
-  --chart-2: #C58F9D;
-  --chart-3: #D4B47C;
-  --chart-4: #E9CAD2;
-  --chart-5: #F8F3F1;
+  --border: #858CA4;
+  --input: #858CA4;
+  --ring: #333C63;
+  --chart-1: #25253D;
+  --chart-2: #333C63;
+  --chart-3: #EFA27C;
+  --chart-4: #FBC8AF;
+  --chart-5: #FFFAF7;
   --radius: 0.625rem;
-  --sidebar: #F8F3F1;
-  --sidebar-foreground: #172D4E;
-  --sidebar-primary: #172D4E;
-  --sidebar-primary-foreground: #F8F3F1;
-  --sidebar-accent: #E9CAD2;
-  --sidebar-accent-foreground: #172D4E;
-  --sidebar-border: color-mix(in srgb, #D4B47C 35%, #F8F3F1);
-  --sidebar-ring: #D4B47C;
+  --sidebar: #FFFAF7;
+  --sidebar-foreground: #25253D;
+  --sidebar-primary: #25253D;
+  --sidebar-primary-foreground: #FFFAF7;
+  --sidebar-accent: #FBC8AF;
+  --sidebar-accent-foreground: #25253D;
+  --sidebar-border: #858CA4;
+  --sidebar-ring: #333C63;
 
   /* Keep the uploaded floral PNG colors intact. */
   --deco-filter: none;
 
   /* QR codes: dark navy on white for scannability. */
-  --color-qr-fg: #172D4E;
+  --color-qr-fg: #25253D;
   --color-qr-bg: #FFFFFF;
 }
 
 .dark {
-  --background: #172D4E;
-  --foreground: #F8F3F1;
-  --card: color-mix(in srgb, #172D4E 87%, #E9CAD2);
-  --card-foreground: #F8F3F1;
-  --popover: color-mix(in srgb, #172D4E 87%, #E9CAD2);
-  --popover-foreground: #F8F3F1;
-  --primary: #D4B47C;
-  --primary-foreground: #172D4E;
-  --secondary: #C58F9D;
-  --secondary-foreground: #172D4E;
+  --background: #25253D;
+  --foreground: #FFFAF7;
+  --card: color-mix(in srgb, #25253D 87%, #FBC8AF);
+  --card-foreground: #FFFAF7;
+  --popover: color-mix(in srgb, #25253D 87%, #FBC8AF);
+  --popover-foreground: #FFFAF7;
+  --primary: #EFA27C;
+  --primary-foreground: #25253D;
+  --secondary: #333C63;
+  --secondary-foreground: #FFFFFF;
   /* Legacy sage token */
-  --sage: #E9CAD2;
-  --muted: color-mix(in srgb, #172D4E 85%, #E9CAD2);
-  --muted-foreground: #F8F3F1;
-  --accent: #C58F9D;
-  --accent-foreground: #172D4E;
+  --sage: #FBC8AF;
+  --muted: color-mix(in srgb, #25253D 85%, #FBC8AF);
+  --muted-foreground: #FFFAF7;
+  --accent: #FBC8AF;
+  --accent-foreground: #25253D;
   --destructive: oklch(0.396 0.141 25.723);
   --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: color-mix(in srgb, #D4B47C 50%, #172D4E);
-  --input: color-mix(in srgb, #D4B47C 35%, #172D4E);
-  --ring: #D4B47C;
-  --chart-1: #D4B47C;
-  --chart-2: #C58F9D;
-  --chart-3: #E9CAD2;
-  --chart-4: #F8F3F1;
-  --chart-5: #172D4E;
-  --sidebar: color-mix(in srgb, #172D4E 92%, black);
-  --sidebar-foreground: #F8F3F1;
-  --sidebar-primary: #D4B47C;
-  --sidebar-primary-foreground: #172D4E;
-  --sidebar-accent: #C58F9D;
-  --sidebar-accent-foreground: #172D4E;
-  --sidebar-border: color-mix(in srgb, #D4B47C 50%, #172D4E);
-  --sidebar-ring: #D4B47C;
+  --border: #858CA4;
+  --input: #858CA4;
+  --ring: #EFA27C;
+  --chart-1: #EFA27C;
+  --chart-2: #333C63;
+  --chart-3: #FBC8AF;
+  --chart-4: #FFFAF7;
+  --chart-5: #25253D;
+  --sidebar: color-mix(in srgb, #25253D 92%, black);
+  --sidebar-foreground: #FFFAF7;
+  --sidebar-primary: #EFA27C;
+  --sidebar-primary-foreground: #25253D;
+  --sidebar-accent: #333C63;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: #858CA4;
+  --sidebar-ring: #EFA27C;
 }
 
 @theme inline {
@@ -156,125 +156,120 @@
 
   /* ==========================================
      MOTIF COLORS
-     Theme: Royal Romance / Fairytale Palace Wedding
-     Warm Ivory #F8F3F1 (40%)
-     Royal Navy #172D4E (25%)
-     Dusty Pink #C58F9D (20%)
-     Soft Blush #E9CAD2 (10%)
-     Champagne Gold #D4B47C (5%)
-     Approximate usage targets.
+     Reference: navy, slate navy, peach, blush peach and white.
+     Legacy token names are retained for existing components.
      ========================================== */
 
   /* ------------------------------------------
      Background / Linen
      ------------------------------------------ */
 
-  --color-motif-cream: #F8F3F1; /* warm ivory */
-  --color-motif-yellow: #D4B47C; /* champagne gold */
-  --color-motif-soft: #F8F3F1; /* warm ivory paper */
+  --color-motif-cream: #FFFAF7; /* warm ivory */
+  --color-motif-yellow: #EFA27C; /* warm peach */
+  --color-motif-soft: #FFFAF7; /* warm ivory paper */
 
   /* ------------------------------------------
      Royal Romance Accents
      ------------------------------------------ */
 
-  --color-motif-accent: #C58F9D; /* dusty pink */
-  --color-motif-deep: #172D4E; /* royal navy */
-  --color-motif-medium: #D4B47C; /* soft blush pink */
+  --color-motif-accent: #333C63; /* slate navy, also used for text */
+  --color-motif-deep: #25253D; /* midnight navy */
+  --color-motif-medium: #EFA27C; /* warm peach */
 
   /* ------------------------------------------
      Royal Navy and Gold Accents
      ------------------------------------------ */
 
-  --color-motif-teal: #172D4E; /* royal navy */
-  --color-motif-teal-medium: #C58F9D; /* dusty pink */
-  --color-motif-teal-light: #E9CAD2; /* soft blush pink */
+  --color-motif-teal: #25253D; /* royal navy */
+  --color-motif-teal-medium: #333C63; /* slate navy */
+  --color-motif-teal-light: #FBC8AF; /* blush peach */
 
   /* ------------------------------------------
      Romantic Floral Accent
      ------------------------------------------ */
 
-  --color-motif-blush: #E9CAD2; /* soft blush pink */
+  --color-motif-blush: #FBC8AF; /* blush peach */
 
   /* ------------------------------------------
      Neutral / Paper
      ------------------------------------------ */
 
-  --color-motif-silver: #D4B47C; /* champagne gold */
+  --color-motif-silver: #EFA27C; /* warm peach */
 
   /* ==========================================
      WELCOME SECTION
      ========================================== */
 
   /* Main background */
-  --color-welcome-bg: #F8F3F1;
+  --color-welcome-bg: #FFFAF7;
 
   /* Soft background */
   --color-welcome-bg-soft:
-    color-mix(in srgb, #E9CAD2 12%, #F8F3F1);
+    color-mix(in srgb, #FBC8AF 12%, #FFFAF7);
 
   /* ==========================================
      TYPOGRAPHY
      ========================================== */
 
   /* Main body text */
-  --color-welcome-text: #172D4E;
+  --color-welcome-text: #25253D;
 
   /* Secondary / softer text */
   --color-welcome-text-soft:
-    color-mix(in srgb, #172D4E 70%, #F8F3F1);
+    color-mix(in srgb, #25253D 70%, #FFFAF7);
 
   /* Small headings */
-  --color-welcome-heading: #172D4E;
+  --color-welcome-heading: #333C63;
 
   /* Script / romantic accent */
-  --color-welcome-script: #C58F9D;
+  --color-welcome-script: #333C63;
 
   /* Main hero heading */
-  --color-welcome-navy: #172D4E;
+  --color-welcome-navy: #25253D;
 
   /* ==========================================
      BUTTONS / DECORATION
      ========================================== */
 
   /* Buttons */
-  --color-welcome-green: #172D4E;
+  --color-welcome-green: #25253D;
 
   /* Royal ornaments / floral lines */
-  --color-welcome-botanical: #D4B47C;
+  --color-welcome-botanical: #EFA27C;
 
   /* Gold decorative details */
-  --color-welcome-gold: #D4B47C;
+  --color-welcome-gold: #EFA27C;
 
   /* Floral accents */
-  --color-welcome-blush: #E9CAD2;
+  --color-welcome-blush: #FBC8AF;
 
   /* ==========================================
      ADDITIONAL ROYAL ROMANCE COLORS
      ========================================== */
 
-  --color-coastal-deep: #172D4E;
-  --color-coastal-teal: #C58F9D;
-  --color-coastal-soft: #E9CAD2;
-  --color-coastal-light: #F8F3F1;
+  --color-coastal-deep: #25253D;
+  --color-coastal-teal: #333C63;
+  --color-coastal-soft: #FBC8AF;
+  --color-coastal-light: #FFFAF7;
 
-  --color-romantic-coral: #C58F9D;
-  --color-romantic-deep: #172D4E;
-  --color-romantic-peach: #E9CAD2;
-  --color-romantic-blush: #E9CAD2;
+  --color-romantic-coral: #333C63;
+  --color-romantic-deep: #25253D;
+  --color-romantic-peach: #FBC8AF;
+  --color-romantic-blush: #FBC8AF;
 
-  --color-coastal-sand: #D4B47C;
-  --color-coastal-ivory: #F8F3F1;
+  --color-coastal-sand: #EFA27C;
+  --color-coastal-ivory: #FFFAF7;
 
   /* ==========================================
      COUPLE NAME MASK / LOCKUP
      ========================================== */
 
   /* Main name color */
-  --couple-name-fill: #172D4E;
+  --couple-name-fill: #25253D;
 
   /* Dusty Pink + Gold accents */
-  --couple-name-fill-mid: #C58F9D;
-  --couple-name-fill-accent: #D4B47C;
+  --couple-name-fill-mid: #333C63;
+  --couple-name-fill-accent: #995031;
   --couple-name-fill-soft: var(--color-motif-soft);
 
   /* ==========================================
@@ -283,34 +278,34 @@
 
   /* Light ivory background */
   --color-bg-pattern-base:
-    color-mix(in srgb, #E9CAD2 12%, #F8F3F1);
+    color-mix(in srgb, #FBC8AF 12%, #FFFAF7);
 
   /* Main circles */
   --color-bg-circle-deep:
-    color-mix(in srgb, #172D4E 10%, transparent);
+    color-mix(in srgb, #25253D 10%, transparent);
 
   --color-bg-circle-mid:
-    color-mix(in srgb, #C58F9D 28%, transparent);
+    color-mix(in srgb, #333C63 28%, transparent);
 
   --color-bg-circle-light:
-    color-mix(in srgb, #F8F3F1 72%, transparent);
+    color-mix(in srgb, #FFFAF7 72%, transparent);
 
   /* Accent circles */
   --color-bg-circle-accent-1:
-    color-mix(in srgb, #D4B47C 17%, transparent);
+    color-mix(in srgb, #EFA27C 17%, transparent);
 
   --color-bg-circle-accent-2:
-    color-mix(in srgb, #F8F3F1 58%, transparent);
+    color-mix(in srgb, #FFFAF7 58%, transparent);
 
   --color-bg-circle-accent-3:
-    color-mix(in srgb, #E9CAD2 45%, transparent);
+    color-mix(in srgb, #FBC8AF 45%, transparent);
 
   /* Warm and romantic touches */
   --color-bg-circle-rose:
-    color-mix(in srgb, #E9CAD2 35%, transparent);
+    color-mix(in srgb, #FBC8AF 35%, transparent);
 
   --color-bg-circle-peach:
-    color-mix(in srgb, #C58F9D 9%, transparent);
+    color-mix(in srgb, #EFA27C 9%, transparent);
 
   /* Text and divider lines */
   --color-on-pattern: var(--color-welcome-navy);
@@ -319,73 +314,73 @@
   --color-on-pattern-glow:
     color-mix(in srgb, white 70%, transparent);
 
-  --color-on-pattern-line: #D4B47C;
+  --color-on-pattern-line: #EFA27C;
 
   /* ==========================================
      HERO COUNTDOWN
      ========================================== */
 
   /* Bottom fade */
-  --color-countdown-fade: #172D4E;
+  --color-countdown-fade: #25253D;
 
   /* Numbers + heading */
   --color-countdown-text: var(--color-motif-soft);
 
   /* Unit labels */
-  --color-countdown-label: #D4B47C;
+  --color-countdown-label: #EFA27C;
 
   /* ==========================================
      ENVELOPE - ROYAL NAVY + GOLD
      ========================================== */
 
   /* Main envelope paper */
-  --color-envelope-paper: #172D4E;
+  --color-envelope-paper: #25253D;
 
   /* Back panel / inside */
   --color-envelope-base:
-    color-mix(in srgb, #172D4E 92%, black);
+    color-mix(in srgb, #25253D 92%, black);
 
   /* Gold-tinted highlights */
   --color-envelope-highlight:
-    color-mix(in srgb, #172D4E 80%, #D4B47C);
+    color-mix(in srgb, #25253D 80%, #EFA27C);
 
   /* Flap folds */
   --color-envelope-fold:
-    color-mix(in srgb, #172D4E 88%, black);
+    color-mix(in srgb, #25253D 88%, black);
 
   /* Shadows */
   --color-envelope-shadow:
-    color-mix(in srgb, #172D4E 65%, black);
+    color-mix(in srgb, #25253D 65%, black);
 
   /* Champagne Gold crease lines */
-  --color-envelope-crease: rgb(212 180 124 / 45%);
+  --color-envelope-crease: rgb(239 162 124 / 45%);
 
   /* ==========================================
      OPTIONAL SEMANTIC COLORS
      ========================================== */
 
   /* Primary CTA */
-  --color-primary: #172D4E;
+  --color-primary: #25253D;
 
   /* Primary CTA hover */
   --color-primary-hover:
-    color-mix(in srgb, #172D4E 85%, black);
+    color-mix(in srgb, #25253D 85%, black);
 
   /* Romantic CTA */
-  --color-romantic: #C58F9D;
+  --color-romantic: #333C63;
 
   /* Romantic hover */
   --color-romantic-hover:
-    color-mix(in srgb, #C58F9D 85%, #172D4E);
+    color-mix(in srgb, #333C63 85%, #25253D);
 
   /* Soft highlight */
-  --color-highlight: #E9CAD2;
+  --color-highlight: #FBC8AF;
 
   /* Highlight - Save the Date, couple names, day number */
-  --color-highlight-deep: #C58F9D;
+  --color-highlight-deep: #333C63;
 
   /* Decorations - corner leaves, ornaments */
-  --color-deco: #D4B47C;
+  --color-deco: #EFA27C;
 
   /* ==========================================
      INVITATION DESIGN SYSTEM
@@ -410,14 +405,14 @@
   --invite-paper: var(--color-motif-soft);
 
   --invite-paper-tint:
-    color-mix(in srgb, #E9CAD2 12%, var(--color-motif-soft));
+    color-mix(in srgb, #FBC8AF 12%, var(--color-motif-soft));
 
   /* Hairlines and gold frames */
   --invite-line:
-    color-mix(in srgb, #D4B47C 60%, transparent);
+    color-mix(in srgb, #EFA27C 60%, transparent);
 
   --invite-line-soft:
-    color-mix(in srgb, #D4B47C 28%, transparent);
+    color-mix(in srgb, #EFA27C 28%, transparent);
 
   /* Buttons */
   --invite-button: var(--color-ink-accent);
@@ -437,29 +432,28 @@
   --invite-page-bg: var(--color-welcome-bg);
 
   /* Section accent */
-  --color-section-accent: #D4B47C;
+  --color-section-accent: #EFA27C;
 
   /* Light section */
-  --color-section-light: #E9CAD2;
+  --color-section-light: #FBC8AF;
 
   /* Card background */
-  --color-card: #F8F3F1;
+  --color-card: #FFFAF7;
 
   /* Border */
-  --color-border: #D4B47C;
+  --color-border: #EFA27C;
 
   /* Dark text */
-  --color-text-dark: #172D4E;
+  --color-text-dark: #25253D;
 
   /* Deepest ink */
-  --color-ink-deep: #172D4E;
+  --color-ink-deep: #25253D;
 
   /* Deep accent ink */
-  --color-ink-accent: #172D4E;
+  --color-ink-accent: #25253D;
 
   /* Muted text */
-  --color-text-muted:
-    color-mix(in srgb, #172D4E 65%, white);
+  --color-text-muted: #545B76;
 
   /* ==========================================
      DASHBOARD
@@ -483,14 +477,12 @@
 
   --color-dash-muted: var(--color-text-muted);
 
-  --color-dash-faint:
-    color-mix(in srgb, var(--color-text-dark) 45%, white);
+  --color-dash-faint: #545B76;
 
   /* Lines + borders */
   --color-dash-line: var(--color-section-light);
 
-  --color-dash-focus:
-    color-mix(in srgb, var(--color-section-accent) 55%, white);
+  --color-dash-focus: #333C63;
 
   --color-dash-border:
     color-mix(in srgb, var(--color-section-light) 50%, white);
@@ -695,17 +687,17 @@ img[src*="%2Flovestorydeco%2F"] {
 }
 
 ::-webkit-scrollbar-track {
-  background: #F3E8E6;
+  background: #FFF0E7;
 }
 
 /* Updated scrollbar color to primary */
 ::-webkit-scrollbar-thumb {
-  background: #A8606F;
+  background: #333C63;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #9A9294;
+  background: #858CA4;
 }
 
 /* Shimmer animation for countdown cards */
@@ -790,7 +782,7 @@ img[src*="%2Flovestorydeco%2F"] {
 
 /* Countdown gradient text — blush pink to slate */
 .countdown-gradient-text * {
-  background: linear-gradient(180deg, #EBCBCF 0%, #A8606F 100%);
+  background: linear-gradient(180deg, #FBC8AF 0%, #333C63 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -803,7 +795,7 @@ img[src*="%2Flovestorydeco%2F"] {
 }
 
 .bg-wedding-paper {
-  background-color: #FBF7F5;
+  background-color: #FFFAF7;
 }
 
 .text-wedding-brown {
@@ -811,7 +803,7 @@ img[src*="%2Flovestorydeco%2F"] {
 }
 
 .text-wedding-paper {
-  color: #FBF7F5;
+  color: #FFFAF7;
 }
 
 /* Font utilities for Love Story section */
@@ -919,7 +911,7 @@ img[src*="%2Flovestorydeco%2F"] {
   inset: 0;
   transform: rotateY(180deg);
   z-index: 0;
-  box-shadow: inset 0 0 24px rgba(74, 58, 62, 0.06);
+  box-shadow: inset 0 0 24px rgba(37, 37, 61, 0.06);
 }
 
 .album-flipbook-page-turning {
@@ -929,15 +921,15 @@ img[src*="%2Flovestorydeco%2F"] {
 @keyframes album-page-turn-out {
   0% {
     transform: rotateY(0deg);
-    box-shadow: 0 6px 28px -8px rgba(74, 58, 62, 0.16);
+    box-shadow: 0 6px 28px -8px rgba(37, 37, 61, 0.16);
   }
   45% {
     transform: rotateY(-92deg);
-    box-shadow: -12px 6px 36px -6px rgba(74, 58, 62, 0.22);
+    box-shadow: -12px 6px 36px -6px rgba(37, 37, 61, 0.22);
   }
   100% {
     transform: rotateY(-180deg);
-    box-shadow: 0 2px 12px -4px rgba(74, 58, 62, 0.1);
+    box-shadow: 0 2px 12px -4px rgba(37, 37, 61, 0.1);
   }
 }
 
@@ -966,8 +958,8 @@ img[src*="%2Flovestorydeco%2F"] {
 /* Story section — shared flip stage for portrait spreads and landscape singles */
 .album-flipbook-story-shell {
   box-shadow:
-    0 2px 4px rgba(74, 58, 62, 0.06),
-    0 12px 40px -8px rgba(74, 58, 62, 0.18),
+    0 2px 4px rgba(37, 37, 61, 0.06),
+    0 12px 40px -8px rgba(37, 37, 61, 0.18),
     inset 0 0 0 1px rgba(255, 255, 255, 0.35);
 }
 
@@ -980,8 +972,8 @@ img[src*="%2Flovestorydeco%2F"] {
 /* Open-book spread — two portrait photos per page */
 .album-flipbook-spread-shell {
   box-shadow:
-    0 2px 4px rgba(74, 58, 62, 0.06),
-    0 12px 40px -8px rgba(74, 58, 62, 0.18),
+    0 2px 4px rgba(37, 37, 61, 0.06),
+    0 12px 40px -8px rgba(37, 37, 61, 0.18),
     inset 0 0 0 1px rgba(255, 255, 255, 0.4);
 }
 
@@ -996,15 +988,15 @@ img[src*="%2Flovestorydeco%2F"] {
   transform: translateX(-50%);
   background: linear-gradient(
     to right,
-    rgba(74, 58, 62, 0.14),
-    rgba(74, 58, 62, 0.04) 35%,
+    rgba(37, 37, 61, 0.14),
+    rgba(37, 37, 61, 0.04) 35%,
     rgba(255, 255, 255, 0.35) 50%,
-    rgba(74, 58, 62, 0.04) 65%,
-    rgba(74, 58, 62, 0.14)
+    rgba(37, 37, 61, 0.04) 65%,
+    rgba(37, 37, 61, 0.14)
   );
   box-shadow:
-    -2px 0 6px rgba(74, 58, 62, 0.08),
-    2px 0 6px rgba(74, 58, 62, 0.08);
+    -2px 0 6px rgba(37, 37, 61, 0.08),
+    2px 0 6px rgba(37, 37, 61, 0.08);
 }
 
 .album-flipbook-half {
@@ -1014,11 +1006,11 @@ img[src*="%2Flovestorydeco%2F"] {
 }
 
 .album-flipbook-half-left {
-  box-shadow: inset -6px 0 12px -8px rgba(74, 58, 62, 0.1);
+  box-shadow: inset -6px 0 12px -8px rgba(37, 37, 61, 0.1);
 }
 
 .album-flipbook-half-right {
-  box-shadow: inset 6px 0 12px -8px rgba(74, 58, 62, 0.1);
+  box-shadow: inset 6px 0 12px -8px rgba(37, 37, 61, 0.1);
 }
 
 .album-flipbook-blank-page {
@@ -1333,7 +1325,7 @@ img[src*="%2Flovestorydeco%2F"] {
   position: absolute;
   inset: 0;
   /* Beige → light paper wash so the photos sit softly under the warm gray palette */
-  background: linear-gradient(180deg, #F3E8E6 0%, #FBF7F5 50%, #F3E8E6 100%);
+  background: linear-gradient(180deg, #FFF0E7 0%, #FFFAF7 50%, #FFF0E7 100%);
 }
 
 /* ==========================================================================
@@ -1429,10 +1421,10 @@ img[src*="%2Flovestorydeco%2F"] {
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(120% 60% at 50% -10%, color-mix(in srgb, #EBCBCF 85%, transparent) 0%, transparent 65%),
-    radial-gradient(80% 40% at 0% 100%, color-mix(in srgb, #C9C1C2 10%, transparent) 0%, transparent 70%),
-    radial-gradient(80% 40% at 100% 100%, color-mix(in srgb, #9A9294 10%, transparent) 0%, transparent 70%),
-    linear-gradient(180deg, #F3E8E6 0%, #FBF7F5 55%, #F3E8E6 100%);
+    radial-gradient(120% 60% at 50% -10%, color-mix(in srgb, #FBC8AF 85%, transparent) 0%, transparent 65%),
+    radial-gradient(80% 40% at 0% 100%, color-mix(in srgb, #858CA4 10%, transparent) 0%, transparent 70%),
+    radial-gradient(80% 40% at 100% 100%, color-mix(in srgb, #858CA4 10%, transparent) 0%, transparent 70%),
+    linear-gradient(180deg, #FFF0E7 0%, #FFFAF7 55%, #FFF0E7 100%);
 }
 
 .invite-blush-backdrop::after {
@@ -1442,7 +1434,7 @@ img[src*="%2Flovestorydeco%2F"] {
   opacity: 0.35;
   background:
     repeating-linear-gradient(90deg, transparent 0 2px, rgb(255 255 255 / 18%) 2px 3px),
-    repeating-linear-gradient(0deg, transparent 0 3px, rgb(74 69 70 / 1.5%) 3px 4px);
+    repeating-linear-gradient(0deg, transparent 0 3px, rgb(37 37 61 / 1.5%) 3px 4px);
 }
 
 
@@ -1529,7 +1521,7 @@ img[src*="%2Flovestorydeco%2F"] {
 
 /* Floral corners: soft shadow so they sit on the page instead of looking pasted on */
 .deco-corner-overlay {
-  filter: drop-shadow(0 6px 10px rgb(74 69 70 / 14%));
+  filter: drop-shadow(0 6px 10px rgb(37 37 61 / 14%));
 }
 
 
@@ -1547,9 +1539,9 @@ img[src*="%2Flovestorydeco%2F"] {
   pointer-events: none;
   background:
     radial-gradient(90% 18% at 50% 0%, rgb(255 255 255 / 60%) 0%, transparent 70%),
-    radial-gradient(60% 16% at 0% 40%, color-mix(in srgb, #EBCBCF 28%, transparent) 0%, transparent 70%),
-    radial-gradient(60% 16% at 100% 70%, color-mix(in srgb, #EBCBCF 24%, transparent) 0%, transparent 70%),
-    linear-gradient(180deg, rgb(255 255 255 / 52%) 0%, color-mix(in srgb, #F8EFEF 46%, transparent) 50%, rgb(255 255 255 / 46%) 100%);
+    radial-gradient(60% 16% at 0% 40%, color-mix(in srgb, #FBC8AF 28%, transparent) 0%, transparent 70%),
+    radial-gradient(60% 16% at 100% 70%, color-mix(in srgb, #FBC8AF 24%, transparent) 0%, transparent 70%),
+    linear-gradient(180deg, rgb(255 255 255 / 52%) 0%, color-mix(in srgb, #FFF0E7 46%, transparent) 50%, rgb(255 255 255 / 46%) 100%);
 }
 
 .deco-frame {

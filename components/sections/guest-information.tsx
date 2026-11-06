@@ -17,19 +17,19 @@ const cinzel = Cinzel({
 })
 
 // Guest information color palette
-const GUEST_LIGHT = "#C1AC94"   // light beige/nude
-const GUEST_MEDIUM = "#624630"   // medium brown
-const GUEST_DARK = "#3E2914"    // dark brown
-const GUEST_BG = "#F8F4EE"      // very light beige container background
+const GUEST_LIGHT = "#FBC8AF"   // blush peach
+const GUEST_MEDIUM = "#333C63"   // slate navy
+const GUEST_DARK = "#25253D"    // midnight navy
+const GUEST_BG = "#FFFAF7"      // warm white container background
 
 // Guest attire motif palette (swatches shown in Wedding Attire)
 const GUEST_ATTIRE_PALETTE = [
-  "#A85D23",
-  "#BA7438",
-  "#543634",
-  "#7D5740",
-  "#C78537",
-  "#792C18",
+  "#25253D",
+  "#333C63",
+  "#EFA27C",
+  "#FBC8AF",
+  "#FFFFFF",
+  "#FFFAF7",
 ]
 
 export function GuestInformation() {
@@ -247,7 +247,7 @@ export function GuestInformation() {
 
               <div className="rounded-lg sm:rounded-xl p-2.5 sm:p-3 border-2 min-w-0" style={{ borderColor: `${GUEST_LIGHT}99`, backgroundColor: GUEST_BG }}>
                 <p className={`${cormorant.className} text-xs sm:text-sm md:text-base font-semibold mb-1.5 sm:mb-2 flex items-center gap-2`} style={{ color: GUEST_DARK }}>
-                  <span className="inline-flex items-center justify-center w-5 h-5 sm:w-6 sm:h-6 rounded-full flex-shrink-0" style={{ backgroundColor: "rgba(62, 41, 20, 0.12)", color: GUEST_DARK }}>
+                  <span className="inline-flex items-center justify-center w-5 h-5 sm:w-6 sm:h-6 rounded-full flex-shrink-0" style={{ backgroundColor: "rgba(37, 37, 61, 0.12)", color: GUEST_DARK }}>
                     <MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                   </span>
                   Quick Tips

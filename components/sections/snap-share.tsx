@@ -355,7 +355,7 @@ export function SnapShare() {
               </span>
               <span
                 className={`${cinzel.className} flex flex-shrink-0 items-center gap-1 whitespace-nowrap ${sectionType.label} font-semibold uppercase tracking-wider`}
-                style={{ color: isCopied ? "color-mix(in srgb, var(--color-motif-yellow) 70%, #2C3619)" : BLUE }}
+                style={{ color: isCopied ? "color-mix(in srgb, var(--color-motif-yellow) 70%, #25253D)" : BLUE }}
               >
                 {isCopied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
                 {isCopied ? content.hashtags.copied : content.hashtags.copy}

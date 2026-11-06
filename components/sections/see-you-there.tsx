@@ -25,15 +25,15 @@ const aboveTheBeyond = localFont({
   variable: "--font-above-beyond",
 })
 
-const IVORY = "#fffaf4"
+const IVORY = "#FFFAF7"
 const BUTTER = "var(--color-motif-silver)"
 const entryEase = [0.22, 1, 0.36, 1] as const
 const SLIDE_MS = 5000
 
 const titleSize = "clamp(2.85rem, 13.5vw, 6.75rem)"
 const photoTitleShadow =
-  "0 1px 0 rgb(255 250 244 / 28%), 0 2px 18px rgb(20 30 44 / 60%), 0 12px 36px rgb(20 30 44 / 45%)"
-const softShadow = "0 1px 2px rgb(12 20 32 / 85%), 0 2px 8px rgb(12 20 32 / 70%), 0 6px 24px rgb(12 20 32 / 55%)"
+  "0 1px 0 rgb(255 250 247 / 28%), 0 2px 18px rgb(37 37 61 / 60%), 0 12px 36px rgb(37 37 61 / 45%)"
+const softShadow = "0 1px 2px rgb(37 37 61 / 85%), 0 2px 8px rgb(37 37 61 / 70%), 0 6px 24px rgb(37 37 61 / 55%)"
 
 const stagger: Variants = {
   hidden: {},
@@ -134,7 +134,7 @@ export function SeeYouThere() {
           className="pointer-events-none absolute inset-0 md:hidden"
           style={{
             background:
-              "linear-gradient(180deg, rgb(20 34 52 / 40%) 0%, rgb(20 34 52 / 8%) 26%, rgb(20 34 52 / 28%) 45%, rgb(16 28 44 / 78%) 66%, rgb(12 22 36 / 92%) 100%)",
+              "linear-gradient(180deg, rgb(37 37 61 / 40%) 0%, rgb(37 37 61 / 8%) 26%, rgb(37 37 61 / 28%) 45%, rgb(37 37 61 / 78%) 66%, rgb(37 37 61 / 92%) 100%)",
           }}
           aria-hidden
         />
@@ -143,7 +143,7 @@ export function SeeYouThere() {
           className="pointer-events-none absolute inset-0 hidden md:block"
           style={{
             background:
-              "radial-gradient(48% 42% at 50% 50%, rgb(16 28 44 / 68%) 0%, rgb(16 28 44 / 40%) 60%, transparent 100%), linear-gradient(180deg, rgb(20 34 52 / 40%) 0%, rgb(20 34 52 / 15%) 35%, rgb(20 34 52 / 15%) 65%, rgb(20 34 52 / 60%) 100%)",
+              "radial-gradient(48% 42% at 50% 50%, rgb(37 37 61 / 68%) 0%, rgb(37 37 61 / 40%) 60%, transparent 100%), linear-gradient(180deg, rgb(37 37 61 / 40%) 0%, rgb(37 37 61 / 15%) 35%, rgb(37 37 61 / 15%) 65%, rgb(37 37 61 / 60%) 100%)",
           }}
           aria-hidden
         />
@@ -206,7 +206,7 @@ export function SeeYouThere() {
                   className="h-[3px] rounded-full transition-all duration-[1400ms] ease-in-out"
                   style={{
                     width: i === active ? "1.5rem" : "0.5rem",
-                    background: i === active ? BUTTER : "rgb(255 250 244 / 45%)",
+                    background: i === active ? BUTTER : "rgb(255 250 247 / 45%)",
                   }}
                 />
               ))}

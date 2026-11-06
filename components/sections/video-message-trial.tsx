@@ -28,9 +28,9 @@ const aboveTheBeyond = localFont({
 const FORM_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLSfeGlEl4CMXWefdvCw6AOPHFS1ROku_rs-Gbofa2LkVJ0sLGQ/viewform"
 
-const forest = "#5d6f47"
+const forest = "#25253D"
 const heading = "#FFFFFF"
-const body = "#F8F5EC"
+const body = "#FFFAF7"
 
 function TrialTitle() {
   return (
@@ -131,7 +131,7 @@ export function VideoMessageTrial() {
 
               <Video
                 className="mb-3 h-5 w-5 sm:h-6 sm:w-6"
-                style={{ color: "#f4dd97" }}
+                style={{ color: "#FBC8AF" }}
                 aria-hidden
               />
               <h3
@@ -153,10 +153,10 @@ export function VideoMessageTrial() {
                 rel="noopener noreferrer"
                 className={`${cinzel.className} mt-6 inline-flex items-center justify-center rounded-full border px-7 py-3 ${sectionType.label} font-semibold uppercase tracking-[0.18em] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] sm:mt-7 sm:px-9 sm:py-3.5 sm:tracking-[0.22em]`}
                 style={{
-                  backgroundColor: "#f4dd97",
+                  backgroundColor: "#FBC8AF",
                   borderColor: "rgba(255, 255, 255, 0.35)",
                   color: forest,
-                  boxShadow: "0 8px 22px color-mix(in srgb, #f4dd97 35%, transparent)",
+                  boxShadow: "0 8px 22px color-mix(in srgb, #FBC8AF 35%, transparent)",
                 }}
               >
                 Open upload form

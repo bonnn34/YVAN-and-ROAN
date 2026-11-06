@@ -1,16 +1,16 @@
 import type { CSSProperties } from "react"
 
-/** Coastal sunset palette — peach, dusty rose, muted teal, blue-gray, lavender-blue */
+/** Reference palette — peach, blush, midnight navy, slate navy and white. */
 export const coastalPalette = {
-  peach: "#F5D5C8",
-  lavenderBlue: "#E8EEF2",
-  blueGray: "#B8C9D0",
-  dustyRose: "#C4A4A0",
-  teal: "#6B8F91",
-  body: "#4A5F65",
-  title: "#6A8F93",
-  deep: "#5A7478",
-  cream: "#FFFCF8",
+  peach: "#FBC8AF",
+  lavenderBlue: "#FFFAF7",
+  blueGray: "#858CA4",
+  dustyRose: "#333C63",
+  teal: "#333C63",
+  body: "#25253D",
+  title: "#333C63",
+  deep: "#25253D",
+  cream: "#FFFFFF",
 } as const
 
 export const displayScript: CSSProperties = {
@@ -27,4 +27,4 @@ export const coastalDarkGradient = coastalDarkBg
 export const coastalCardShadow = `0 16px 48px color-mix(in srgb, ${coastalPalette.teal} 14%, transparent), inset 0 1px 0 rgba(255, 255, 255, 0.72)`
 
 export const coastalTitleShadow =
-  "0 2px 4px rgba(255, 255, 255, 0.85), 0 0 16px rgba(184, 201, 208, 0.45)"
+  "0 2px 4px rgba(255, 255, 255, 0.85), 0 0 16px rgba(133, 140, 164, 0.45)"
