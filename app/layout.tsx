@@ -186,7 +186,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   viewportFit: "cover",
   colorScheme: "light",
-  themeColor: "#FBC8AF",
+  themeColor: "#F7B7A3",
 }
 
 export default function RootLayout({
@@ -199,7 +199,7 @@ export default function RootLayout({
       <head>
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="color-scheme" content="light" />
-        <meta name="theme-color" content="#FBC8AF" />
+        <meta name="theme-color" content="#F7B7A3" />
         <meta name="format-detection" content="telephone=yes,email=no,address=no" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

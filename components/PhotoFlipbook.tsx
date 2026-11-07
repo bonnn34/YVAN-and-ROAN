@@ -561,7 +561,7 @@ export function PhotoFlipbook({
 
   const albumShell =
     variant === 'album'
-      ? 'album-flipbook relative rounded-sm bg-motif-cream/80 p-3 sm:p-4 md:p-5 shadow-[0_8px_40px_-12px_rgba(37, 37, 61,0.2)] border border-motif-silver/40'
+      ? 'album-flipbook relative rounded-sm bg-motif-cream/80 p-3 sm:p-4 md:p-5 shadow-[0_8px_40px_-12px_rgba(0, 32, 89,0.2)] border border-motif-silver/40'
       : isStoryFlipbook
         ? `album-flipbook album-flipbook-story-shell relative rounded-sm bg-motif-cream w-full max-w-full overflow-hidden border border-motif-silver/35 shadow-xl p-2 sm:p-2.5 md:p-3 ${rotation} ${
             currentIsSpread ? 'album-flipbook-spread-shell' : ''

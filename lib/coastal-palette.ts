@@ -2,14 +2,14 @@ import type { CSSProperties } from "react"
 
 /** Reference palette — peach, blush, midnight navy, slate navy and white. */
 export const coastalPalette = {
-  peach: "#FBC8AF",
+  peach: "#F7B7A3",
   lavenderBlue: "#FFFAF7",
-  blueGray: "#858CA4",
-  dustyRose: "#333C63",
-  teal: "#333C63",
-  body: "#25253D",
-  title: "#333C63",
-  deep: "#25253D",
+  blueGray: "#8E9AB8",
+  dustyRose: "#1A3A6E",
+  teal: "#1A3A6E",
+  body: "#002059",
+  title: "#1A3A6E",
+  deep: "#002059",
   cream: "#FFFFFF",
 } as const
 

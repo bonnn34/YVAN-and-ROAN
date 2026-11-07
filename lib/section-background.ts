@@ -13,7 +13,7 @@ export const sectionBackground = `
   radial-gradient(920px 520px at 50% 6%, color-mix(in srgb, white 70%, transparent) 0%, transparent 55%),
   radial-gradient(640px 420px at 12% 88%, color-mix(in srgb, var(--color-highlight) 30%, transparent) 0%, transparent 58%),
   radial-gradient(560px 380px at 92% 78%, color-mix(in srgb, var(--color-motif-yellow) 18%, transparent) 0%, transparent 55%),
-  linear-gradient(180deg, color-mix(in srgb, #858CA4 45%, white) 0%, var(--color-motif-cream) 45%, var(--invite-page-bg) 100%)
+  linear-gradient(180deg, color-mix(in srgb, #8E9AB8 45%, white) 0%, var(--color-motif-cream) 45%, var(--invite-page-bg) 100%)
 `.trim()
 
 export const sectionText = {

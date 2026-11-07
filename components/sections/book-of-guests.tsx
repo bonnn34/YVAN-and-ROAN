@@ -202,7 +202,11 @@ export function BookOfGuests({ background = true }: { background?: boolean } = {
   const [rsvpCount, setRsvpCount] = useState(0)
   const [confirmedGuests, setConfirmedGuests] = useState<Guest[]>([])
   const [isRefreshing, setIsRefreshing] = useState(false)
-  const [lastUpdate, setLastUpdate] = useState<Date>(new Date())
+  // Set on the client only — rendering the clock on the server made the time differ at hydration
+  const [lastUpdate, setLastUpdate] = useState<Date | null>(null)
+  useEffect(() => {
+    setLastUpdate((d) => d ?? new Date())
+  }, [])
   const [showIncrease, setShowIncrease] = useState(false)
   // Carousel page + autoplay pause (hover/focus/touch, or a few seconds after manual navigation)
   const [page, setPage] = useState(0)
@@ -504,7 +508,7 @@ export function BookOfGuests({ background = true }: { background?: boolean } = {
                 className={`${cinzel.className} ${ct.meta} mt-3 sm:mt-4 uppercase tracking-[0.14em]`}
                 style={{ color: TEAL_SOFT }}
               >
-                {copy.updatedLabel} {formatLastUpdate(lastUpdate)}
+                {copy.updatedLabel} {lastUpdate ? formatLastUpdate(lastUpdate) : "—"}
               </p>
             </div>
           </div>

@@ -63,11 +63,13 @@ function MarqueeRow({
   copies,
   direction,
   eagerCount,
+  lazyOnly = false,
 }: {
   photos: readonly string[];
   copies: number;
   direction: 'left' | 'right';
   eagerCount: number;
+  lazyOnly?: boolean;
 }) {
   return (
     <div className={`loading-screen__marquee-row loading-screen__marquee-row--${direction}`}>
@@ -85,7 +87,11 @@ function MarqueeRow({
                     fill
                     sizes={MARQUEE_IMAGE_SIZES}
                     quality={MARQUEE_IMAGE_QUALITY}
-                    priority={eager}
+                    // lazyOnly: both phone + desktop strips are in the HTML and CSS hides one;
+                    // lazy images in a hidden strip are never fetched, and the visible tiles hit the
+                    // media-matched preloads in app/layout.tsx
+                    priority={lazyOnly ? false : eager}
+                    loading={lazyOnly ? 'lazy' : undefined}
                     draggable={false}
                     decoding="async"
                     fetchPriority={copy === 0 && index < 2 ? 'high' : 'low'}
@@ -111,11 +117,13 @@ export function PhotoMarquee({
   copies,
   variant,
   shuffle = true,
+  lazyOnly = false,
 }: {
   photos: readonly string[];
   copies: number;
   variant: 'mobile' | 'desktop' | 'loader';
   shuffle?: boolean;
+  lazyOnly?: boolean;
 }) {
   const compact = !shuffle || photos.length <= 5;
   const [selected, setSelected] = useState(() =>
@@ -144,8 +152,8 @@ export function PhotoMarquee({
 
   return (
     <div ref={rootRef} className={`loading-screen__marquee loading-screen__marquee--${variant}`}>
-      <MarqueeRow photos={top} copies={copies} direction="left" eagerCount={eagerCount} />
-      <MarqueeRow photos={bottom} copies={copies} direction="right" eagerCount={eagerCount} />
+      <MarqueeRow photos={top} copies={copies} direction="left" eagerCount={eagerCount} lazyOnly={lazyOnly} />
+      <MarqueeRow photos={bottom} copies={copies} direction="right" eagerCount={eagerCount} lazyOnly={lazyOnly} />
     </div>
   );
 }
@@ -154,19 +162,6 @@ export function PhotoMarquee({
  * Sliding photo marquee with a soft white wash — drop-in for BackgroundVideo
  * behind the plain loader and envelope (fills its positioned parent).
  */
-/** true from 768px up; null until measured so neither photo set loads before we know. */
-function useIsDesktop() {
-  const [isDesktop, setIsDesktop] = useState<boolean | null>(null);
-  useEffect(() => {
-    const mq = window.matchMedia('(min-width: 768px)');
-    const update = () => setIsDesktop(mq.matches);
-    update();
-    mq.addEventListener('change', update);
-    return () => mq.removeEventListener('change', update);
-  }, []);
-  return isDesktop;
-}
-
 export function PhotoBackground({
   photos,
   desktopPhotos,
@@ -180,31 +175,30 @@ export function PhotoBackground({
   veil?: number;
 }) {
   const reduceMotion = useReducedMotion();
-  const isDesktop = useIsDesktop();
-  const mobile = photos.length > 0 ? photos : MOBILE_BG_PHOTOS;
-  const resolved = useMemo(
-    () =>
-      (isDesktop && desktopPhotos && desktopPhotos.length > 0 ? desktopPhotos : mobile).slice(
-        0,
-        BACKGROUND_PHOTO_LIMIT,
-      ),
-    [isDesktop, desktopPhotos, mobile],
+  const copies = reduceMotion ? 1 : 2;
+  const mobile = useMemo(
+    () => (photos.length > 0 ? photos : MOBILE_BG_PHOTOS).slice(0, BACKGROUND_PHOTO_LIMIT),
+    [photos],
   );
-  if (resolved.length === 0) return null;
+  const desktop = useMemo(
+    () => (desktopPhotos && desktopPhotos.length > 0 ? desktopPhotos : mobile).slice(0, BACKGROUND_PHOTO_LIMIT),
+    [desktopPhotos, mobile],
+  );
+  if (mobile.length === 0) return null;
 
+  // Both strips are rendered straight away (also in the server HTML) so the photos show on the
+  // very first paint — no waiting for hydration to measure the screen. CSS shows the phone strip
+  // below 768px and the desktop strip from 768px up (.background-video__strip--*).
+  // Same order every time: the photos preloaded in app/layout.tsx are the ones shown first,
+  // and the loader → envelope → home hero keep one continuous strip.
   return (
     <div className="background-video" aria-hidden="true">
-      {isDesktop !== null && (
-        <PhotoMarquee
-          key={isDesktop ? 'desktop' : 'mobile'}
-          photos={resolved}
-          copies={reduceMotion ? 1 : 2}
-          variant="loader"
-          // Same order every time: the photos preloaded in app/layout.tsx are the ones shown
-          // first, and the loader → envelope → home hero keep one continuous strip
-          shuffle={false}
-        />
-      )}
+      <div className="background-video__strip background-video__strip--mobile">
+        <PhotoMarquee photos={mobile} copies={copies} variant="loader" shuffle={false} lazyOnly />
+      </div>
+      <div className="background-video__strip background-video__strip--desktop">
+        <PhotoMarquee photos={desktop} copies={copies} variant="loader" shuffle={false} lazyOnly />
+      </div>
       <div className="background-video__veil" style={{ opacity: veil, zIndex: 2 }} />
     </div>
   );

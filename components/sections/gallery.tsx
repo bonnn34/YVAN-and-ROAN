@@ -73,11 +73,6 @@ const innerFrameStyle: React.CSSProperties = {
   boxShadow: "inset 0 0 0 1px color-mix(in srgb, var(--color-motif-soft) 70%, transparent)",
 }
 
-const badgeStyle: React.CSSProperties = {
-  backgroundColor: "color-mix(in srgb, var(--color-motif-deep) 75%, transparent)",
-  color: C.light,
-}
-
 function DecoImg({ src, className }: { src: string; className: string }) {
   if (!src) return null
   return <TintedDeco src={src} className={className} />
@@ -137,6 +132,42 @@ function GalleryTitle({ title, subtitle }: { title: string; subtitle: string }) 
 }
 
 type GalleryItem = { image: string; text: string }
+
+// The section shows a curated preview; "View Full Gallery" (/gallery) has every photo
+const GALLERY_PREVIEW_COUNT = 10
+
+const pad2 = (n: number) => String(n).padStart(2, "0")
+
+/** "01 / 10" label on a photo: soft navy fade along the bottom, ivory number, peach total */
+function PhotoCounter({ index, total, className = "" }: { index: number; total: number; className?: string }) {
+  return (
+    <div
+      className={`pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between rounded-b-lg px-3 pb-2.5 pt-10 ${className}`}
+      style={{
+        background:
+          "linear-gradient(to top, color-mix(in srgb, var(--color-welcome-navy) 62%, transparent) 0%, color-mix(in srgb, var(--color-welcome-navy) 22%, transparent) 55%, transparent 100%)",
+      }}
+    >
+      <span className="flex items-baseline gap-1" style={{ textShadow: "0 1px 6px rgb(0 0 0 / 35%)" }}>
+        <span
+          className={`${cinzel.className} text-[1.05rem] font-semibold leading-none tracking-[0.06em]`}
+          style={{ color: "var(--color-motif-soft)" }}
+        >
+          {pad2(index + 1)}
+        </span>
+        <span
+          className={`${cinzel.className} text-[0.62rem] font-semibold tracking-[0.18em]`}
+          style={{ color: "var(--color-motif-blush)" }}
+        >
+          / {pad2(total)}
+        </span>
+      </span>
+      <svg viewBox="0 0 24 24" className="h-3 w-3 opacity-90" fill="var(--color-motif-blush)" aria-hidden>
+        <path d={HEART_PATH} />
+      </svg>
+    </div>
+  )
+}
 
 /**
  * Mobile carousel with endless swiping: the photos are rendered three times and,
@@ -241,12 +272,11 @@ function MobileInfiniteCarousel({
                   priority={i === n}
                 />
                 <div className="pointer-events-none absolute inset-0 rounded-lg" style={innerFrameStyle} />
-              </div>
-
-              <div className="absolute top-3.5 right-3.5 rounded-full px-2 py-0.5 backdrop-blur-sm" style={badgeStyle}>
-                <span className="text-[11px] font-medium tracking-wider">
-                  {index + 1}/{n}
-                </span>
+                <PhotoCounter
+                  index={index}
+                  total={n}
+                  className={`transition-opacity duration-500 ${isActive ? "opacity-100" : "opacity-0"}`}
+                />
               </div>
             </button>
           )
@@ -266,23 +296,50 @@ function MobileInfiniteCarousel({
             </span>
             <ChevronRight className="gallery-swipe-arrow gallery-swipe-arrow--right h-4 w-4" aria-hidden />
           </div>
-          <div className="flex items-center gap-1.5" role="tablist" aria-label="Choose a photo">
-            {items.map((item, idx) => (
-              <button
-                key={item.image + idx}
-                type="button"
-                role="tab"
-                aria-selected={idx === active}
-                aria-label={`Show photo ${idx + 1}`}
-                onClick={() => centerOn(n + idx, "smooth")}
-                className="h-1.5 rounded-full transition-all duration-300"
-                style={{
-                  width: idx === active ? "1.25rem" : "0.375rem",
-                  background: idx === active ? C.accent : "color-mix(in srgb, var(--color-welcome-heading) 35%, transparent)",
-                }}
-              />
-            ))}
+          {/* Dots: active one stretches into a peach pill with a soft glow; each dot has a
+              comfortable tap area even though it looks small */}
+          <div
+            className="flex items-center rounded-full px-2 py-1"
+            style={{
+              background: "color-mix(in srgb, var(--color-motif-soft) 70%, transparent)",
+              boxShadow: "inset 0 0 0 1px color-mix(in srgb, var(--color-motif-blush) 80%, transparent)",
+            }}
+            role="tablist"
+            aria-label="Choose a photo"
+          >
+            {items.map((item, idx) => {
+              const on = idx === active
+              return (
+                <button
+                  key={item.image + idx}
+                  type="button"
+                  role="tab"
+                  aria-selected={on}
+                  aria-label={`Show photo ${idx + 1}`}
+                  onClick={() => centerOn(n + idx, "smooth")}
+                  className="flex h-5 items-center justify-center px-[3px]"
+                >
+                  <span
+                    className="block h-[7px] rounded-full transition-all duration-500 ease-out"
+                    style={{
+                      width: on ? "1.5rem" : "7px",
+                      background: on
+                        ? "linear-gradient(90deg, var(--color-motif-blush), var(--color-motif-medium))"
+                        : "color-mix(in srgb, var(--color-welcome-navy) 22%, transparent)",
+                      boxShadow: on ? "0 0 8px color-mix(in srgb, var(--color-motif-medium) 70%, transparent)" : "none",
+                    }}
+                  />
+                </button>
+              )
+            })}
           </div>
+          <p
+            className={`${cinzel.className} text-[0.62rem] font-semibold tracking-[0.2em]`}
+            style={{ color: C.blue, textShadow: onBgGlow }}
+            aria-live="polite"
+          >
+            {pad2(active + 1)} <span style={{ color: "var(--color-motif-medium)" }}>/ {pad2(n)}</span>
+          </p>
         </div>
       )}
     </div>
@@ -291,7 +348,7 @@ function MobileInfiniteCarousel({
 
 export function Gallery() {
   const { gallery } = useSiteConfig()
-  const galleryItems: GalleryItem[] = gallery.images
+  const galleryItems: GalleryItem[] = gallery.images.slice(0, GALLERY_PREVIEW_COUNT)
   const decos = gallery.decos
 
   // Index of the photo open in the lightbox (null = closed)
@@ -503,23 +560,12 @@ export function Gallery() {
                       sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div
-                      className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                      style={{
-                        background:
-                          "linear-gradient(to top, color-mix(in srgb, var(--color-welcome-navy) 55%, transparent), transparent 55%)",
-                      }}
-                    />
                     <div className="pointer-events-none absolute inset-0 rounded-lg" style={innerFrameStyle} />
-                  </div>
-
-                  <div
-                    className="absolute top-3.5 right-3.5 rounded-full px-2 py-0.5 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100"
-                    style={badgeStyle}
-                  >
-                    <span className="text-[11px] font-medium tracking-wider">
-                      {index + 1}/{galleryItems.length}
-                    </span>
+                    <PhotoCounter
+                      index={index}
+                      total={galleryItems.length}
+                      className="opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100"
+                    />
                   </div>
                 </button>
               ))}

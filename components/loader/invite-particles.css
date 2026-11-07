@@ -4,8 +4,8 @@
   overflow: hidden;
   --particle-1: #FFFAF7;
   --particle-2: var(--color-motif-accent);
-  --particle-3: #FBC8AF;
-  --particle-4: #EFA27C;
+  --particle-3: #F7B7A3;
+  --particle-4: #F28F75;
 }
 
 .invite-particles__particle {

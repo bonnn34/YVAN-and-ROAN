@@ -1273,7 +1273,8 @@ type FoldGeo = {
   scale: number;
 };
 
-const FOLD_SHADE = '#25253D';
+// Warm brown shading so the folds read naturally on the peach paper
+const FOLD_SHADE = '#A65A47';
 
 /** A paper fold: a crisp dark crease with light catching the edge just below it */
 function FoldCrease({ d }: { d: string }) {

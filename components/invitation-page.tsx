@@ -7,7 +7,6 @@ import { Hero as MainHero } from "@/components/sections/hero"
 import { Welcome } from "@/components/sections/welcome"
 import { Hero as InvitationHero } from "@/components/loader/Hero"
 import { LoadingScreen } from "@/components/loader/LoadingScreen"
-import { InvitePhotoBackdrop } from "@/components/loader/invite-photo-backdrop"
 import { Navbar } from "@/components/navbar"
 import { AppState } from "@/components/types"
 import { prefetchInvitationData } from "@/lib/invitation-data"
@@ -88,7 +87,7 @@ const sectionsRevealVariants = {
 }
 
 /** WebGL Silk needs a hex color. */
-const SILK_COLOR = "#25253D"
+const SILK_COLOR = "#FA9A84" // peach silk behind the invitation sections
 
 type InvitationPageProps = {
   /** Which principal-sponsor sheet the entourage shows (googleAPI.sponsorsInviteOne / Two) */
@@ -112,7 +111,6 @@ export function InvitationPage({ sponsorsList, showEntourage = true }: Invitatio
     return AppState.LOADING
   })
   const siteConfig = useSiteConfig()
-  const plainLoader = siteConfig.loadingScreen?.display === "plain"
   const enableDecor = process.env.NEXT_PUBLIC_ENABLE_DECOR !== 'false'
   const [showInvitation, setShowInvitation] = useState(false)
   const [loadingOverlayVisible, setLoadingOverlayVisible] = useState(
@@ -166,15 +164,6 @@ export function InvitationPage({ sponsorsList, showEntourage = true }: Invitatio
 
   return (
       <div className={`relative min-h-screen bg-cloud text-charcoal selection:bg-birch selection:text-nut font-sans ${pageScrollLocked ? "overflow-hidden" : ""}`}>
-        {loadingOverlayVisible && !plainLoader && (
-          <div
-            className="invite-photo-backdrop-wrap invite-photo-backdrop-wrap--loading"
-            aria-hidden="true"
-          >
-            <InvitePhotoBackdrop photos={siteConfig.loadingScreen?.backgroundPhotos} />
-          </div>
-        )}
-
         {loadingOverlayVisible && (
           <LoadingScreen
             onFadeStart={handleLoadingFadeStart}

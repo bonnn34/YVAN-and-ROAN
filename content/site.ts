@@ -86,8 +86,8 @@ const TIMES = {
 // ── Venues ──────────────────────────────────────────────────────────────────
 
 const CEREMONY_VENUE = {
-  name: "ZION EVENT PLACE",
-  address: "FATHER MASI STREET, HOLIDAY HILLS, BARANGAY SAN ANTONIO, SAN PEDRO, LAGUNA, PHILIPPINES",
+  name: "Zion Event Place",
+  address: "FATHER MA SI STREET, HOLIDAY HILLS, BARANGAY SAN ANTONIO, SAN PEDRO, LAGUNA, PHILIPPINES",
   map: "https://maps.app.goo.gl/PgiHbPDC5Jj9CpQQ6",
   photos: ["/Details/update-reception (1).jpg", "/Details/update-reception (2).jpg", "/Details/update-reception (3).jpg"],
 }
@@ -330,9 +330,9 @@ const DISPLAY_MODE = "plain" as "photos" | "plain"
 
 // ── Shared images ───────────────────────────────────────────────────────────
 const BRAND = {
-  monogram: "/monogram/monogram.png", // monogram (loader, envelope, closing)
+  monogram: "/monogram/new-monogram.png", // monogram (loader, envelope, closing)
   coupleNameImage: "/Details/newcoupelNames.png", // couple-name lettering (loader, envelope)
-  seal: "/monogram/seal.png", // envelope wax seal
+  seal: "/monogram/seal-new.png", // envelope wax seal
   backgroundMusic: "/background_music/ON THIS DAY - DAVID POMERANZ Saxophone Cover - Live Performance Recording.mp3",
 }
 
@@ -368,10 +368,10 @@ const MARQUEE_PHOTOS_DESKTOP = Array.from(
 // Change a path here to swap it on every section at once.
 // To change ONE section only, override it there, e.g. decos: { ...SECTION_DECOS, footerVine: "" }
 const DECOR = {
-  cornerTopLeft: "/deco/new-deco/top-L.png",
-  cornerTopRight: "/deco/new-deco/top-R.png",
-  cornerBottomLeft: "/deco/new-deco/BOT-L.png",
-  cornerBottomRight: "/deco/new-deco/BOT-R.png",
+  cornerTopLeft: "/deco/new-deco/top-left-corner.png",
+  cornerTopRight: "/deco/new-deco/top-right-corner.png",
+  cornerBottomLeft: "/deco/new-deco/bottom-left-corner.png",
+  cornerBottomRight: "/deco/new-deco/bottom-right-corner.png",
   cornerOverlayTopLeft: "/deco/cornerOverlayTopLeft.png", // floral corner layered over the top vines (loader + envelope)
   cornerOverlayTopRight: "/deco/cornerOverlayTopRight.png",
   headerOrnament: "/deco/new-deco/ornament-middle.png", // small sprig above titles
@@ -454,6 +454,8 @@ export const siteConfig = {
     // "photos" = sliding photo background + photo date cards
     // "plain"  = no images at all: soft solid background + plain date cards
     display: DISPLAY_MODE,
+    // Loading screen only — overrides `display` for the loader ("photos" = photo strip + photo date cards)
+    loaderDisplay: "photos" as "photos" | "plain",
     // Colors used when display is "plain"
     plainTheme: {
       background: "var(--color-welcome-bg)",
@@ -473,9 +475,9 @@ export const siteConfig = {
     coupleNameImage: BRAND.coupleNameImage,
     // Shown in the three date cards (Month / Day / Year), left to right (display: "photos")
     photos: [
-      "/frontboxes/couple (1).webp",
-      "/frontboxes/couple (2).webp",
-      "/frontboxes/couple (3).webp",
+      "/box/box (1).webp",
+      "/box/box (2).webp",
+      "/box/box (3).webp",
     ],
     dateLabels: ["Month", "Day", "Year"],
     // Plain mode invitation card — classic invitation wording around the couple's names ("" to hide a line)
@@ -504,7 +506,7 @@ export const siteConfig = {
       bride: COUPLE_PORTRAITS.bride,
     },
     // Bouquet tucked inside the open envelope, peeking out on both sides ("" to hide)
-    envelopeFlowers: "/deco/new-deco/BOT-L.png",
+    envelopeFlowers: DECOR.cornerBottomLeft,
     // Main page cover photo (home hero, plain display) — one natural, candid couple photo
     coverPhoto: COUPLE_PORTRAITS.cover,
     coverPhotoAlt: COUPLE_LABEL,
@@ -580,46 +582,91 @@ export const siteConfig = {
     // /public/mobile-background. Add, remove or reorder chapters freely — sides alternate on their own.
     chapters: [
       {
-        date: "Lorem Ipsum",
-        title: "Dolor Sit Amet",
+        date: "Where It Began",
+        title: "Two Hearts, One Story",
         image: "/mobile-background/couple (31).webp",
         imageAlt: "{groom} and {bride} together",
         imagePosition: "center 25%",
         paragraphs: [
-          "Lorem ipsum dolor sit amet.",
-          "Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          "Every love story begins somewhere, and ours began quietly, in the most ordinary of moments that turned out to be anything but ordinary.",
+          "What started as a simple hello slowly became a friendship, then a promise, and now a lifetime we are ready to share.",
         ],
       },
       {
-        date: "Consectetur Adipiscing Elit",
-        title: "Sed Do Eiusmod Tempor",
+        date: "Growing Together",
+        title: "Learning to Love",
         image: "/mobile-background/couple (9).webp",
         imageAlt: "{groom} and {bride} smiling together",
         imagePosition: "center 35%",
         paragraphs: [
-          "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.",
+          "Along the way, {groom} and {bride} learned that love is not only found in the grand gestures, but in patience, in kindness, and in choosing each other every single day.",
+          "Through laughter and tears, distance and closeness, we grew not just as a couple, but as better versions of ourselves.",
         ],
       },
       {
-        date: "Incididunt Ut Labore",
-        title: "Et Dolore Magna Aliqua",
+        date: "Never Alone",
+        title: "You Were There",
         image: "/mobile-background/couple (25).webp",
         imageAlt: "{groom} and {bride} together",
         imagePosition: "center 20%",
         paragraphs: [
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+          "Looking back, we realize that we never walked this road alone. You were there, in the kind words, the honest advice, the warm meals and the quiet prayers.",
+          "In ways big and small, you have been part of our journey, and our story would not be the same without you.",
         ],
       },
       {
-        date: "Ut Enim Ad Minim",
-        title: "Quis Nostrud Exercitation",
+        date: "To Our Families",
+        title: "The Roots of Our Love",
         image: "/mobile-background/couple (21).webp",
         imageAlt: "{groom} and {bride} together",
         imagePosition: "center 25%",
         paragraphs: [
-          "Nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-          "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "To our parents and families: you showed us what love looks like long before we found it in each other.",
+          "Thank you for your sacrifices, your guidance and your unending support. Everything we are building together stands on the foundation you gave us.",
+        ],
+      },
+      {
+        date: "To Our Friends",
+        title: "The Ones Who Stayed",
+        image: "/mobile-background/couple (14).webp",
+        imageAlt: "{groom} and {bride} laughing together",
+        imagePosition: "center 25%",
+        paragraphs: [
+          "To our friends, who cheered the loudest, listened the longest and stood by us through every season: thank you for the memories, the laughter and the love.",
+          "You have filled our story with joy, and we cannot imagine celebrating this day without you.",
+        ],
+      },
+      {
+        date: "With Grateful Hearts",
+        title: "Thank You",
+        image: "/mobile-background/couple (18).webp",
+        imageAlt: "{groom} and {bride} together",
+        imagePosition: "center 25%",
+        paragraphs: [
+          "For every prayer said on our behalf, every word of encouragement and every act of kindness, we are deeply grateful.",
+          "You are a beautiful part of our story, and our hearts are full knowing how loved we are.",
+        ],
+      },
+      {
+        date: "A New Chapter",
+        title: "Forever Starts Here",
+        image: "/mobile-background/couple (28).webp",
+        imageAlt: "{groom} and {bride} looking ahead together",
+        imagePosition: "center 25%",
+        paragraphs: [
+          "Now, with God as our guide and all of you beside us, we are ready to begin the most beautiful chapter of all.",
+          "We will carry your love with us as we step into this new life as husband and wife.",
+        ],
+      },
+      {
+        date: "Our Invitation",
+        title: "Celebrate With Us",
+        image: "/mobile-background/couple (35).webp",
+        imageAlt: "{groom} and {bride} together",
+        imagePosition: "center 25%",
+        paragraphs: [
+          "Because you have been part of our journey, it would mean the world to us to have you there as we say “I do.”",
+          "Please come and celebrate with us: share in our joy, witness our promise and be part of the day our forever begins.",
         ],
       },
     ] as StoryChapter[],

@@ -6,7 +6,7 @@ import localFont from 'next/font/local';
 import { useReducedMotion } from 'motion/react';
 import { useSiteConfig } from '@/hooks/use-site-config';
 import { siteConfig as defaultSiteConfig } from '@/content/site';
-import { PhotoBackground, PhotoMarquee } from '@/components/loader/invite-photo-backdrop';
+import { PhotoBackground } from '@/components/loader/invite-photo-backdrop';
 import { TintedDeco } from '@/components/tinted-deco';
 import { SectionBackdrop } from '@/components/section-backdrop';
 import './loading-screen.css';
@@ -26,13 +26,18 @@ interface LoadingScreenProps {
   onFadeStart?: () => void;
 }
 
-const STAGGER_DELAY_MS = 1100;
-const FIRST_BOX_DELAY_MS = 600;
-const BOX_TRANSITION_MS = 1100;
+// Photo mode date cards: CSS-driven entrance (plays before hydration), one card after another
+const DATE_CARD_START_MS = 800;
+const DATE_CARD_STAGGER_MS = 3000; // one card every 3 seconds — Month, then Day, then Year
+// Fanned resting tilt for Month / Day / Year
+const DATE_CARD_TILT = ['-3deg', '0deg', '3deg'];
 const FADE_OUT_MS = 1400;
 // Plain mode handoff: the card tucks away first, then the envelope hero starts arriving
 const PLAIN_HANDOFF_LEAD_MS = 550;
 const MS_PER_DAY = 1000 * 60 * 60 * 24;
+// Lighter wash than the shared default so the couple's photos actually read behind the card
+// (the vignette in loading-screen.css keeps the centre soft for the text)
+const LOADER_PHOTO_VEIL = 0.3;
 
 // Plain mode choreography — all CSS-delay driven so it plays in sync even before hydration:
 // ornament → headline letters → countdown → names → date (day, month/year, weekday) → details
@@ -84,6 +89,11 @@ const PLAIN_MOTES = Array.from({ length: 14 }, (_, i) => ({
   petal: i % 3 === 0,
 }))
 
+// "ZION EVENT PLACE" → "Zion Event Place" (the venue is stored in caps for other sections)
+function toTitleCase(text: string) {
+  return text.toLowerCase().replace(/(^|[\s\-/(])(\p{L})/gu, (_, sep: string, ch: string) => sep + ch.toUpperCase());
+}
+
 function startOfDay(date: Date) {
   return new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime();
 }
@@ -94,7 +104,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete, onFade
   const content = siteConfig.loadingScreen ?? defaultSiteConfig.loadingScreen;
   const totalDurationMs = content.durationMs;
   const statusMessages = content.statusMessages;
-  const isPlain = content.display === 'plain';
+  const isPlain = (content.loaderDisplay ?? content.display) === 'plain';
   const backgroundPhotos = useMemo(
     () => (content.backgroundPhotos ?? []).map((src) => encodeURI(src)),
     [content.backgroundPhotos],
@@ -110,10 +120,8 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete, onFade
 
   const reduceMotion = useReducedMotion();
   const [fadeOut, setFadeOut] = useState(false);
-  const [visibleBoxes, setVisibleBoxes] = useState(0);
   const [statusIndex, setStatusIndex] = useState(0);
   const [now, setNow] = useState(() => new Date());
-  const photoCopies = reduceMotion ? 1 : 2;
 
   const weddingDate = useMemo(() => new Date(siteConfig.wedding.date), [siteConfig.wedding.date]);
   const hasValidDate = !Number.isNaN(weddingDate.getTime());
@@ -187,20 +195,6 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete, onFade
   }, []);
 
   useEffect(() => {
-    if (reduceMotion) {
-      setVisibleBoxes(dateParts.length);
-      return;
-    }
-    // Plain mode sequences its date with CSS delays instead (see dateDelay)
-    if (isPlain) return;
-    const timers = dateParts.map((_, i) =>
-      setTimeout(() => setVisibleBoxes(i + 1), FIRST_BOX_DELAY_MS + i * STAGGER_DELAY_MS),
-    );
-    return () => timers.forEach(clearTimeout);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [reduceMotion, dateParts.length, isPlain]);
-
-  useEffect(() => {
     if (statusMessages.length < 2) return;
     const step = totalDurationMs / statusMessages.length;
     const t = setInterval(
@@ -247,37 +241,21 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete, onFade
     >
       {showBackdrop && (
         <>
-          <div className="loading-screen__backdrop" aria-hidden="true">
-            <PhotoMarquee photos={backgroundPhotos} copies={photoCopies} variant="loader" shuffle={false} />
-            <div className="loading-screen__backdrop-veil" />
-          </div>
-          <div className="loading-screen__readability-scrim" aria-hidden="true" />
+          {/* Same photo strip + soft peach/ivory veil as the envelope (Hero.tsx), so the
+              loader hands off to it without the background changing */}
+          <PhotoBackground photos={backgroundPhotos} desktopPhotos={backgroundPhotosDesktop} />
+          <div className="loading-screen__photo-layer" aria-hidden="true" />
         </>
       )}
 
       {isPlain && (
         <>
-          <PhotoBackground photos={backgroundPhotos} desktopPhotos={backgroundPhotosDesktop} />
-          <div className="loading-screen__plain-corners" aria-hidden="true">
-            {(
-              [
-                { src: cornerDecos.topLeft, pos: 'tl', className: 'left-0 top-0' },
-                { src: cornerDecos.topRight, pos: 'tr', className: 'right-0 top-0' },
-                { src: cornerDecos.bottomLeft, pos: 'bl', className: 'left-0 bottom-0' },
-                { src: cornerDecos.bottomRight, pos: 'br', className: 'right-0 bottom-0' },
-              ] as const
-            ).filter(({ src }) => src).map(({ src, pos, className }) => (
-              <div
-                key={pos}
-                className={`loading-screen__plain-corner-slot loading-screen__plain-corner-slot--${pos} pointer-events-none absolute ${className}`}
-              >
-                {/* Corners keep their original artwork colors (no tint) */}
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={src} alt="" className="loading-screen__plain-corner-img" />
-              </div>
-            ))}
-          </div>
-          <div className="loading-screen__plain-frame" aria-hidden="true" />
+          <PhotoBackground
+            photos={backgroundPhotos}
+            desktopPhotos={backgroundPhotosDesktop}
+            veil={LOADER_PHOTO_VEIL}
+          />
+          <div className="loading-screen__plain-photo-vignette" aria-hidden="true" />
           <div className="ls-plain-glow" aria-hidden="true" />
           {/* Paper grain + rising pink hearts, same as the invitation sections (section-backdrop.tsx);
               no extra wash — the photo background already has its blush veil */}
@@ -305,6 +283,28 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete, onFade
           )}
         </>
       )}
+
+      {/* Corner florals + thin double frame — shown in both display modes, same as the envelope (Hero.tsx) */}
+      <div className="loading-screen__plain-corners" aria-hidden="true">
+        {(
+          [
+            { src: cornerDecos.topLeft, pos: 'tl', className: 'left-0 top-0' },
+            { src: cornerDecos.topRight, pos: 'tr', className: 'right-0 top-0' },
+            { src: cornerDecos.bottomLeft, pos: 'bl', className: 'left-0 bottom-0' },
+            { src: cornerDecos.bottomRight, pos: 'br', className: 'right-0 bottom-0' },
+          ] as const
+        ).filter(({ src }) => src).map(({ src, pos, className }) => (
+          <div
+            key={pos}
+            className={`loading-screen__plain-corner-slot loading-screen__plain-corner-slot--${pos} pointer-events-none absolute ${className}`}
+          >
+            {/* Corners keep their original artwork colors (no tint) */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={src} alt="" className="loading-screen__plain-corner-img" />
+          </div>
+        ))}
+      </div>
+      <div className="loading-screen__plain-frame" aria-hidden="true" />
 
       <div className="loading-screen__save-date">
         <header className="flex flex-col items-center w-full pt-10 sm:pt-14 md:pt-16 px-4 sm:px-6 flex-shrink-0">
@@ -415,25 +415,24 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete, onFade
         )}
 
         {!isPlain && dateParts.length > 0 && (
-          <div className="flex items-stretch justify-center gap-3 sm:gap-4 md:gap-6 px-4 pt-1 pb-3 sm:pb-4 flex-shrink-0">
+          <div className="ls-date-cards flex items-stretch justify-center gap-3 sm:gap-4 md:gap-6 px-4 pt-1 pb-3 sm:pb-4 flex-shrink-0">
             {dateParts.map((value, i) => {
-              const isVisible = i < visibleBoxes;
               const photo = content.photos[i % content.photos.length];
               return (
                 <div
                   key={content.dateLabels[i] ?? i}
-                  className="loading-screen__std-box relative flex-1 max-w-[28vw] sm:max-w-[140px] md:max-w-[160px] aspect-[3/4] overflow-hidden rounded-2xl"
-                  style={{
-                    opacity: isVisible ? 1 : 0,
-                    transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(28px) scale(0.94)',
-                    transition: reduceMotion
-                      ? 'none'
-                      : `opacity ${BOX_TRANSITION_MS}ms cubic-bezier(0.22, 1, 0.36, 1), transform ${BOX_TRANSITION_MS}ms cubic-bezier(0.22, 1, 0.36, 1)`,
-                  }}
+                  className="loading-screen__std-box ls-date-card relative flex-1 max-w-[28vw] sm:max-w-[140px] md:max-w-[160px] aspect-[3/4] overflow-hidden rounded-2xl"
+                  style={
+                    {
+                      // Entrance timing + resting tilt (keyframes in loading-screen.css → .ls-date-card)
+                      '--ls-card-delay': `${DATE_CARD_START_MS + i * DATE_CARD_STAGGER_MS}ms`,
+                      '--ls-card-tilt': DATE_CARD_TILT[i] ?? '0deg',
+                    } as React.CSSProperties
+                  }
                 >
                   {photo && (
                     <Image
-                      src={photo}
+                      src={encodeURI(photo)}
                       alt=""
                       fill
                       priority={i === 0}
@@ -442,7 +441,9 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete, onFade
                     />
                   )}
                   <div className="loading-screen__std-box-overlay absolute inset-0" />
-                  <div className="absolute bottom-2.5 inset-x-0 sm:bottom-3 flex flex-col items-center">
+                  {/* One light sweep across the card as it lands */}
+                  <span className="ls-date-card__shine" aria-hidden="true" />
+                  <div className="ls-date-card__meta absolute bottom-2.5 inset-x-0 sm:bottom-3 flex flex-col items-center">
                     <span className="loading-screen__std-box-num text-2xl sm:text-3xl md:text-4xl select-none leading-none text-center">
                       {value}
                     </span>
@@ -461,7 +462,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete, onFade
             <div className="loading-screen__std-venue ls-reveal" style={revealDelay(900, 3200)}>
               {ceremonyLine && <span className="loading-screen__std-venue-time">{ceremonyLine}</span>}
               {siteConfig.ceremony.location && (
-                <span className="loading-screen__std-venue-name">{siteConfig.ceremony.location}</span>
+                <span className="loading-screen__std-venue-name">{toTitleCase(siteConfig.ceremony.location)}</span>
               )}
             </div>
           )}
@@ -489,7 +490,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete, onFade
                 className="loading-screen__std-bar"
                 style={{ animationDuration: `${totalDurationMs}ms` }}
               />
-              {isPlain && (
+              {isPlain && !reduceMotion && (
                 <span
                   className="ls-plain-progress-glow"
                   style={{ animationDuration: `${totalDurationMs}ms` }}

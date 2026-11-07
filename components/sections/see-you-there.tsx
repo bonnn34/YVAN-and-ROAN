@@ -32,8 +32,8 @@ const SLIDE_MS = 5000
 
 const titleSize = "clamp(2.85rem, 13.5vw, 6.75rem)"
 const photoTitleShadow =
-  "0 1px 0 rgb(255 250 247 / 28%), 0 2px 18px rgb(37 37 61 / 60%), 0 12px 36px rgb(37 37 61 / 45%)"
-const softShadow = "0 1px 2px rgb(37 37 61 / 85%), 0 2px 8px rgb(37 37 61 / 70%), 0 6px 24px rgb(37 37 61 / 55%)"
+  "0 1px 0 rgb(255 250 247 / 28%), 0 2px 18px rgb(0 32 89 / 60%), 0 12px 36px rgb(0 32 89 / 45%)"
+const softShadow = "0 1px 2px rgb(0 32 89 / 85%), 0 2px 8px rgb(0 32 89 / 70%), 0 6px 24px rgb(0 32 89 / 55%)"
 
 const stagger: Variants = {
   hidden: {},
@@ -134,7 +134,7 @@ export function SeeYouThere() {
           className="pointer-events-none absolute inset-0 md:hidden"
           style={{
             background:
-              "linear-gradient(180deg, rgb(37 37 61 / 40%) 0%, rgb(37 37 61 / 8%) 26%, rgb(37 37 61 / 28%) 45%, rgb(37 37 61 / 78%) 66%, rgb(37 37 61 / 92%) 100%)",
+              "linear-gradient(180deg, rgb(0 32 89 / 40%) 0%, rgb(0 32 89 / 8%) 26%, rgb(0 32 89 / 28%) 45%, rgb(0 32 89 / 78%) 66%, rgb(0 32 89 / 92%) 100%)",
           }}
           aria-hidden
         />
@@ -143,7 +143,7 @@ export function SeeYouThere() {
           className="pointer-events-none absolute inset-0 hidden md:block"
           style={{
             background:
-              "radial-gradient(48% 42% at 50% 50%, rgb(37 37 61 / 68%) 0%, rgb(37 37 61 / 40%) 60%, transparent 100%), linear-gradient(180deg, rgb(37 37 61 / 40%) 0%, rgb(37 37 61 / 15%) 35%, rgb(37 37 61 / 15%) 65%, rgb(37 37 61 / 60%) 100%)",
+              "radial-gradient(48% 42% at 50% 50%, rgb(0 32 89 / 68%) 0%, rgb(0 32 89 / 40%) 60%, transparent 100%), linear-gradient(180deg, rgb(0 32 89 / 40%) 0%, rgb(0 32 89 / 15%) 35%, rgb(0 32 89 / 15%) 65%, rgb(0 32 89 / 60%) 100%)",
           }}
           aria-hidden
         />

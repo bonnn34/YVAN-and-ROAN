@@ -48,7 +48,7 @@ function pad2(n: number) {
 
 function formatCeremonyTimePhrase(raw: string) {
   const match = raw.trim().match(/^(\d{1,2})(?::(\d{2}))?\s*(AM|PM)?/i)
-  if (!match) return raw.toUpperCase()
+  if (!match) return raw
 
   let hour24 = Number(match[1])
   const minutes = match[2] ?? "00"
@@ -58,12 +58,17 @@ function formatCeremonyTimePhrase(raw: string) {
   if (meridiem === "AM" && hour24 === 12) hour24 = 0
 
   const period =
-    hour24 >= 17 ? "IN THE EVENING" : hour24 >= 12 ? "IN THE AFTERNOON" : "IN THE MORNING"
+    hour24 >= 17 ? "in the evening" : hour24 >= 12 ? "in the afternoon" : "in the morning"
 
   let displayHour = hour24 % 12
   if (displayHour === 0) displayHour = 12
 
   return `${displayHour}:${minutes} ${period}`
+}
+
+// "ZION EVENT PLACE" → "Zion Event Place" (the venue is stored in caps for other sections)
+function toTitleCase(text: string) {
+  return text.toLowerCase().replace(/(^|[\s\-/(])(\p{L})/gu, (_, sep: string, ch: string) => sep + ch.toUpperCase())
 }
 
 function useCeremonyCountdown() {
@@ -245,8 +250,7 @@ export function Hero() {
   const ceremonyTimePhrase = formatCeremonyTimePhrase(
     siteConfig.ceremony.time ?? siteConfig.wedding.time,
   )
-  const ceremonyName =
-    siteConfig.ceremony.location || siteConfig.wedding.venue
+  const ceremonyName = toTitleCase(siteConfig.ceremony.location || siteConfig.wedding.venue || "")
 
   const fadeUp = (delay: number) => {
     if (reduceMotion) {
@@ -404,15 +408,10 @@ export function Hero() {
           </div>
         </motion.div>
 
-        <motion.div className="home-hero-meta mt-5 flex flex-col items-center gap-1 sm:mt-6" {...fadeUp(0.36)}>
-          <span
-            className={`${cinzel.className} home-hero-meta-time text-[clamp(0.68rem,2.9vw,0.82rem)] font-semibold uppercase tracking-[0.22em]`}
-          >
-            {ceremonyTimePhrase}
-          </span>
-          <span className="home-hero-meta-venue text-[clamp(1.05rem,4.6vw,1.4rem)] italic leading-tight">
-            {ceremonyName}
-          </span>
+        <motion.div className="home-hero-meta mt-5 flex flex-col items-center sm:mt-6" {...fadeUp(0.36)}>
+          {/* "3:30 in the afternoon" between peach dots, then the venue in title case */}
+          <span className="home-hero-meta-time">{ceremonyTimePhrase}</span>
+          <span className="home-hero-meta-venue">{ceremonyName}</span>
         </motion.div>
         </div>
       </div>

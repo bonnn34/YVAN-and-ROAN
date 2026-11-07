@@ -45,7 +45,7 @@ const GOLD = "var(--color-welcome-heading)" // accent labels & icons (dusty blue
 const NAVY = "var(--color-welcome-navy)"
 const SCRIPT = "var(--color-welcome-heading)"
 const BODY = "var(--color-welcome-text)"
-const LEAF = "color-mix(in srgb, var(--color-motif-yellow) 70%, #25253D)" // deep sage green
+const LEAF = "color-mix(in srgb, var(--color-motif-yellow) 70%, #002059)" // deep sage green
 const SUN = "var(--color-motif-accent)"
 const NAV_GOLD =
   "linear-gradient(180deg, var(--color-welcome-heading) 0%, color-mix(in srgb, var(--color-welcome-heading) 72%, var(--color-welcome-navy)) 100%)"
