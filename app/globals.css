@@ -593,6 +593,15 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Safety net: no element (corner florals, carousels, rising hearts…) can make
+   the page scroll sideways on phones. `clip` (not `hidden`) keeps position: sticky
+   working and doesn't create a new scroll container. */
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
 /* Imperial Script font utility class */
 .imperial-script-regular {
   font-family: var(--font-imperial-script), cursive;

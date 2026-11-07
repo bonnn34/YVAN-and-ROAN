@@ -4,13 +4,9 @@ import { useState, useEffect, useMemo, useRef } from "react"
 import Link from "next/link"
 import { useSiteConfig } from "@/hooks/use-site-config"
 import StaggeredMenu from "./StaggeredMenu"
-import { Cinzel } from "next/font/google"
+import { cinzel } from "@/lib/fonts"
 import { siteConfig } from "@/content/site"
 
-const cinzel = Cinzel({
-  subsets: ["latin"],
-  weight: ["500", "600"],
-})
 
 // Palette lives in globals.css → @theme inline → --color-motif-*
 // Edit there once to update every component.

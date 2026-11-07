@@ -4,16 +4,12 @@ import { useEffect, useState, type CSSProperties } from "react"
 import { createPortal } from "react-dom"
 import Image from "next/image"
 import localFont from "next/font/local"
-import { Cinzel } from "next/font/google"
+import { cinzel } from "@/lib/fonts"
 import { Download, Expand, Gift, Heart, X } from "lucide-react"
 import { AnimatePresence, motion, useReducedMotion, type Variants } from "motion/react"
 import { useSiteConfig } from "@/hooks/use-site-config"
 import { layeredSectionTitleSize, sectionType } from "@/lib/section-typography"
 
-const cinzel = Cinzel({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-})
 
 const theSeasons = localFont({
   src: "../../Font/Fontspring-DEMO-theseasons-reg.otf",

@@ -2,12 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from "react"
 import Image from "next/image"
-import { Cinzel } from "next/font/google"
+import { cinzel } from "@/lib/fonts"
 
-const cinzel = Cinzel({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-})
 
 // Motif colors (app/globals.css): white paper, dusty-blue accents, sky borders
 const IVORY = "#FFFFFF"

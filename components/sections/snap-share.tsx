@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Cinzel } from "next/font/google"
+import { cinzel } from "@/lib/fonts"
 import localFont from "next/font/local"
 import { Instagram, Facebook, Twitter, Share2, Copy, Download, Check } from "lucide-react"
 import { useQrColors } from "@/hooks/use-css-color"
@@ -11,10 +11,6 @@ import { layeredSectionTitleSize, sectionType } from "@/lib/section-typography"
 import Image from "next/image"
 import { PuhonBanner } from "@/components/puhon-closing"
 
-const cinzel = Cinzel({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-})
 
 const theSeasons = localFont({
   src: "../../Font/Fontspring-DEMO-theseasons-reg.otf",

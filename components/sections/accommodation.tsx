@@ -2,14 +2,10 @@
 
 import type React from "react"
 import { motion } from "motion/react"
-import { Cinzel } from "next/font/google"
+import { cinzel } from "@/lib/fonts"
 import localFont from "next/font/local"
 import { layeredSectionTitleSize, sectionType } from "@/lib/section-typography"
 
-const cinzel = Cinzel({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-})
 
 const theSeasons = localFont({
   src: "../../Font/Fontspring-DEMO-theseasons-reg.otf",

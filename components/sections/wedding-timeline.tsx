@@ -13,15 +13,11 @@ import {
   useTransform,
   type Variants,
 } from "motion/react"
-import { Cinzel } from "next/font/google"
+import { cinzel } from "@/lib/fonts"
 import localFont from "next/font/local"
 import Image from "next/image"
 import { TintedDeco } from "@/components/tinted-deco"
 
-const cinzel = Cinzel({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-})
 
 const theSeasons = localFont({
   src: "../../Font/Fontspring-DEMO-theseasons-reg.otf",

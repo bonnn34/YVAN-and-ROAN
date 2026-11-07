@@ -3,15 +3,11 @@
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import localFont from "next/font/local"
-import { Cinzel } from "next/font/google"
+import { cinzel } from "@/lib/fonts"
 import { useReducedMotion } from "motion/react"
 import { useSiteConfig } from "@/hooks/use-site-config"
 import { StoryGlyphText } from "@/lib/story-glyph-text"
 
-const cinzel = Cinzel({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-})
 
 const theSeasons = localFont({
   src: "../Font/Fontspring-DEMO-theseasons-reg.otf",

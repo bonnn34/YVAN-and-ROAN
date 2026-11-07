@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { Section } from "@/components/section"
 import { motion } from "motion/react"
-import { Cinzel } from "next/font/google"
+import { cinzel } from "@/lib/fonts"
 import localFont from "next/font/local"
 import { useSiteConfig } from "@/hooks/use-site-config"
 import Counter from "@/components/Counter"
@@ -22,10 +22,6 @@ interface CountdownUnitProps {
   label: string
 }
 
-const cinzel = Cinzel({
-  subsets: ["latin"],
-  weight: ["700"],
-})
 
 const theSeasons = localFont({
   src: "../../Font/Fontspring-DEMO-theseasons-reg.otf",

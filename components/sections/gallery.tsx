@@ -6,7 +6,7 @@ import Image from "next/image"
 import Link from "next/link"
 import localFont from "next/font/local"
 import { X, ChevronLeft, ChevronRight, Camera } from "lucide-react"
-import { Cinzel } from "next/font/google"
+import { cinzel } from "@/lib/fonts"
 import { Section } from "@/components/section"
 import { sectionType } from "@/lib/section-typography"
 import { useSiteConfig } from "@/hooks/use-site-config"
@@ -16,10 +16,6 @@ import { DecoCorners } from "@/components/deco-corners"
 import { HEART_PATH } from "@/components/rising-hearts"
 import { SectionBackdrop } from "@/components/section-backdrop"
 
-const cinzel = Cinzel({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-})
 
 const theSeasons = localFont({
   src: "../../Font/Fontspring-DEMO-theseasons-reg.otf",
@@ -236,11 +232,12 @@ function MobileInfiniteCarousel({
   }, [])
 
   return (
-    <div className="sm:hidden">
+    <div className="w-full max-w-full overflow-x-clip sm:hidden">
       <div
         ref={stripRef}
         onScroll={handleScroll}
-        className="relative flex gap-2.5 overflow-x-auto pt-1 pb-5 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        // overscroll-x-contain: a swipe that reaches the strip's end never hands the scroll to the page
+        className="relative flex w-full max-w-full gap-2.5 overflow-x-auto overscroll-x-contain pt-1 pb-5 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         style={{ paddingInline: "7%" }}
         aria-label="Gallery carousel"
       >
@@ -473,7 +470,8 @@ export function Gallery() {
 
   return (
     <div
-      className={`${theSeasons.variable} ${aboveTheBeyond.variable} relative w-full`}
+      // overflow-x-clip: nothing in the section (corners, bleed carousel, hearts) can widen the page
+      className={`${theSeasons.variable} ${aboveTheBeyond.variable} relative w-full max-w-full overflow-x-clip`}
       style={{ background: sectionBg }}
     >
       <PlainBubbles />
@@ -529,7 +527,7 @@ export function Gallery() {
       <div className="relative z-20 w-full max-w-6xl mx-auto px-6 sm:px-10 md:px-12 pb-2 sm:pb-3">
         <>
             {/* Mobile: endless swipe carousel; bleeds past the side padding for slimmer margins */}
-            <div className="-mx-6 sm:mx-0">
+            <div className="-mx-6 max-w-[100vw] sm:mx-0">
               <MobileInfiniteCarousel
                 items={galleryItems}
                 swipeHint={gallery.swipeHint}
@@ -602,7 +600,7 @@ export function Gallery() {
 
       {isMounted && selectedImage && createPortal(
         <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center p-3 backdrop-blur-sm animate-in fade-in duration-200 sm:p-6"
+          className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden overscroll-none p-3 backdrop-blur-sm animate-in fade-in duration-200 sm:p-6"
           style={{ background: "color-mix(in srgb, var(--color-welcome-navy) 35%, black 65%)" }}
           role="dialog"
           aria-modal="true"
@@ -676,8 +674,11 @@ export function Gallery() {
                   borderColor: "color-mix(in srgb, var(--color-motif-silver) 50%, transparent)",
                 }}
               >
-                <span className="text-sm font-medium sm:text-base" style={{ color: C.light }}>
-                  {currentIndex + 1} / {galleryItems.length}
+                <span className={`${cinzel.className} text-sm font-semibold tracking-[0.12em] sm:text-base`} style={{ color: C.light }}>
+                  {pad2(currentIndex + 1)}{" "}
+                  <span className="text-[0.7em] tracking-[0.18em]" style={{ color: "var(--color-motif-blush)" }}>
+                    / {pad2(galleryItems.length)}
+                  </span>
                 </span>
               </div>
               <button

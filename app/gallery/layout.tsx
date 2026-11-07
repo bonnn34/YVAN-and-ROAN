@@ -2,16 +2,12 @@
 
 import Link from "next/link"
 import { useEffect } from "react"
-import { Cinzel } from "next/font/google"
+import { cinzel } from "@/lib/fonts"
 import localFont from "next/font/local"
 import { ChevronLeft } from "lucide-react"
 import { useSiteConfig } from "@/hooks/use-site-config"
 import { HEART_PATH } from "@/components/rising-hearts"
 
-const cinzel = Cinzel({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-})
 
 const aboveTheBeyond = localFont({
   src: "../../Font/above-the-beyond-script.otf",

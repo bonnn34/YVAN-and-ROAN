@@ -6,14 +6,10 @@ import { useQrColors } from "@/hooks/use-css-color"
 import { QRCodeSVG } from "qrcode.react"
 import Image from "next/image"
 import localFont from "next/font/local"
-import { Cinzel } from "next/font/google"
+import { cinzel } from "@/lib/fonts"
 import { Hotel, Copy, Check, Navigation, MapPin } from "lucide-react"
 import { layeredSectionTitleSize } from "@/lib/section-typography"
 
-const cinzel = Cinzel({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-})
 
 const theSeasons = localFont({
   src: "../../Font/Fontspring-DEMO-theseasons-reg.otf",

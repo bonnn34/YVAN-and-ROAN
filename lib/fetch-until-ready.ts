@@ -48,6 +48,8 @@ export async function fetchUntilReady<T>({
   let delay = initialDelayMs
   let attempt = 0
   let lastError: unknown
+  // Last response that loaded fine but didn't pass isReady (e.g. an empty list)
+  let lastValue: { value: T } | null = null
 
   while (true) {
     if (signal?.aborted) {
@@ -57,6 +59,8 @@ export async function fetchUntilReady<T>({
     try {
       const value = await load(signal ?? new AbortController().signal)
       if (isReady(value)) return value
+      lastValue = { value }
+      lastError = undefined
     } catch (error) {
       if (isAbortError(error)) throw error
       lastError = error
@@ -64,6 +68,9 @@ export async function fetchUntilReady<T>({
 
     attempt += 1
     if (attempt >= maxAttempts) {
+      // The request worked but the data never passed isReady (e.g. the sheet is genuinely
+      // empty): that is a valid answer, not an error — hand back what we got.
+      if (lastValue && lastError === undefined) return lastValue.value
       throw lastError instanceof Error ? lastError : new Error("Data is not ready")
     }
     onRetry?.(attempt)

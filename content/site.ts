@@ -374,8 +374,8 @@ const DECOR = {
   cornerBottomRight: "/deco/new-deco/bottom-right-corner.png",
   cornerOverlayTopLeft: "/deco/cornerOverlayTopLeft.png", // floral corner layered over the top vines (loader + envelope)
   cornerOverlayTopRight: "/deco/cornerOverlayTopRight.png",
-  headerOrnament: "/deco/new-deco/ornament-middle.png", // small sprig above titles
-  footerVine: "/deco/footerVine.png", // long vine at section ends
+  headerOrnament:  "/deco/ornament.png", // small sprig above titles
+  footerVine: "/deco/ornament.png", // long vine at section ends
   sideLeft: "/deco/lovestorydeco/Elegant-Eucalyptus-Left.png", // love story side sprigs
   sideRight: "/deco/lovestorydeco/Elegant-Eucalyptus-Right.png",
 }

@@ -21,7 +21,7 @@ import {
   Check,
   X,
 } from "lucide-react"
-import { Cinzel } from "next/font/google"
+import { cinzel } from "@/lib/fonts"
 import localFont from "next/font/local"
 import { useSiteConfig } from "@/hooks/use-site-config"
 import { sectionType, welcomeTitleSize } from "@/lib/section-typography"
@@ -30,10 +30,6 @@ import { fetchInvitationList, invalidateInvitationData, readCachedInvitationList
 import { TintedDeco } from "@/components/tinted-deco"
 import { GlyphText } from "@/lib/glyph-text"
 
-const cinzel = Cinzel({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-})
 
 const theSeasons = localFont({
   src: "../../Font/Fontspring-DEMO-theseasons-reg.otf",
