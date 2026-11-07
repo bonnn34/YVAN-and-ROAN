@@ -74,6 +74,13 @@ const primaryButtonBg =
 
 
 
+// "ZION EVENT PLACE" → "Zion Event Place" (venue names/addresses are stored in caps for other sections)
+function toTitleCase(text: string) {
+  return text.toLowerCase().replace(/(^|[\s\-/(,])(\p{L})/gu, (_, sep: string, ch: string) => sep + ch.toUpperCase())
+}
+
+const serif = { fontFamily: '"Cormorant Garamond", "SortsMillGoudy", Georgia, serif' } as const
+
 function DecoImg({ src, className }: { src: string; className: string }) {
   if (!src) return null
   return <TintedDeco src={src} className={className} />
@@ -604,32 +611,47 @@ function EventVenueCard({
             className="absolute inset-0 z-20 pointer-events-none"
             style={{
               background:
-                "linear-gradient(to top, color-mix(in srgb, var(--color-welcome-navy) 82%, transparent) 0%, color-mix(in srgb, var(--color-welcome-navy) 25%, transparent) 45%, transparent 100%)",
+                "linear-gradient(to top, color-mix(in srgb, var(--color-welcome-navy) 80%, transparent) 0%, color-mix(in srgb, var(--color-welcome-navy) 45%, transparent) 30%, color-mix(in srgb, var(--color-motif-medium) 12%, transparent) 60%, transparent 100%)",
             }}
           />
 
           <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 md:bottom-6 md:left-6 right-3 sm:right-4 md:right-6 z-30">
             <span
-              className={`${cinzel.className} inline-block mb-2 px-3 py-1 rounded-full backdrop-blur-sm text-[10px] sm:text-xs uppercase tracking-[0.2em] border`}
+              className={`${cinzel.className} inline-block mb-2.5 px-3 py-1 rounded-full backdrop-blur-sm text-[10px] sm:text-xs uppercase tracking-[0.2em] border`}
               style={{
-                color: C.light,
-                background: "color-mix(in srgb, var(--color-motif-soft) 18%, transparent)",
-                borderColor: "color-mix(in srgb, var(--color-motif-soft) 45%, transparent)",
+                color: "#FFFFFF",
+                background: "color-mix(in srgb, var(--color-motif-medium) 35%, transparent)",
+                borderColor: "color-mix(in srgb, var(--color-motif-blush) 70%, transparent)",
               }}
             >
               {badge}
             </span>
+            {/* Venue name in white, title case; address in faded peach underneath */}
             <h3
-              className={`${theSeasons.className} text-base sm:text-lg md:text-xl lg:text-2xl font-semibold mb-1 sm:mb-1.5 drop-shadow-lg uppercase tracking-[0.12em] leading-tight`}
-              style={{ color: C.light }}
+              className="text-[1.6rem] font-semibold leading-[1.05] tracking-[0.01em] sm:text-3xl md:text-4xl lg:text-[2.6rem]"
+              style={{
+                ...serif,
+                color: "#FFFFFF",
+                textShadow: "0 1px 2px rgb(0 0 0 / 35%), 0 4px 18px color-mix(in srgb, var(--color-welcome-navy) 60%, transparent)",
+              }}
             >
-              <SpecialCharFont text={locationName} />
+              {toTitleCase(locationName)}
             </h3>
+            <span
+              className="my-2 block h-px w-14 sm:my-2.5 sm:w-20"
+              style={{ background: "linear-gradient(to right, var(--color-motif-blush), transparent)" }}
+              aria-hidden
+            />
             <p
-              className={`${theSeasons.className} text-[10px] sm:text-xs md:text-sm lg:text-base drop-shadow-md tracking-[0.06em] leading-snug`}
-              style={{ color: "var(--color-motif-silver)" }}
+              className="flex items-start gap-1.5 text-[0.82rem] italic leading-snug sm:text-sm md:text-base"
+              style={{
+                ...serif,
+                color: "color-mix(in srgb, var(--color-motif-blush) 78%, white)",
+                textShadow: "0 1px 6px color-mix(in srgb, var(--color-welcome-navy) 70%, transparent)",
+              }}
             >
-              <SpecialCharFont text={venueAddress} />
+              <MapPin className="mt-[0.2em] h-3.5 w-3.5 shrink-0 opacity-90 sm:h-4 sm:w-4" aria-hidden />
+              <span>{toTitleCase(venueAddress)}</span>
             </p>
           </div>
         </div>
@@ -695,13 +717,13 @@ function EventVenueCard({
                   {venueSectionLabel}
                 </p>
                 <p
-                  className={`${theSeasons.className} text-sm sm:text-base md:text-lg lg:text-xl font-semibold leading-snug tracking-[0.06em] uppercase`}
-                  style={{ color: C.heading }}
+                  className="text-lg font-semibold leading-snug sm:text-xl md:text-2xl"
+                  style={{ ...serif, color: C.heading }}
                 >
-                  <SpecialCharFont text={locationName} />
+                  {toTitleCase(locationName)}
                 </p>
-                <p className={`${theSeasons.className} ${ct.body} leading-relaxed mt-1 tracking-[0.04em]`} style={{ color: C.body }}>
-                  <SpecialCharFont text={venueAddress} />
+                <p className={`${ct.body} mt-1 italic leading-relaxed`} style={{ ...serif, color: C.body }}>
+                  {toTitleCase(venueAddress)}
                 </p>
               </div>
               <div className="flex flex-col items-center gap-1.5 sm:gap-2 flex-shrink-0">

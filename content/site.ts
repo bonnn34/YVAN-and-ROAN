@@ -144,7 +144,7 @@ const RSVP = {
   coordinator: "{groom} / {bride}", // {groom} / {bride} → couple nicknames
   phone: "to be announced",
 }
-const HASHTAGS = ["#YVANtuallyTheOneForROAN"] // ⚠ check — looks like it's from a previous couple
+const HASHTAGS = ["#YVANtuallyTheOneForROAN"] // official wedding hashtag (Snap & Share, reminders)
 
 // ── Attire guide (Event Details → Attire Guidelines) ────────────────────────
 // SHOW = which cards to display AND their order, top to bottom. Examples:
@@ -260,21 +260,21 @@ sponsors: {
   ] as AttireColor[],
 
   note:
-    "Our principal sponsors are kindly requested to wear elegant formal attire in Champagne Peach and Midnight Blue. Ninangs are invited to wear graceful Champagne Peach gowns, while Ninongs are requested to wear traditional Midnight Blue Barong Tagalog for a beautifully coordinated celebration.",
+    "Champagne peach for our Ninangs and midnight blue for our Ninongs.",
 
   ladies: {
     label: "Ninang",
     details:
-      "Elegant floor-length formal gowns in Champagne Peach. Flowing fabrics such as chiffon, satin, or tulle are encouraged, with delicate floral embroidery, subtle embellishments, and graceful silhouettes. Different gown styles and necklines are welcome.",
-    highlight: "Champagne Peach Formal Gowns",
+      "A floor-length champagne peach gown in a soft, flowing fabric. Any style or neckline is welcome.",
+    highlight: "champagne peach gown",
     roles: [] as { role: string; attire: string }[],
   },
 
   gentlemen: {
     label: "Ninong",
     details:
-      "Traditional Midnight Blue Barong Tagalog with refined embroidery and elegant detailing, paired with dark navy or black formal trousers and polished black leather dress shoes. Long-sleeved embroidered barongs are preferred for a classic and sophisticated appearance.",
-    highlight: "Midnight Blue Barong Tagalog",
+      "A long-sleeved midnight blue Barong Tagalog with dark trousers and black dress shoes.",
+    highlight: "midnight blue Barong Tagalog",
     roles: [] as { role: string; attire: string }[],
   },
 },
@@ -283,26 +283,26 @@ sponsors: {
 
 guests: {
   title: "Wedding Guests",
-  image: "/Details/guest.png",
+  image: "/Details/guest-Attire.png",
   dressCode: "Semi-Formal or Formal Attire",
   palette: DRESS_CODE_PALETTE,
 
   note:
-    "We kindly invite you to celebrate with us in elegant shades of Blue and Peach. Ladies may wear graceful dresses in soft blue, champagne peach, or apricot tones, while gentlemen may wear coordinated collared shirts, tailored trousers, or formal suits. Delicate floral patterns that complement our wedding colors are welcome.",
+    "Any shade of blue or peach from the palette below. Soft florals are welcome too.",
 
   ladies: {
     label: "Ladies",
     details:
-      "Elegant knee-length, midi, or floor-length dresses in shades of dusty blue, powder blue, sky blue, champagne peach, pastel peach, or apricot. Soft fabrics such as chiffon, satin, or tulle are encouraged. Delicate floral patterns, flowing skirts, puff sleeves, and graceful draping are welcome.",
-    highlight: "Elegant Blue & Peach Dresses",
+      "A dress in soft blue or peach, in any length from knee to floor. Light, flowing fabrics are encouraged.",
+    highlight: "soft blue or peach",
     roles: [] as { role: string; attire: string }[],
   },
 
   gentlemen: {
     label: "Gentlemen",
     details:
-      "Polished semi-formal or formal attire featuring collared polo shirts, long-sleeved button-down shirts, or tailored suits in navy blue, dusty blue, or light blue. Pair with well-fitted trousers in navy, beige, or other coordinating neutral shades and polished dress shoes. A light blue suit with a crisp white shirt is also welcome.",
-    highlight: "Blue Collared Shirts or Tailored Suits",
+      "A collared shirt or suit in navy or light blue, with neutral trousers and dress shoes.",
+    highlight: "navy or light blue",
     roles: [] as { role: string; attire: string }[],
   },
 },
@@ -316,9 +316,9 @@ const SITE_URL = "https://yvan-and-roan.vercel.app/"
 // Keep it a 1200×630 JPG under ~300 KB — Messenger/WhatsApp silently drop larger images,
 // which is why forwarded links can lose their preview. Exported from /Details/imagepreview.png.
 // Use a NEW filename whenever the image changes — Facebook caches images by URL.
-const LINK_PREVIEW_IMAGE = "/Details/image-prev.png"
+const LINK_PREVIEW_IMAGE = "/Details/LinkPreview.png"
 // Square fallback (600×600) for apps that show a small square thumbnail
-const LINK_PREVIEW_IMAGE_SQUARE = "/Details/image-prev.png"
+const LINK_PREVIEW_IMAGE_SQUARE = "/Details/LinkPreview.png"
 
 // Site address with env override applied and no trailing slash — no need to edit
 export const canonicalSiteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? SITE_URL).replace(/\/$/, "")
@@ -539,9 +539,9 @@ export const siteConfig = {
     // (A YouTube link pasted here is detected and played through YouTube.)
     videoSrc: "",
     // YouTube video ID or full link (youtu.be/…, watch?v=…, /shorts/…, /embed/…)
-    youtubeId: "c6ThrZn8OuY",
+    youtubeId: "aaHv22-giH0",
     // Cover image shown before the video plays
-    thumbnail: "/desktop-background/couple (6).webp",
+    thumbnail: "/desktop-background/couple (35).webp",
     thumbnailAlt: `${COUPLE_LABEL} — video cover`,
     playLabel: "Play our video",
   },
@@ -739,7 +739,7 @@ export const siteConfig = {
     // Cards, colors, images and which groups show → QUICK SETUP → ATTIRE
     attire: {
       title: "Attire Guidelines",
-      description: "Our day is dressed in soft dusty pinks, gentle grays and warm creams, and we would love for you to wear them with us. Please find your role below.",
+      description: "Our day is dressed in soft blues and warm peach. We'd love for you to wear them with us. Please find your role below.",
       // Shown above a card's palette
       paletteTitle: "Dress Code Palette",
       paletteSubtitle: "", // script line under the palette title — "" hides it
@@ -764,28 +764,64 @@ export const siteConfig = {
       ],
       // showPalette: shows the dress code palette after the first paragraph
       items: [
-        /*{
-          title: "Adults-Only Celebration",
-          variant: "accent" as "accent" | "soft",
-          showPalette: false,
-          paragraphs: [
-            "We love your kids, but consider this your night off! Please note that our celebration is adults-only.",
-          ],
-        },*/
         {
-          title: "No Surprise Announcements",
+          title: "Arrival",
           variant: "soft" as "accent" | "soft",
           showPalette: false,
           paragraphs: [
-            "To keep the focus on the celebration, we kindly ask that there be no surprise announcements or proposals during our wedding.",
+            "Please arrive by {guestsTime} so you can find your seat and settle in before the ceremony begins at {ceremonyTime}. Thank you for being on time.",
           ],
         },
         {
-          title: "Keep Our Invitation Private",
+          title: "Dress Code",
+          variant: "accent" as "accent" | "soft",
+          showPalette: true,
+          paragraphs: [
+            "Kindly come in semi-formal attire in soft blues or warm peach from our palette.",
+            "Please avoid casual clothes and all-white outfits.",
+          ],
+        },
+        {
+          title: "Intimate Gathering",
+          variant: "accent" as "accent" | "soft",
+          showPalette: false,
+          paragraphs: [
+            "While your little ones are so dear to us, we have decided to celebrate our day with an intimate, adults-only gathering.",
+            "We hope you will be able to share in our joy.",
+          ],
+        },
+        {
+          title: "Unplugged Ceremony",
           variant: "soft" as "accent" | "soft",
           showPalette: false,
           paragraphs: [
-            "Please keep this just between us! Kindly refrain from posting our invitation online.",
+            "We're having a mostly unplugged ceremony. Please keep photos to a minimum and give our photographers room to capture the moment — professional photos will be shared with you after the event.",
+          ],
+        },
+        {
+          title: "Snap & Share",
+          variant: "accent" as "accent" | "soft",
+          showPalette: false,
+          paragraphs: [
+            "After our unplugged ceremony, help us capture and share our precious moments using our official wedding hashtag:",
+            `${HASHTAGS[0]}`,
+          ],
+        },
+        {
+          title: "Note on Gifts",
+          variant: "soft" as "accent" | "soft",
+          showPalette: false,
+          paragraphs: [
+            "With all that we have, we've been truly blessed. Your presence and prayers are all that we request.",
+            "But if you desire to give nonetheless, a monetary gift is one we highly suggest.",
+          ],
+        },
+        {
+          title: "Reception Details",
+          variant: "accent" as "accent" | "soft",
+          showPalette: false,
+          paragraphs: [
+            "Please join us for early dinner, laughter, and dancing after the ceremony.",
           ],
         },
         {
@@ -797,36 +833,19 @@ export const siteConfig = {
           ],
         },
         {
-          title: "Unplugged Ceremony",
+          title: "Keep Our Invitation Private",
           variant: "soft" as "accent" | "soft",
           showPalette: false,
           paragraphs: [
-            "We're having a mostly unplugged ceremony. Guests may take photos, but we kindly ask that it be kept minimal. Please avoid blocking or crowding our official photographers so they can capture the special moments. We'd love for everyone to stay present and share the moment with us. Don't worry—professional photos will be shared with you after the event. Thank you for your understanding.",
+            "Please keep this just between us! Kindly refrain from posting our invitation online.",
           ],
         },
         {
-          title: "Dress Code",
-          variant: "accent" as "accent" | "soft",
-          showPalette: true,
-          paragraphs: [
-            "Guests, kindly come in semi-formal attire in shades of dusty pink or gray from our palette.",
-            "Please avoid casual clothes and all-white outfits.",
-          ],
-        },
-        {
-          title: "Arrival",
+          title: "No Surprise Announcements",
           variant: "soft" as "accent" | "soft",
           showPalette: false,
           paragraphs: [
-            "To ensure everything runs smoothly, please arrive at {guestsTime}. This will give you enough time to find your seat, settle in comfortably, and fully enjoy the beautiful ceremony before it begins at {ceremonyTime}. We truly appreciate your punctuality and look forward to celebrating this special moment with you.",
-          ],
-        },
-        {
-          title: "Reception Details",
-          variant: "accent" as "accent" | "soft",
-          showPalette: false,
-          paragraphs: [
-            "Please join us for early dinner, laughter, and dancing after the ceremony.",
+            "To keep the focus on the celebration, we kindly ask that there be no surprise announcements or proposals during our wedding.",
           ],
         },
       ],
@@ -1261,7 +1280,7 @@ export const siteConfig = {
       {
         question: "Are children invited?",
         answer:
-          "We love your little ones, but apart from the children in our entourage, our celebration is adults-only. We hope this gives you a relaxing evening off to celebrate with us!",
+          "While your little ones are so dear to us, we have decided to celebrate our day with an intimate, adults-only gathering.\n\nWe hope you will be able to share in our joy.",
       },
       {
         question: "What should I wear?",
@@ -1327,7 +1346,8 @@ export const siteConfig = {
     subtitle: "with gratitude",
     description: "Your presence on our wedding day is the greatest gift of all.",
     paragraphs: [
-      "With all that we have, we’ve been truly blessed. Your presence and prayers are all that we request. But if you desire to give nonetheless, a monetary gift is one we humbly suggest.",
+      // One line per verse line (registry.tsx keeps the line breaks)
+      "With all that we have, we've been truly blessed.\nYour presence and prayers are all that we request.\nBut if you desire to give nonetheless,\nA monetary gift is one we highly suggest.",
       "Your love and generosity mean the world to us.",
     ],
     thankYou: "Thank you for being part of our story.", // "" hides the line
@@ -1855,8 +1875,9 @@ Now, as they prepare to say yes before God and the people they love most, Cather
     instructions: "Please scan this QR Code and upload the photos and videos you have taken during our wedding reception. We are delighted to see your snaps too!",
     title: "Snap and Share",
     subtitle: "Share your memories",
+    // One line per line of the verse (snap-share.tsx keeps the line breaks); the hashtag is shown right under it
     description:
-      "Help us remember the little moments of {couple}'s day — every smile, embrace, and candid laugh. Your photos and clips complete our love story.",
+      "After our unplugged ceremony,\nhelp us capture and share our\nprecious moments using our\nofficial wedding hashtag:",
     // "Our Favorite Moments" photo card — always hidden when loadingScreen.display is "plain"
     moments: {
       show: true,

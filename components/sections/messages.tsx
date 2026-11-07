@@ -11,6 +11,7 @@ import { cinzel } from "@/lib/fonts"
 import localFont from "next/font/local"
 import { useSiteConfig } from "@/hooks/use-site-config"
 import { layeredSectionTitleSize, sectionType } from "@/lib/section-typography"
+import { HEART_PATH } from "@/components/rising-hearts"
 
 
 const theSeasons = localFont({
@@ -32,7 +33,6 @@ const IVORY = "#FFFFFF"
 const NAVY = "var(--color-welcome-navy)"
 const BODY = "var(--color-welcome-text)"
 const ACCENT = "var(--color-welcome-heading)"
-const BUTTER = "var(--color-motif-silver)"
 
 const palette = {
   body: BODY,
@@ -46,25 +46,26 @@ const lightLineStyle = {
 } as const
 
 // Header sits on the dusty-blue Silk backdrop — white text with a navy halo.
+// Stronger navy halo now that the silk is bright peach, so the white text stays readable
 const silkTitleShadow =
-  "0 1px 0 color-mix(in srgb, var(--color-welcome-navy) 45%, transparent), 0 2px 10px color-mix(in srgb, var(--color-welcome-navy) 40%, transparent), 0 8px 28px color-mix(in srgb, var(--color-welcome-navy) 30%, transparent)"
+  "0 1px 1px color-mix(in srgb, var(--color-welcome-navy) 60%, transparent), 0 2px 10px color-mix(in srgb, var(--color-welcome-navy) 55%, transparent), 0 8px 28px color-mix(in srgb, var(--color-welcome-navy) 40%, transparent)"
 const silkScriptShadow =
-  "0 1px 0 color-mix(in srgb, var(--color-welcome-navy) 40%, transparent), 0 2px 12px color-mix(in srgb, var(--color-welcome-navy) 35%, transparent)"
+  "0 1px 1px color-mix(in srgb, var(--color-welcome-navy) 60%, transparent), 0 2px 12px color-mix(in srgb, var(--color-welcome-navy) 50%, transparent)"
 const silkBodyShadow =
-  "0 1px 1px color-mix(in srgb, var(--color-welcome-navy) 50%, transparent), 0 2px 10px color-mix(in srgb, var(--color-welcome-navy) 35%, transparent)"
+  "0 1px 2px color-mix(in srgb, var(--color-welcome-navy) 70%, transparent), 0 2px 12px color-mix(in srgb, var(--color-welcome-navy) 50%, transparent)"
 
 const silkGlowStyle = {
   background:
-    "radial-gradient(ellipse at center, color-mix(in srgb, var(--color-welcome-navy) 26%, transparent) 0%, color-mix(in srgb, var(--color-welcome-navy) 10%, transparent) 46%, transparent 72%)",
+    "radial-gradient(ellipse at center, color-mix(in srgb, var(--color-welcome-navy) 34%, transparent) 0%, color-mix(in srgb, var(--color-welcome-navy) 14%, transparent) 46%, transparent 72%)",
 } as const
 
-// Primary button: dusty blue with a soft white ring (matches the rest of the invitation)
+// Primary button: deep navy with a soft peach ring
 const buttonStyle = {
-  background: "linear-gradient(180deg, var(--color-welcome-heading) 0%, color-mix(in srgb, var(--color-welcome-heading) 72%, var(--color-welcome-navy)) 100%)",
+  background: "linear-gradient(180deg, var(--color-welcome-heading) 0%, var(--color-welcome-navy) 100%)",
   borderColor: "rgb(255 255 255 / 70%)",
   color: "#FFFFFF",
   boxShadow:
-    "0 0 0 4px color-mix(in srgb, var(--color-motif-medium) 25%, transparent), 0 12px 24px -10px color-mix(in srgb, var(--color-welcome-navy) 60%, transparent)",
+    "0 0 0 4px color-mix(in srgb, var(--color-motif-blush) 55%, transparent), 0 12px 24px -10px color-mix(in srgb, var(--color-welcome-navy) 60%, transparent)",
 } as const
 
 function SilkTextGlow({ children, className = "" }: { children: ReactNode; className?: string }) {
@@ -101,12 +102,21 @@ interface MessageFormProps {
   onMessageSent?: (message: Message) => void
 }
 
+/** White hairlines with a small white heart and two dots — reads on the peach silk */
 function OutsideDivider() {
   return (
-    <div className="flex items-center justify-center gap-2" aria-hidden>
-      <span className="h-px w-12 sm:w-20" style={{ background: "linear-gradient(to right, transparent, rgb(255 255 255 / 80%))" }} />
-      <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--color-motif-accent)" }} />
-      <span className="h-px w-12 sm:w-20" style={{ background: "linear-gradient(to left, transparent, rgb(255 255 255 / 80%))" }} />
+    <div
+      className="flex items-center justify-center gap-2"
+      style={{ filter: "drop-shadow(0 1px 3px color-mix(in srgb, var(--color-welcome-navy) 45%, transparent))" }}
+      aria-hidden
+    >
+      <span className="h-px w-12 sm:w-20" style={{ background: "linear-gradient(to right, transparent, rgb(255 255 255 / 90%))" }} />
+      <span className="h-1 w-1 rounded-full bg-white" />
+      <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="#FFFFFF">
+        <path d={HEART_PATH} />
+      </svg>
+      <span className="h-1 w-1 rounded-full bg-white" />
+      <span className="h-px w-12 sm:w-20" style={{ background: "linear-gradient(to left, transparent, rgb(255 255 255 / 90%))" }} />
     </div>
   )
 }
@@ -115,7 +125,9 @@ function CardOrnament() {
   return (
     <div className="mx-auto mb-3 flex items-center justify-center gap-1.5 sm:mb-4" aria-hidden>
       <span className="h-px w-10 sm:w-14" style={{ background: "linear-gradient(to right, transparent, var(--color-motif-yellow))" }} />
-      <span className="h-1 w-1 rounded-full sm:h-1.5 sm:w-1.5" style={{ background: "var(--color-motif-accent)" }} />
+      <svg viewBox="0 0 24 24" className="h-3 w-3 sm:h-3.5 sm:w-3.5" fill="var(--color-motif-medium)">
+        <path d={HEART_PATH} />
+      </svg>
       <span className="h-px w-10 sm:w-14" style={{ background: "linear-gradient(to left, transparent, var(--color-motif-yellow))" }} />
     </div>
   )
@@ -149,7 +161,7 @@ function MessagesTitle() {
         className={`${aboveTheBeyond.className} relative z-10 mx-auto mt-1.5 block w-fit max-w-full px-1 leading-[0.88] sm:mt-2 sm:leading-[0.9]`}
         style={{
           fontSize: "var(--script-size)",
-          color: BUTTER,
+          color: IVORY,
           textShadow: silkScriptShadow,
         }}
       >
@@ -239,8 +251,10 @@ function MessageForm({ onSuccess, onMessageSent }: MessageFormProps) {
       <style>{`
         .message-form-input::placeholder,
         .message-form-textarea::placeholder {
-          color: var(--color-welcome-text-soft) !important;
+          color: color-mix(in srgb, var(--color-welcome-text) 55%, white) !important;
           opacity: 1 !important;
+          font-size: 0.86em;
+          letter-spacing: 0.01em;
         }
       `}</style>
 
@@ -477,7 +491,7 @@ export function Messages() {
             </h3>
             <p
               className={`font-goudy-italic ${sectionType.text}`}
-              style={{ color: BUTTER, textShadow: silkBodyShadow }}
+              style={{ color: IVORY, textShadow: silkBodyShadow }}
             >
               Warm words from family and friends
             </p>

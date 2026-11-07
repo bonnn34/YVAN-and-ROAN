@@ -2,16 +2,16 @@
 
 import React from "react"
 import { createContext, useContext, useState, useEffect, useMemo, useRef } from "react"
-import { MotionConfig, motion, useScroll, useTransform, type Variants } from "motion/react"
+import { MotionConfig, motion, type Variants } from "motion/react"
 import localFont from "next/font/local"
 import { Section } from "@/components/section"
-import { sectionType } from "@/lib/section-typography"
 import { cinzel } from "@/lib/fonts"
 import { useSiteConfig } from "@/hooks/use-site-config"
 import { fetchUntilReady, isAbortError } from "@/lib/fetch-until-ready"
 import { fetchInvitationList, readCachedInvitationList } from "@/lib/invitation-data"
 import { PlainBubbles } from "@/components/loader/PlainBubbles"
 import { TintedDeco } from "@/components/tinted-deco"
+import { DecoCorners } from "@/components/deco-corners"
 
 
 const theSeasons = localFont({
@@ -58,8 +58,6 @@ const cardStyle = {
     "0 26px 56px -30px color-mix(in srgb, var(--color-welcome-navy) 55%, transparent), inset 0 1px 0 rgb(255 255 255 / 80%)",
 } as const
 
-const CORNER_DECO_CLASS =
-  "block h-auto w-auto max-w-[92px] sm:max-w-[200px] md:max-w-[260px] lg:max-w-[320px] select-none opacity-90"
 
 const palette = {
   body: BODY,
@@ -82,16 +80,16 @@ function OutsideDivider() {
   )
 }
 
-const SECTION_TITLE_CLASS = `${theSeasons.className} text-[0.74rem] sm:text-[0.88rem] md:text-[1rem] tracking-[0.08em] sm:tracking-[0.12em] md:tracking-[0.14em] uppercase leading-tight`
+const SECTION_TITLE_CLASS = `${theSeasons.className} text-[0.68rem] sm:text-[0.88rem] md:text-[1rem] tracking-[0.08em] sm:tracking-[0.12em] md:tracking-[0.14em] uppercase leading-tight`
 
 const nameStyle: React.CSSProperties = {
-  fontSize: "clamp(0.7rem, min(2.3vw, 5.4cqi), 1.1rem)",
+  fontSize: "clamp(0.64rem, min(2.3vw, 5.4cqi), 1.1rem)",
   lineHeight: 1.25,
   letterSpacing: "0.02em",
 }
 
 const roleTitleStyle: React.CSSProperties = {
-  fontSize: "clamp(0.58rem, min(1.75vw, 4cqi), 0.78rem)",
+  fontSize: "clamp(0.54rem, min(1.75vw, 4cqi), 0.78rem)",
   lineHeight: 1.1,
 }
 
@@ -180,7 +178,7 @@ function CouplePromiseMark({ kicker, line }: { kicker: string; line: string }) {
         {kicker}
       </p>
       <p
-        className={`font-goudy-italic mx-auto mt-1.5 max-w-[18rem] text-[0.875rem] sm:mt-2 sm:max-w-[20rem] sm:text-base`}
+        className={`font-goudy-italic mx-auto mt-1.5 max-w-[18rem] text-[0.8rem] sm:mt-2 sm:max-w-[20rem] sm:text-base`}
         style={{ color: BODY }}
       >
         {line}
@@ -522,11 +520,12 @@ function principalSponsorFromApi(row: Record<string, unknown>): PrincipalSponsor
   }
 }
 
+// Entourage is a long list, so phone text runs a little smaller than the shared scale
 const ct = {
-  label: sectionType.label,
-  sectionTitle: `${sectionType.label} lg:text-base`,
-  body: sectionType.text,
-  bodyLg: sectionType.subheader,
+  label: "text-[0.58rem] sm:text-xs md:text-sm",
+  sectionTitle: "text-[0.58rem] sm:text-xs md:text-sm lg:text-base",
+  body: "text-[0.76rem] sm:text-[0.9375rem] md:text-base",
+  bodyLg: "text-[0.76rem] sm:text-base md:text-lg",
 } as const
 
 const ROLE_CATEGORY_ORDER = [
@@ -699,9 +698,6 @@ export function Entourage({ sponsorsList }: { sponsorsList?: SponsorsList } = {}
   const [isRetrying, setIsRetrying] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const sectionRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] })
-  const topDecoY = useTransform(scrollYProgress, [0, 1], [-30, 70])
-  const bottomDecoY = useTransform(scrollYProgress, [0, 1], [60, -30])
 
   const loadParty = async (signal?: AbortSignal, { reload = false } = {}) => {
     const cached = readCachedParty(sponsorsPath)
@@ -823,19 +819,11 @@ export function Entourage({ sponsorsList }: { sponsorsList?: SponsorsList } = {}
         id="entourage"
         className="relative z-10 overflow-hidden pt-5 pb-5 sm:pt-10 sm:pb-10 md:pt-12 md:pb-12 lg:pt-14 lg:pb-14"
       >
-        {/* Corner decorations (from site.ts) */}
-        <motion.div className="pointer-events-none absolute left-0 top-0 z-10" style={{ y: topDecoY }}>
-          <DecoImg src={decos.topLeft} className={CORNER_DECO_CLASS} />
-        </motion.div>
-        <motion.div className="pointer-events-none absolute right-0 top-0 z-10" style={{ y: topDecoY }}>
-          <DecoImg src={decos.topRight} className={CORNER_DECO_CLASS} />
-        </motion.div>
-        <motion.div className="pointer-events-none absolute bottom-0 left-0 z-10" style={{ y: bottomDecoY }}>
-          <DecoImg src={decos.bottomLeft} className={CORNER_DECO_CLASS} />
-        </motion.div>
-        <motion.div className="pointer-events-none absolute bottom-0 right-0 z-10" style={{ y: bottomDecoY }}>
-          <DecoImg src={decos.bottomRight} className={CORNER_DECO_CLASS} />
-        </motion.div>
+        {/* Corner florals pinned to the section corners (same component as the other sections,
+            sized larger here — app/globals.css → .entourage-corners) */}
+        <div className="entourage-corners" aria-hidden="true">
+          <DecoCorners decos={decos} />
+        </div>
 
       <motion.div
         className="relative z-20 mx-auto mb-5 max-w-5xl px-3 text-center @container/entourage sm:mb-10 sm:px-4 md:mb-12"
@@ -855,7 +843,7 @@ export function Entourage({ sponsorsList }: { sponsorsList?: SponsorsList } = {}
         </motion.div>
         <motion.p
           variants={headerRise}
-          className={`${cinzel.className} mx-auto max-w-[20rem] px-2 text-[0.75rem] font-semibold leading-snug tracking-[0.12em] min-[400px]:max-w-none min-[400px]:text-[0.8125rem] min-[400px]:tracking-[0.16em] sm:text-[0.9375rem] sm:tracking-[0.2em] md:text-base md:tracking-[0.22em]`}
+          className={`${cinzel.className} mx-auto max-w-[20rem] px-2 text-[0.6875rem] font-semibold leading-snug tracking-[0.12em] min-[400px]:max-w-none min-[400px]:text-[0.75rem] min-[400px]:tracking-[0.16em] sm:text-[0.9375rem] sm:tracking-[0.2em] md:text-base md:tracking-[0.22em]`}
           style={onBg}
         >
           {content.eyebrow}
@@ -866,7 +854,7 @@ export function Entourage({ sponsorsList }: { sponsorsList?: SponsorsList } = {}
 
         <motion.p
           variants={headerRise}
-          className="font-goudy-italic mx-auto mt-2.5 max-w-xl px-2 text-[0.9375rem] leading-snug sm:mt-5 sm:text-[1.125rem] sm:leading-relaxed md:mt-6"
+          className="font-goudy-italic mx-auto mt-2.5 max-w-xl px-2 text-[0.84rem] leading-snug sm:mt-5 sm:text-[1.125rem] sm:leading-relaxed md:mt-6"
           style={{ ...onBg, fontWeight: 600 }}
         >
           {content.description}

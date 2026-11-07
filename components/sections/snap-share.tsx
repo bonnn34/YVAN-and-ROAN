@@ -471,11 +471,20 @@ export function SnapShare() {
             <SnapShareTitle title={content.title} subtitle={content.subtitle} />
           </div>
           <p
-            className={`font-goudy-italic mx-auto mt-4 max-w-2xl px-2 sm:mt-5 md:mt-6 ${ct.bodyLg}`}
+            className={`font-goudy-italic mx-auto mt-4 max-w-2xl whitespace-pre-line px-2 sm:mt-5 md:mt-6 ${ct.bodyLg}`}
             style={{ color: OUTSIDE_TEXT_MUTED, textShadow: READABLE_SHADOW }}
           >
             {fill(content.description)}
           </p>
+          {/* Official hashtag right under the verse */}
+          {hashtags[0] ? (
+            <p
+              className={`${cinzel.className} mx-auto mt-3 break-all px-2 text-[0.95rem] font-semibold tracking-[0.06em] sm:mt-4 sm:text-lg md:text-xl`}
+              style={{ color: OUTSIDE_TEXT, textShadow: READABLE_SHADOW }}
+            >
+              {hashtags[0]}
+            </p>
+          ) : null}
           <div className="flex items-center justify-center pt-3 sm:pt-4">
             <span className="h-px w-16 sm:w-24 md:w-32" style={outsideDividerLineStyle} />
           </div>

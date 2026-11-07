@@ -36,11 +36,14 @@ const aboveTheBeyond = localFont({
 })
 
 // Light palette — ivory tones from globals.css motif tokens.
+// Sits on the bright peach silk: everything white, with a navy halo (set on the section root)
 const light = {
-  title: "var(--color-motif-soft)",
-  script: "var(--color-motif-cream)",
-  label: "var(--color-motif-silver)",
+  title: "#FFFFFF",
+  script: "#FFFFFF",
+  label: "#FFFFFF",
 } as const
+const ON_SILK_HALO =
+  "0 1px 2px color-mix(in srgb, var(--color-welcome-navy) 70%, transparent), 0 2px 12px color-mix(in srgb, var(--color-welcome-navy) 50%, transparent)"
 
 const outsideDividerLineStyle = {
   background:
@@ -56,7 +59,7 @@ function OutsideDivider() {
   return (
     <div className="flex items-center justify-center gap-1.5">
       <span className="h-px w-6 sm:w-10" style={outsideDividerLineStyle} />
-      <span className="h-0.5 w-0.5 rounded-full bg-motif-soft/80 sm:h-1 sm:w-1" aria-hidden />
+      <span className="h-0.5 w-0.5 rounded-full bg-white sm:h-1 sm:w-1" aria-hidden />
       <span className="h-px w-6 sm:w-10" style={sectionDividerLineStyleLeft} />
     </div>
   )
@@ -108,7 +111,14 @@ function CountdownUnit({ value, label }: CountdownUnitProps) {
       {/* Card container */}
       <div className="relative w-full max-w-[88px] sm:max-w-[96px] md:max-w-[110px] lg:max-w-[120px]">
         {/* Main card */}
-        <div className="relative rounded-xl border border-motif-soft/50 bg-transparent px-2.5 py-2.5 sm:rounded-2xl sm:px-3.5 sm:py-3.5 md:px-4 md:py-4">
+        <div
+          className="relative rounded-xl border border-white/80 px-2.5 py-2.5 sm:rounded-2xl sm:px-3.5 sm:py-3.5 md:px-4 md:py-4"
+          // Faint navy tint behind each number so it stands out on the peach silk
+          style={{
+            background: "color-mix(in srgb, var(--color-welcome-navy) 14%, transparent)",
+            boxShadow: "0 6px 18px -10px color-mix(in srgb, var(--color-welcome-navy) 55%, transparent)",
+          }}
+        >
           <div className="relative z-10 flex items-center justify-center">
             <Counter
               value={value}
@@ -238,6 +248,8 @@ export function Countdown() {
   return (
     <div
       className={`${theSeasons.variable} ${aboveTheBeyond.variable} relative w-full bg-transparent`}
+      // text-shadow is inherited, so every line of text in the countdown gets the navy halo
+      style={{ textShadow: ON_SILK_HALO }}
     >
     <Section
       id="countdown"
@@ -270,7 +282,7 @@ export function Countdown() {
         </div>
         <CountdownTitle />
         <div className="mt-3 flex items-center justify-center sm:mt-4">
-          <span className="h-px w-16 sm:w-24 md:w-32 bg-motif-soft/60" />
+          <span className="h-px w-16 sm:w-24 md:w-32 bg-white/90" />
         </div>
       </div>
 
@@ -311,11 +323,11 @@ export function Countdown() {
                   <div className="flex w-full items-center gap-2 sm:gap-4 md:gap-5">
                     {/* Day of week & divider */}
                     <div className="flex flex-1 items-center justify-end gap-1.5 sm:gap-2.5">
-                      <span className="h-[0.5px] flex-1 bg-motif-soft/60" />
+                      <span className="h-[0.5px] flex-1 bg-white/90" />
                       <span className="text-[0.6rem] uppercase tracking-[0.3em] sm:text-[0.7rem] sm:tracking-[0.4em] md:text-xs">
                         {ceremonyDayShort}
                       </span>
-                      <span className="h-[0.5px] w-6 bg-motif-soft/60 sm:w-8 md:w-10" />
+                      <span className="h-[0.5px] w-6 bg-white/90 sm:w-8 md:w-10" />
                     </div>
 
                     {/* Day number */}
@@ -329,11 +341,11 @@ export function Countdown() {
 
                     {/* Time */}
                     <div className="flex flex-1 items-center gap-1.5 sm:gap-2.5">
-                      <span className="h-[0.5px] w-6 bg-motif-soft/60 sm:w-8 md:w-10" />
+                      <span className="h-[0.5px] w-6 bg-white/90 sm:w-8 md:w-10" />
                       <span className="text-[0.6rem] uppercase tracking-[0.3em] sm:text-[0.7rem] sm:tracking-[0.4em] md:text-xs">
                         {ceremonyTimeDisplay.split(",")[0]}
                       </span>
-                      <span className="h-[0.5px] flex-1 bg-motif-soft/60" />
+                      <span className="h-[0.5px] flex-1 bg-white/90" />
                     </div>
                   </div>
 

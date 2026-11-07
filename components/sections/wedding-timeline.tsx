@@ -34,26 +34,28 @@ const aboveTheBeyond = localFont({
 const CORNER_DECO_CLASS =
   "block h-auto w-auto max-w-[80px] sm:max-w-[120px] md:max-w-[170px] lg:max-w-[205px] xl:max-w-[245px] select-none"
 
-// Light palette — the section has no background and sits on the dusty-blue Silk backdrop.
-// White titles, butter-yellow times (readable on blue), soft navy halos.
-const IVORY = "var(--color-motif-soft)"
-const CREAM = "var(--color-motif-cream)"
-const PALE = "var(--color-motif-silver)"
-const LINE = "color-mix(in srgb, var(--color-motif-soft) 70%, transparent)"
+// Light palette — the section has no background and sits on the bright peach Silk backdrop.
+// Everything is white (titles, times, descriptions, bullets) with a navy halo so it reads on peach.
+const IVORY = "#FFFFFF"
+const CREAM = "#FFFFFF"
+const PALE = "#FFFFFF"
+const LINE = "rgb(255 255 255 / 92%)"
 const entryEase = [0.22, 1, 0.36, 1] as const
 
 // Navy halo keeps light text readable over the moving backdrop
 const titleShadow =
-  "0 1px 0 color-mix(in srgb, var(--color-welcome-navy) 45%, transparent), 0 2px 10px color-mix(in srgb, var(--color-welcome-navy) 40%, transparent), 0 8px 28px color-mix(in srgb, var(--color-welcome-navy) 28%, transparent)"
+  "0 1px 1px color-mix(in srgb, var(--color-welcome-navy) 60%, transparent), 0 2px 10px color-mix(in srgb, var(--color-welcome-navy) 55%, transparent), 0 8px 28px color-mix(in srgb, var(--color-welcome-navy) 40%, transparent)"
 const textShadow =
-  "0 1px 1px color-mix(in srgb, var(--color-welcome-navy) 50%, transparent), 0 2px 10px color-mix(in srgb, var(--color-welcome-navy) 35%, transparent)"
+  "0 1px 2px color-mix(in srgb, var(--color-welcome-navy) 70%, transparent), 0 2px 12px color-mix(in srgb, var(--color-welcome-navy) 50%, transparent)"
+// Lines and bullets: white with a soft navy shadow so they show on the peach silk
+const BULLET_SHADOW = "0 0 0 1px color-mix(in srgb, var(--color-welcome-navy) 18%, transparent), 0 1px 6px color-mix(in srgb, var(--color-welcome-navy) 45%, transparent)"
 
 const lineRight = { background: `linear-gradient(to right, transparent, ${LINE})` } as const
 const lineLeft = { background: `linear-gradient(to left, transparent, ${LINE})` } as const
 const lineBoth = { background: `linear-gradient(to right, transparent, ${LINE}, transparent)` } as const
 // Connectors run from the image / details into the centre dot (solid at the dot end)
 // Same soft glow as the spine, so a 1px line still reads on the moving backdrop
-const CONNECTOR_GLOW = "0 0 6px color-mix(in srgb, var(--color-motif-soft) 75%, transparent)"
+const CONNECTOR_GLOW = "0 1px 4px color-mix(in srgb, var(--color-welcome-navy) 40%, transparent)"
 const connectorToRight = {
   background: "linear-gradient(to right, rgb(255 255 255 / 70%), #FFFFFF)",
   boxShadow: CONNECTOR_GLOW,
@@ -100,7 +102,7 @@ function OutsideDivider() {
   return (
     <div className="flex items-center justify-center gap-2">
       <span className="h-px w-10 sm:w-16" style={lineRight} />
-      <span className="h-1.5 w-1.5 rotate-45" style={{ background: "var(--color-motif-accent)" }} aria-hidden />
+      <span className="h-1.5 w-1.5 rotate-45" style={{ background: "#FFFFFF", boxShadow: BULLET_SHADOW }} aria-hidden />
       <span className="h-px w-10 sm:w-16" style={lineLeft} />
     </div>
   )
@@ -168,6 +170,7 @@ function TimelineTitle({ title, subtitle }: { title: string; subtitle: string })
 
 const ICONS: Record<TimelineIconName, TimelineIcon> = {
   arrival: ArrivalIcon,
+  guests: GuestsIcon,
   rings: RingsIcon,
   departure: DepartureIcon,
   cocktail: CocktailIcon,
@@ -296,7 +299,7 @@ function TimelineSpine({ children }: { children: React.ReactNode }) {
         <div
           className="absolute inset-0"
           style={{
-            background: `linear-gradient(to bottom, transparent, color-mix(in srgb, var(--color-motif-soft) 26%, transparent) 8%, color-mix(in srgb, var(--color-motif-soft) 26%, transparent) 92%, transparent)`,
+            background: `linear-gradient(to bottom, transparent, rgb(255 255 255 / 45%) 8%, rgb(255 255 255 / 45%) 92%, transparent)`,
           }}
         />
         {/* Fill */}
@@ -305,7 +308,7 @@ function TimelineSpine({ children }: { children: React.ReactNode }) {
           style={{
             scaleY: reduceMotion ? 1 : progress,
             background: `linear-gradient(to bottom, transparent, ${IVORY} 6%, ${PALE} 70%, ${IVORY})`,
-            boxShadow: "0 0 8px color-mix(in srgb, var(--color-motif-soft) 70%, transparent)",
+            boxShadow: "0 0 6px color-mix(in srgb, var(--color-welcome-navy) 35%, transparent)",
           }}
         />
         {/* Spark */}
@@ -399,16 +402,16 @@ function TimelineItem({ event, index }: { event: TimelineEvent; index: number })
         <motion.span
           variants={dotRing}
           className="absolute h-4 w-4 rounded-full"
-          style={{ boxShadow: "0 0 0 1px color-mix(in srgb, var(--color-motif-soft) 80%, transparent)" }}
+          style={{ boxShadow: "0 0 0 1px #FFFFFF" }}
           aria-hidden
         />
         <span
           className="absolute h-4 w-4 rounded-full"
-          style={{ background: "color-mix(in srgb, var(--color-motif-soft) 28%, transparent)" }}
+          style={{ background: "rgb(255 255 255 / 35%)", boxShadow: "inset 0 0 0 1px rgb(255 255 255 / 80%)" }}
         />
         <div
-          className="relative h-2 w-2 rounded-full"
-          style={{ background: "var(--color-motif-accent)", boxShadow: "0 0 0 2px #FFFFFF, 0 0 10px color-mix(in srgb, var(--color-welcome-navy) 45%, transparent)" }}
+          className="relative h-2.5 w-2.5 rounded-full"
+          style={{ background: "#FFFFFF", boxShadow: BULLET_SHADOW }}
         />
       </motion.div>
 
@@ -437,7 +440,7 @@ function ConnectorCap({ side }: { side: "left" | "right" }) {
   return (
     <span
       className={`absolute top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full ${side === "left" ? "left-0" : "right-0"}`}
-      style={{ background: "#FFFFFF", boxShadow: "0 0 8px color-mix(in srgb, var(--color-motif-soft) 80%, transparent)" }}
+      style={{ background: "#FFFFFF", boxShadow: BULLET_SHADOW }}
       aria-hidden
     />
   )
@@ -455,7 +458,7 @@ function TimelineText({
   return (
     <div className={`max-w-md ${textAlign} ${align === "right" ? "ml-auto" : "mr-auto"}`}>
       <p
-        className={`${cinzel.className} ${timelineType.label} font-semibold tracking-[0.2em] uppercase`}
+        className={`${cinzel.className} text-[0.78rem] sm:text-[0.82rem] md:text-sm font-bold tracking-[0.18em] uppercase`}
         style={{ color: PALE, textShadow }}
       >
         {event.time}
@@ -513,8 +516,9 @@ function IconMark({
     <div
       className="flex h-20 w-20 items-center justify-center rounded-full border sm:h-24 sm:w-24 md:h-16 md:w-16 lg:h-18 lg:w-18"
       style={{
-        background: "color-mix(in srgb, var(--color-motif-soft) 14%, transparent)",
+        background: "rgb(255 255 255 / 14%)",
         borderColor: LINE,
+        boxShadow: BULLET_SHADOW,
       }}
     >
       <Icon className="h-10 w-10 md:h-8 md:w-8 lg:h-9 lg:w-9" />
@@ -530,6 +534,17 @@ function ArrivalIcon(props: React.SVGProps<SVGSVGElement>) {
       <path d="M6 28V14L16 6l10 8v14" />
       <path d="M12 28v-8h8v8" />
       <path d="M16 6v-2" />
+    </svg>
+  )
+}
+
+function GuestsIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 32 32" fill="none" stroke={iconStroke} strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <circle cx="12" cy="11" r="4" />
+      <path d="M4 26c0-4.4 3.6-8 8-8s8 3.6 8 8" />
+      <circle cx="22" cy="12" r="3" />
+      <path d="M21 18.2c.3 0 .7-.1 1-.1 3.3 0 6 2.7 6 6v2" />
     </svg>
   )
 }

@@ -23,15 +23,20 @@ const aboveTheBeyond = localFont({
   variable: "--font-above-beyond",
 })
 
-// Text outside the card sits on the dusty-blue page backdrop: white with a soft navy shadow
+// Text outside the card sits on the bright peach silk: all white with a navy halo so it reads
 const onBg = {
-  color: "white",
+  color: "#FFFFFF",
   textShadow:
-    "0 1px 2px color-mix(in srgb, var(--color-welcome-navy) 50%, transparent), 0 2px 14px color-mix(in srgb, var(--color-welcome-navy) 40%, transparent)",
+    "0 1px 2px color-mix(in srgb, var(--color-welcome-navy) 70%, transparent), 0 2px 12px color-mix(in srgb, var(--color-welcome-navy) 50%, transparent), 0 8px 26px color-mix(in srgb, var(--color-welcome-navy) 30%, transparent)",
 } as const
-const onBgScript = { ...onBg, color: "var(--color-motif-silver)" } as const
+const onBgScript = onBg
 
-const onBgLine = "color-mix(in srgb, white 85%, transparent)"
+const onBgLine = "rgb(255 255 255 / 92%)"
+// White dot / diamond on the silk, lifted by a soft navy shadow
+const onBgMark = {
+  background: "#FFFFFF",
+  boxShadow: "0 1px 4px color-mix(in srgb, var(--color-welcome-navy) 45%, transparent)",
+} as const
 
 const ct = {
   body: sectionType.text,
@@ -60,7 +65,7 @@ function DiamondDivider() {
   return (
     <div className="flex items-center justify-center gap-2" aria-hidden>
       <span className="h-px w-10 sm:w-16" style={{ background: `linear-gradient(to right, transparent, ${onBgLine})` }} />
-      <span className="h-1.5 w-1.5 rotate-45" style={{ background: "var(--color-motif-accent)" }} />
+      <span className="h-1.5 w-1.5 rotate-45" style={onBgMark} />
       <span className="h-px w-10 sm:w-16" style={{ background: `linear-gradient(to left, transparent, ${onBgLine})` }} />
     </div>
   )
@@ -204,7 +209,12 @@ export function Registry() {
 
             <div className={`font-goudy-italic relative mx-auto max-w-xl space-y-4 ${ct.bodyLg} leading-relaxed`} style={{ color: c.body }}>
               {content.paragraphs.map((text, i) => (
-                <motion.p key={i} variants={itemVariants} className={i === 0 ? "text-left sm:text-center" : ""}>
+                <motion.p
+                  key={i}
+                  variants={itemVariants}
+                  // whitespace-pre-line: a "\n" in site.ts starts a new line (the gift poem is one line per verse)
+                  className={`whitespace-pre-line ${text.includes("\n") ? "text-center" : i === 0 ? "text-left sm:text-center" : ""}`}
+                >
                   {i === 0 && text.length > 1 ? (
                     <>
                       {/* Drop cap on the first paragraph */}

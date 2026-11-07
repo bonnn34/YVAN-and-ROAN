@@ -602,6 +602,18 @@ body {
   overflow-x: clip;
 }
 
+/* iPhone Safari zooms in when a form field with text under 16px is tapped, and the
+   page then pans left/right until the guest pinches back out. Every invitation form
+   field (messages, RSVP) was 13px, so on phones they are 16px. The dashboard keeps its
+   compact fields (it sets maximum-scale=1 itself, see app/dashboard/layout.tsx). */
+@media (max-width: 767px) {
+  body:not(:has(.dashboard-root)) input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+  body:not(:has(.dashboard-root)) textarea,
+  body:not(:has(.dashboard-root)) select {
+    font-size: 16px;
+  }
+}
+
 /* Imperial Script font utility class */
 .imperial-script-regular {
   font-family: var(--font-imperial-script), cursive;
@@ -1641,4 +1653,26 @@ img[src*="%2Flovestorydeco%2F"] {
 .see-you-drift {
   animation: see-you-drift 18s ease-in-out infinite;
   will-change: transform;
+}
+
+
+/* ==========================================================================
+   Entourage corners (components/sections/entourage.tsx) — pinned flush to the
+   section corners and larger than the shared .deco-corner sizes.
+   ========================================================================== */
+.entourage-corners {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.entourage-corners .deco-corner--tl,
+.entourage-corners .deco-corner--tr {
+  width: min(46vw, 380px);
+}
+
+.entourage-corners .deco-corner--bl,
+.entourage-corners .deco-corner--br {
+  width: min(54vw, 440px);
 }
