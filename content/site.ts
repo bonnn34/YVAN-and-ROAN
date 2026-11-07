@@ -165,21 +165,19 @@ const HASHTAGS = ["#YVANtuallyTheOneForROAN"] // ⚠ check — looks like it's f
 // Guest dress code colors — also shown in the "Dress Code" gentle reminder
 const DRESS_CODE_PALETTE: AttireColor[] = [
   // Blue shades
-  { name: "Dusty Blue", hex: "#7B9BB5" },
-  { name: "Midnight Blue", hex: "#172C4C" },
-  { name: "Royal Blue", hex: "#4169E1" },
-  { name: "Sapphire Blue", hex: "#0F52BA" },
-  { name: "Sky Blue", hex: "#87CEEB" },
-  { name: "Powder Blue", hex: "#B0E0E6" },
+
+  // Blue shades
+  { name: "Navy Blue", hex: "#172C4C" },
+  { name: "Dusty Blue", hex: "#7396C4" },
+  { name: "Powder Blue", hex: "#B0C8EC" },
+  { name: "Sky Blue", hex: "#9CC5E5" },
 
   // Peach shades
-  { name: "Light Peach", hex: "#FFE5CC" },
-  { name: "Coral Peach", hex: "#F58F78" },
-  { name: "Salmon Peach", hex: "#F4A08B" },
-  { name: "Pastel Peach", hex: "#FFD1BA" },
-  { name: "Nude Peach", hex: "#D7A48D" },
-  { name: "Champagne Peach", hex: "#EBCDB6" },
-  { name: "Apricot", hex: "#F6BB86" },
+  { name: "Champagne Peach", hex: "#F7D7BD" },
+  { name: "Pastel Peach", hex: "#F6C5B0" },
+  { name: "Apricot Peach", hex: "#F4AC8A" },
+
+
 ];
 // Attire groups shown in the Details section (components/sections/details.tsx).
 //   show      → which groups appear, in order
@@ -188,7 +186,7 @@ const DRESS_CODE_PALETTE: AttireColor[] = [
 //   Each side (ladies / gentlemen) has a label, an optional intro (details, with an
 //   optional highlighted phrase) and an optional list of roles with what they wear.
 const ATTIRE = {
-  show: ["guests"] as AttireGroupId[],
+  show: ["guests","sponsors"] as AttireGroupId[],
 
   entourage: {
     title: "Entourage",
@@ -250,35 +248,38 @@ const ATTIRE = {
     },
   },
 
-  sponsors: {
+  
+sponsors: {
   title: "Principal Sponsors",
-  image: "/Details/new-sponsor-.png",
+  image: "/Details/sponsors.png",
   dressCode: "Formal Attire",
+
   palette: [
-    { name: "Old Rose", hex: "#D49AA3" },
-    { name: "Dusty Pink", hex: "#C98F9A" },
-    { name: "Black", hex: "#242124" },
-    { name: "Navy Blue", hex: "#1E3051" },
+    { name: "Champagne Peach", hex: "#F7E7CE" },
+    { name: "Midnight Blue", hex: "#191970" },
   ] as AttireColor[],
 
-  note: "Elegant old rose gowns paired with classic black suits and navy blue neckties, creating a timeless and sophisticated look for our principal sponsors.",
+  note:
+    "Our principal sponsors are kindly requested to wear elegant formal attire in Champagne Peach and Midnight Blue. Ninangs are invited to wear graceful Champagne Peach gowns, while Ninongs are requested to wear traditional Midnight Blue Barong Tagalog for a beautifully coordinated celebration.",
 
   ladies: {
     label: "Ninang",
     details:
-      "Elegant floor-length formal gowns in shades of old rose or dusty pink. Soft, flowing fabrics such as chiffon, satin, or tulle with delicate floral details are welcome.",
-    highlight: "Old Rose Formal Gowns",
+      "Elegant floor-length formal gowns in Champagne Peach. Flowing fabrics such as chiffon, satin, or tulle are encouraged, with delicate floral embroidery, subtle embellishments, and graceful silhouettes. Different gown styles and necklines are welcome.",
+    highlight: "Champagne Peach Formal Gowns",
     roles: [] as { role: string; attire: string }[],
   },
 
   gentlemen: {
     label: "Ninong",
     details:
-      "Classic black formal suits paired with crisp white dress shirts, navy blue neckties, and polished black leather shoes. A simple boutonniere may complete the look.",
-    highlight: "Black Suits with Navy Blue Neckties",
+      "Traditional Midnight Blue Barong Tagalog with refined embroidery and elegant detailing, paired with dark navy or black formal trousers and polished black leather dress shoes. Long-sleeved embroidered barongs are preferred for a classic and sophisticated appearance.",
+    highlight: "Midnight Blue Barong Tagalog",
     roles: [] as { role: string; attire: string }[],
   },
 },
+
+
 
 guests: {
   title: "Wedding Guests",
@@ -287,24 +288,25 @@ guests: {
   palette: DRESS_CODE_PALETTE,
 
   note:
-    "We kindly invite you to celebrate with us in semi-formal or formal attire in your choice of blue or peach. Blue shades include dusty blue, midnight blue, royal blue, sapphire blue, sky blue, and powder blue. Peach shades include light peach, coral peach, salmon peach, pastel peach, nude peach, champagne peach, and apricot.",
+    "We kindly invite you to celebrate with us in elegant shades of Blue and Peach. Ladies may wear graceful dresses in soft blue, champagne peach, or apricot tones, while gentlemen may wear coordinated collared shirts, tailored trousers, or formal suits. Delicate floral patterns that complement our wedding colors are welcome.",
 
   ladies: {
     label: "Ladies",
     details:
-      "Choose a midi dress for a semi-formal look or a floor-length gown for a formal look in any of the suggested blue or peach shades. Chiffon, satin, and tulle are lovely fabric options.",
-    highlight: "Midi Dresses or Floor-Length Gowns",
+      "Elegant knee-length, midi, or floor-length dresses in shades of dusty blue, powder blue, sky blue, champagne peach, pastel peach, or apricot. Soft fabrics such as chiffon, satin, or tulle are encouraged. Delicate floral patterns, flowing skirts, puff sleeves, and graceful draping are welcome.",
+    highlight: "Elegant Blue & Peach Dresses",
     roles: [] as { role: string; attire: string }[],
   },
 
   gentlemen: {
     label: "Gentlemen",
     details:
-      "For a semi-formal look, pair a collared shirt in a suggested shade of blue or peach with tailored trousers and dress shoes. For a formal look, wear a suit or a tailored jacket with dress trousers and incorporate blue or peach through your jacket, shirt, or tie.",
-    highlight: "Collared Shirts or Suits with Dress Shoes",
+      "Polished semi-formal or formal attire featuring collared polo shirts, long-sleeved button-down shirts, or tailored suits in navy blue, dusty blue, or light blue. Pair with well-fitted trousers in navy, beige, or other coordinating neutral shades and polished dress shoes. A light blue suit with a crisp white shirt is also welcome.",
+    highlight: "Blue Collared Shirts or Tailored Suits",
     roles: [] as { role: string; attire: string }[],
   },
 },
+
 }
 
 // ── Website address (used for QR codes, link previews, table finder) ────────
@@ -331,32 +333,32 @@ const BRAND = {
   monogram: "/monogram/monogram.png", // monogram (loader, envelope, closing)
   coupleNameImage: "/Details/newcoupelNames.png", // couple-name lettering (loader, envelope)
   seal: "/monogram/seal.png", // envelope wax seal
-  backgroundMusic: "/background_music/Every Time I Close My Eyes.mp3",
+  backgroundMusic: "/background_music/ON THIS DAY - DAVID POMERANZ Saxophone Cover - Live Performance Recording.mp3",
 }
 
 // Couple photos reused across the site (gallery, loader, reminders, snap & share, closing)
 // — every portrait in /public/mobile-background
 const COUPLE_PHOTOS = Array.from(
-  { length: 12 },
+  { length: 38 },
   (_, i) => `/mobile-background/couple (${i + 1}).webp`,
 )
 
 // Portraits for the envelope reveal + the main cover photo (soft natural light, no heavy filters)
 const COUPLE_PORTRAITS = {
-  groom: "/mobile-background/couple (5).webp", // left photo in the envelope
+  groom: "/mobile-background/couple (7).webp", // left photo in the envelope
   bride: "/mobile-background/couple (4).webp", // right photo in the envelope
-  cover: "/mobile-background/couple (9).webp", // photo pulled out of the envelope + home hero cover photo
+  cover: "/mobile-background/couple (10).webp", // photo pulled out of the envelope + home hero cover photo
 }
 
 // Sliding photo marquee behind the loader and envelope.
 // Phones use the portrait shots in /public/mobile-background, desktop the landscape
 // shots in /public/desktop-background — update the counts when files are added/removed.
-const MARQUEE_PHOTO_COUNT = 12
+const MARQUEE_PHOTO_COUNT = 38
 const MARQUEE_PHOTOS = Array.from(
   { length: MARQUEE_PHOTO_COUNT },
   (_, i) => `/mobile-background/couple (${i + 1}).webp`,
 )
-const MARQUEE_PHOTO_COUNT_DESKTOP = 20
+const MARQUEE_PHOTO_COUNT_DESKTOP = 56
 const MARQUEE_PHOTOS_DESKTOP = Array.from(
   { length: MARQUEE_PHOTO_COUNT_DESKTOP },
   (_, i) => `/desktop-background/couple (${i + 1}).webp`,
@@ -580,7 +582,7 @@ export const siteConfig = {
       {
         date: "Lorem Ipsum",
         title: "Dolor Sit Amet",
-        image: "/mobile-background/couple (7).webp",
+        image: "/mobile-background/couple (31).webp",
         imageAlt: "{groom} and {bride} together",
         imagePosition: "center 25%",
         paragraphs: [
@@ -591,7 +593,7 @@ export const siteConfig = {
       {
         date: "Consectetur Adipiscing Elit",
         title: "Sed Do Eiusmod Tempor",
-        image: "/mobile-background/couple (8).webp",
+        image: "/mobile-background/couple (9).webp",
         imageAlt: "{groom} and {bride} smiling together",
         imagePosition: "center 35%",
         paragraphs: [
@@ -602,7 +604,7 @@ export const siteConfig = {
       {
         date: "Incididunt Ut Labore",
         title: "Et Dolore Magna Aliqua",
-        image: "/mobile-background/couple (11).webp",
+        image: "/mobile-background/couple (25).webp",
         imageAlt: "{groom} and {bride} together",
         imagePosition: "center 20%",
         paragraphs: [
@@ -612,7 +614,7 @@ export const siteConfig = {
       {
         date: "Ut Enim Ad Minim",
         title: "Quis Nostrud Exercitation",
-        image: "/mobile-background/couple (12).webp",
+        image: "/mobile-background/couple (21).webp",
         imageAlt: "{groom} and {bride} together",
         imagePosition: "center 25%",
         paragraphs: [
@@ -708,10 +710,10 @@ export const siteConfig = {
       description: "A few thoughtful notes to help everyone enjoy our celebration.",
       // Small photos that take turns above the "Gentle Reminders" title (files in /public/box)
       images: [
-        "/box/box(1).webp",
-        "/box/box(2).webp",
-        "/box/box(3).webp",
-        "/box/box(4).webp",
+        "/box/box (1).webp",
+        "/box/box (2).webp",
+        "/box/box (3).webp",
+        "/box/box (4).webp",
       ],
       // showPalette: shows the dress code palette after the first paragraph
       items: [
