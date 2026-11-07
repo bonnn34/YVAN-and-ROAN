@@ -1330,7 +1330,7 @@ export const siteConfig = {
     // {couple} → "Groom & Bride" nicknames. "" hides a line or image.
     qrCard: {
       coupleNameImage: BRAND.coupleNameImage, // unused: the card sets the names in type like the loader
-      coupleImage: "/Details/coupleimage.png", // couple illustration beside the text
+      coupleImage: "/Details/couple-image.png", // couple illustration beside the text
       eyebrow: "The wedding of",
       title: "Find Your Table",
       script: "please be seated",
@@ -1353,7 +1353,7 @@ export const siteConfig = {
   proposal: {
     decos: { ...CORNER_DECOS },
     coupleNameImage: BRAND.coupleNameImage, // unused: names are set in type like the loader
-    coupleImage: "/Details/coupleimage.png", // couple illustration above the question
+    coupleImage: "/Details/couple-image.png", // couple illustration above the question
     ornament: DECOR.headerOrnament, // small sprig at the top of the card; "" to hide
     // Eucalyptus sprigs on either side of the couple name; "" to hide one
     nameDecos: { left: DECOR.sideLeft, right: DECOR.sideRight },
