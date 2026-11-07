@@ -358,7 +358,7 @@ const MARQUEE_PHOTOS = Array.from(
   { length: MARQUEE_PHOTO_COUNT },
   (_, i) => `/mobile-background/couple (${i + 1}).webp`,
 )
-const MARQUEE_PHOTO_COUNT_DESKTOP = 56
+const MARQUEE_PHOTO_COUNT_DESKTOP = 46
 const MARQUEE_PHOTOS_DESKTOP = Array.from(
   { length: MARQUEE_PHOTO_COUNT_DESKTOP },
   (_, i) => `/desktop-background/couple (${i + 1}).webp`,
@@ -1862,9 +1862,9 @@ Now, as they prepare to say yes before God and the people they love most, Cather
     puhon: {
       show: true,
       images: [
-        "/desktop-background/couple (11).webp",
-        "/desktop-background/couple (39).webp",
-        "/desktop-background/couple (2).webp",
+        "/desktop-background/couple (3).webp",
+        "/desktop-background/couple (43).webp",
+        "/desktop-background/couple (23).webp",
       ],
       intervalMs: 5000, // time each photo stays before fading to the next
     },
