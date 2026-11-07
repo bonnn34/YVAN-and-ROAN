@@ -368,8 +368,8 @@ const MARQUEE_PHOTOS_DESKTOP = Array.from(
 // Change a path here to swap it on every section at once.
 // To change ONE section only, override it there, e.g. decos: { ...SECTION_DECOS, footerVine: "" }
 const DECOR = {
-  cornerTopLeft: "/deco/new-deco/TOP-L.png",
-  cornerTopRight: "/deco/new-deco/TOP-R.png",
+  cornerTopLeft: "/deco/new-deco/top-L.png",
+  cornerTopRight: "/deco/new-deco/top-R.png",
   cornerBottomLeft: "/deco/new-deco/BOT-L.png",
   cornerBottomRight: "/deco/new-deco/BOT-R.png",
   cornerOverlayTopLeft: "/deco/cornerOverlayTopLeft.png", // floral corner layered over the top vines (loader + envelope)
