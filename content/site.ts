@@ -1863,7 +1863,7 @@ Now, as they prepare to say yes before God and the people they love most, Cather
       show: true,
       images: [
         "/desktop-background/couple (11).webp",
-        "/desktop-background/couple (5).webp",
+        "/desktop-background/couple (39).webp",
         "/desktop-background/couple (2).webp",
       ],
       intervalMs: 5000, // time each photo stays before fading to the next
