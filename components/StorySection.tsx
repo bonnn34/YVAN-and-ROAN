@@ -33,6 +33,8 @@ export type LoveStoryEucalyptusDecos = {
 
 interface StorySectionProps {
   imageSrc?: string
+  // Optional silent looping video shown instead of the photo (the photo becomes its poster)
+  videoSrc?: string
   imageAlt?: string
   // Which part of the photo stays in frame (CSS object-position), e.g. "center 20%"
   imagePosition?: string
@@ -52,6 +54,24 @@ interface StorySectionProps {
   // Plain layout: faint chapter number behind the text / heart divider after the chapter
   showNumber?: boolean
   showDivider?: boolean
+}
+
+// Silent, looping, autoplaying clip that fills its frame like the photo would
+function StoryVideo({ src, poster, position }: { src: string; poster?: string; position?: string }) {
+  return (
+    <video
+      src={encodeURI(src)}
+      poster={poster ? encodeURI(poster) : undefined}
+      className="absolute inset-0 h-full w-full object-cover"
+      style={{ objectPosition: position || "center 30%" }}
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      aria-hidden
+    />
+  )
 }
 
 function PlainEucalyptusDecos({ decos }: { decos: LoveStoryEucalyptusDecos }) {
@@ -88,6 +108,7 @@ function PlainChapterDivider({ dark }: { dark: boolean }) {
  */
 function PlainOpenChapter({
   imageSrc,
+  videoSrc,
   imageAlt,
   imagePosition,
   date,
@@ -101,6 +122,7 @@ function PlainOpenChapter({
   showDivider,
 }: {
   imageSrc?: string
+  videoSrc?: string
   imageAlt?: string
   imagePosition?: string
   date?: string
@@ -128,7 +150,7 @@ function PlainOpenChapter({
           photoLeft ? "flex-row" : "flex-row-reverse"
         }`}
       >
-        {imageSrc ? (
+        {imageSrc || videoSrc ? (
           <motion.div
             className="w-[44%] shrink-0 sm:w-[42%] md:w-5/12"
             initial={photoFrom}
@@ -139,16 +161,20 @@ function PlainOpenChapter({
             <div className="story-open-photo">
               {/* Tall portrait frame (2:3) */}
               <div className="relative aspect-[2/3] w-full overflow-hidden">
-                <Image
-                  src={encodeURI(imageSrc)}
-                  alt={imageAlt ?? ""}
-                  fill
-                  sizes="(max-width: 640px) 44vw, (max-width: 1024px) 40vw, 420px"
-                  className="object-cover"
-                  style={{ objectPosition: imagePosition || "center 30%" }}
-                  quality={85}
-                  priority={chapterIndex < 1}
-                />
+                {videoSrc ? (
+                  <StoryVideo src={videoSrc} poster={imageSrc} position={imagePosition} />
+                ) : imageSrc ? (
+                  <Image
+                    src={encodeURI(imageSrc)}
+                    alt={imageAlt ?? ""}
+                    fill
+                    sizes="(max-width: 640px) 44vw, (max-width: 1024px) 40vw, 420px"
+                    className="object-cover"
+                    style={{ objectPosition: imagePosition || "center 30%" }}
+                    quality={85}
+                    priority={chapterIndex < 1}
+                  />
+                ) : null}
               </div>
             </div>
           </motion.div>
@@ -203,6 +229,7 @@ function PlainOpenChapter({
 
 export const StorySection: React.FC<StorySectionProps> = ({
   imageSrc,
+  videoSrc,
   imageAlt,
   imagePosition,
   date,
@@ -225,6 +252,7 @@ export const StorySection: React.FC<StorySectionProps> = ({
     return (
       <PlainOpenChapter
         imageSrc={imageSrc}
+        videoSrc={videoSrc}
         imageAlt={imageAlt}
         imagePosition={imagePosition}
         date={date}
@@ -241,7 +269,7 @@ export const StorySection: React.FC<StorySectionProps> = ({
   }
 
   const isDark = theme === "dark"
-  const showImage = !plain && Boolean(imageSrc)
+  const showImage = !plain && Boolean(imageSrc || videoSrc)
   const slideFromLeft = layout === "image-left"
 
   const imageFrameStyle = isDark
@@ -327,7 +355,7 @@ export const StorySection: React.FC<StorySectionProps> = ({
               : `mx-auto flex max-w-2xl flex-col items-center px-2 text-center sm:px-4 ${plainAlign}`
           }
         >
-          {showImage && imageSrc && (
+          {showImage && (
             <div className="flex w-[45%] shrink-0 justify-center md:w-5/12">
               <motion.div
                 className={`relative w-full md:max-w-md ${rotation}`}
@@ -338,6 +366,9 @@ export const StorySection: React.FC<StorySectionProps> = ({
               >
                 <div className="w-full p-1.5 md:p-3" style={imageFrameStyle}>
                   <div className="group relative aspect-[3/4] w-full overflow-hidden">
+                    {videoSrc ? (
+                      <StoryVideo src={videoSrc} poster={imageSrc} position={imagePosition} />
+                    ) : imageSrc ? (
                     <Image
                       src={imageSrc}
                       alt={imageAlt ?? ""}
@@ -347,6 +378,7 @@ export const StorySection: React.FC<StorySectionProps> = ({
                       quality={90}
                       priority={chapterIndex < 2}
                     />
+                    ) : null}
                     {isDark && (
                       <div className="pointer-events-none absolute inset-0 z-10 bg-black/5 mix-blend-multiply" />
                     )}

@@ -221,6 +221,7 @@ export function LoveStory({ skyBackdrop = true }: { skyBackdrop?: boolean } = {}
           theme={index % 2 ? "dark" : "light"}
           layout={chapter.layout ?? (index % 2 ? "image-right" : "image-left")}
           imageSrc={chapter.image}
+          videoSrc={chapter.video}
           imageAlt={formatStoryParagraph(chapter.imageAlt || photoAlt, groom, bride)}
           imagePosition={chapter.imagePosition}
           showNumber={showChapterNumbers}

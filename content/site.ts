@@ -78,8 +78,8 @@ const WEDDING_DATE = "March 06, 2027" // e.g. "June 5, 2027"
 const WEDDING_DAY = "Saturday" // 
 const TIMES = {
   entourageCall: "2:00 PM", // entourage assembly
-  guestArrival: "2:30 PM", // guests arrival / assembly (shown in Event Details + reminders)
-  ceremony: "3:30 PM",
+  guestArrival: "3:30 PM", // guests arrival / assembly (shown in Event Details + reminders)
+  ceremony: "4:00 PM",
   reception: "5:00 PM", // start of program
 }
 
@@ -333,7 +333,7 @@ const BRAND = {
   monogram: "/monogram/new-monogram.png", // monogram (loader, envelope, closing)
   coupleNameImage: "/Details/newcoupelNames.png", // couple-name lettering (loader, envelope)
   seal: "/monogram/seal-new.png", // envelope wax seal
-  backgroundMusic: "/background_music/ON THIS DAY - DAVID POMERANZ Saxophone Cover - Live Performance Recording.mp3",
+  backgroundMusic: "/background_music/David Pomeranz - On This Day (Lyrics) (mp3cut.net).mp3",
 }
 
 // Couple photos reused across the site (gallery, loader, reminders, snap & share, closing)
@@ -400,6 +400,7 @@ type StoryChapter = {
   date?: string // small caps line above the title ("" shows "Chapter 0X")
   title: string
   image?: string // photo beside the text ("" for none)
+  video?: string // optional silent looping video shown instead of the photo (photo is its poster)
   imageAlt?: string // photo description ("" uses loveStory.photoAlt)
   paragraphs: string[] // {groom} / {bride} → nicknames
   imagePosition?: string // which part of the photo stays in frame, e.g. "center 20%" (default "center 30%")
@@ -545,17 +546,17 @@ export const siteConfig = {
     thumbnailAlt: `${COUPLE_LABEL} — video cover`,
     playLabel: "Play our video",
   },
-  // Thank-you messages to family and friends (components/sections/love-story.tsx + StorySection)
+  // Our love story (components/sections/love-story.tsx + StorySection)
   loveStory: {
-    title: "With Gratitude",
-    subtitle: "to the people we love",
+    title: "Our Love Story",
+    subtitle: "ten years of choosing each other",
     // Short opening line under the title ("" hides it)
     intro:
-      "Before we say “I do,” we want to say “thank you.” To our families, our friends and everyone who has loved, guided and prayed for us: this day is as much yours as it is ours, and we would be so happy to celebrate it with you.",
+      "From a high school crush to a “yes” at the crater of Mount Pinatubo, this is the story of how Yvan and Roan found their way to forever.",
     // Small sprig above the title ("" hides it)
     headerOrnament: DECOR.headerOrnament,
     // Shown above a chapter's title when it has no date, e.g. "Chapter 03"
-    chapterLabel: "With Love",
+    chapterLabel: "Our Story",
     // Photo description used when a chapter has no imageAlt
     photoAlt: "{groom} and {bride}",
     // Large faint chapter number (01, 02 …) behind each chapter's text
@@ -583,90 +584,128 @@ export const siteConfig = {
     chapters: [
       {
         date: "Where It Began",
-        title: "Two Hearts, One Story",
+        title: "Sampaguita National High School",
         image: "/mobile-background/couple (31).webp",
         imageAlt: "{groom} and {bride} together",
         imagePosition: "center 25%",
         paragraphs: [
-          "Every love story begins somewhere, and ours began quietly, in the most ordinary of moments that turned out to be anything but ordinary.",
-          "What started as a simple hello slowly became a friendship, then a promise, and now a lifetime we are ready to share.",
+          "We first met at Sampaguita National High School. Back then, {groom} already had a crush on me — little did I know, that was just the beginning of everything. ✨",
         ],
       },
       {
-        date: "Growing Together",
-        title: "Learning to Love",
+        date: "The Festival",
+        title: "Only If I Can Bring a Friend",
         image: "/mobile-background/couple (9).webp",
         imageAlt: "{groom} and {bride} smiling together",
         imagePosition: "center 35%",
         paragraphs: [
-          "Along the way, {groom} and {bride} learned that love is not only found in the grand gestures, but in patience, in kindness, and in choosing each other every single day.",
-          "Through laughter and tears, distance and closeness, we grew not just as a couple, but as better versions of ourselves.",
+          "One day he invited me to the festival. I told him, “I’ll go — but only if I can bring a friend with me.” He said yes without hesitation.",
         ],
       },
       {
-        date: "Never Alone",
-        title: "You Were There",
+        date: "Not Yet",
+        title: "A Gentle No",
         image: "/mobile-background/couple (25).webp",
         imageAlt: "{groom} and {bride} together",
         imagePosition: "center 20%",
         paragraphs: [
-          "Looking back, we realize that we never walked this road alone. You were there, in the kind words, the honest advice, the warm meals and the quiet prayers.",
-          "In ways big and small, you have been part of our journey, and our story would not be the same without you.",
+          "On our way home, he asked if he could court me. I gently said no — I wasn’t ready for a boyfriend then. 🥲",
         ],
       },
       {
-        date: "To Our Families",
-        title: "The Roots of Our Love",
+        date: "College Days",
+        title: "A Jeepney Ride Home",
         image: "/mobile-background/couple (21).webp",
         imageAlt: "{groom} and {bride} together",
         imagePosition: "center 25%",
         paragraphs: [
-          "To our parents and families: you showed us what love looks like long before we found it in each other.",
-          "Thank you for your sacrifices, your guidance and your unending support. Everything we are building together stands on the foundation you gave us.",
+          "College came, and we crossed paths again on a jeepney ride home to San Pedro, Laguna. He asked for my number, and I playfully replied, “If I give it to you, I might just lose mine 😅” — my sweet little way of saying no without hurting him.",
         ],
       },
       {
-        date: "To Our Friends",
-        title: "The Ones Who Stayed",
+        date: "Finding Our Way Back",
+        title: "Reunited at Cabalen",
         image: "/mobile-background/couple (14).webp",
         imageAlt: "{groom} and {bride} laughing together",
         imagePosition: "center 25%",
         paragraphs: [
-          "To our friends, who cheered the loudest, listened the longest and stood by us through every season: thank you for the memories, the laughter and the love.",
-          "You have filled our story with joy, and we cannot imagine celebrating this day without you.",
+          "But eventually, social media brought us back together. We started catching up — our first real reunion was at Cabalen, where he treated me to an all-you-can-eat buffet.",
         ],
       },
       {
-        date: "With Grateful Hearts",
-        title: "Thank You",
+        date: "Falling Into Place",
+        title: "One Date After Another",
         image: "/mobile-background/couple (18).webp",
         imageAlt: "{groom} and {bride} together",
         imagePosition: "center 25%",
         paragraphs: [
-          "For every prayer said on our behalf, every word of encouragement and every act of kindness, we are deeply grateful.",
-          "You are a beautiful part of our story, and our hearts are full knowing how loved we are.",
+          "That lovely meal turned into more dates, and before we knew it, things just naturally fell into place. 🥰",
         ],
       },
       {
-        date: "A New Chapter",
-        title: "Forever Starts Here",
+        date: "June 11, 2016",
+        title: "Finally, a Yes",
         image: "/mobile-background/couple (28).webp",
-        imageAlt: "{groom} and {bride} looking ahead together",
+        imageAlt: "{groom} and {bride} together",
         imagePosition: "center 25%",
         paragraphs: [
-          "Now, with God as our guide and all of you beside us, we are ready to begin the most beautiful chapter of all.",
-          "We will carry your love with us as we step into this new life as husband and wife.",
+          "On June 11, 2016, I finally said YES, and we officially became a couple. From then on, we celebrated every month together, watching our love grow deeper and stronger with time.",
         ],
       },
       {
-        date: "Our Invitation",
-        title: "Celebrate With Us",
+        date: "Inside and Out",
+        title: "He Knows Me",
         image: "/mobile-background/couple (35).webp",
         imageAlt: "{groom} and {bride} together",
         imagePosition: "center 25%",
         paragraphs: [
-          "Because you have been part of our journey, it would mean the world to us to have you there as we say “I do.”",
-          "Please come and celebrate with us: share in our joy, witness our promise and be part of the day our forever begins.",
+          "He knows me inside and out — my gestures, my facial expressions, even what I’m feeling before I say a word.",
+          "And him? The sweetest, most clingy and loving man I know. Even when he’s far away at sea, he always feels right here.",
+        ],
+      },
+      {
+        date: "Our Promise",
+        title: "Magaaway, Pero Hindi Maghihiwalay",
+        image: "/mobile-background/couple (12).webp",
+        imageAlt: "{groom} and {bride} together",
+        imagePosition: "center 25%",
+        paragraphs: [
+          "We talk about everything and nothing, we have our misunderstandings, but we always live by: “Magaaway, pero hindi maghihiwalay.” We always choose each other. 💛",
+        ],
+      },
+      {
+        date: "May 1, 2026",
+        title: "The Proposal at Mount Pinatubo",
+        image: "/mobile-background/couple (16).webp",
+        video: "/background_music/proposal.mp4",
+        imageAlt: "{groom} proposing to {bride} at Mount Pinatubo",
+        imagePosition: "center 30%",
+        paragraphs: [
+          "I was actually the one who suggested we hike Mount Pinatubo, together with his sister. Little did I know — this trip would change everything! ✨",
+          "When we reached the crater, he asked me to turn around for a photo. I had no idea he was on one knee behind me — I didn’t even notice him at first because the sun was so bright and I had my sunglasses on! 😆",
+        ],
+      },
+      {
+        date: "At the Crater",
+        title: "Of Course, I Said Yes",
+        image: "/mobile-background/couple (22).webp",
+        imageAlt: "{groom} and {bride} together",
+        imagePosition: "center 25%",
+        paragraphs: [
+          "It was only when people nearby started pointing that I finally turned around and saw him. I was so surprised — and overwhelmed with happiness!",
+          "Everyone around us was clapping and cheering, congratulating us. It felt like the whole mountain was celebrating with us. Of course, I said YES! 💍",
+          "✨ Fun fact: Section Mt. Pinatubo siya noong 2nd year high school. How beautiful that years later, it became the place where our forever began. ✨",
+        ],
+      },
+      {
+        date: "Ten Years & Forever",
+        title: "Choosing Each Other",
+        image: "/mobile-background/couple (33).webp",
+        imageAlt: "{groom} and {bride} looking ahead together",
+        imagePosition: "center 25%",
+        paragraphs: [
+          "He once told me during our marriage seminar that I am his forever. And I told him — he is my shoulder to lean on and to cry on.",
+          "Through ten wonderful years together, we’ve learned to forgive, to understand, and to love deeper every day. Marriage isn’t just about the romance — it’s about choosing each other, in joy and in struggle, today and always. 💍🌿✨",
         ],
       },
     ] as StoryChapter[],
@@ -878,27 +917,65 @@ export const siteConfig = {
     //             "arrival" | "guests" | "rings" | "departure" | "cocktail" | "fireworks" | "dance"
     //   description: not shown on the site (kept only as a note)
     events: [
+      // Couple's preparation (official run of show) — hidden from guests; set show: true to list them
       {
-        show: true,
-        time: TIMES.entourageCall,
-        title: "Entourage Call Time",
-        description: "The couple and entourage gather and get ready.",
+        show: false,
+        time: "2:00 PM",
+        title: "Bride's Solo & Team Bride",
+        description: "Photo & video of the bride and her team.",
         location: "{ceremony}",
-        image: "/weddingtimeline/Wedding Entourage Call Time Logo.png",
+        image: "/weddingtimeline/arrival.png",
         icon: "arrival" as TimelineIconName,
       },
       {
+        show: false,
+        time: "2:30 PM",
+        title: "Bride Family Portraits",
+        description: "Photo & video with the bride's family.",
+        location: "{ceremony}",
+        image: "/weddingtimeline/PhotoSession.png",
+        icon: "rings" as TimelineIconName,
+      },
+      {
+        show: false,
+        time: "3:00 PM",
+        title: "First Touch & Prayer",
+        description: "The couple settles, prays and rests (optional, no first look).",
+        location: "{ceremony}",
+        image: "/weddingtimeline/WeddingCeremony.png",
+        icon: "rings" as TimelineIconName,
+      },
+      // Guest-facing schedule
+      {
         show: true,
         time: TIMES.guestArrival,
-        title: "Guests Arrive",
-        description: "Kindly be seated before the ceremony begins.",
+        title: "Guest Arrival",
+        description: "Our coordinators will welcome you and help you find your seat.",
         location: "{ceremony}",
         image: "/weddingtimeline/Elegant Wedding Guests Arrive Sign.png",
         icon: "guests" as TimelineIconName,
       },
       {
         show: true,
-        time: TIMES.ceremony, //TIMES.ceremony
+        time: "4:00 PM",
+        title: "Entourage Line-Up",
+        description: "The entourage lines up for the processional.",
+        location: "{ceremony}",
+        image: "/weddingtimeline/Wedding Entourage Call Time Logo.png",
+        icon: "arrival" as TimelineIconName,
+      },
+      {
+        show: true,
+        time: "4:15 PM",
+        title: "Entourage March",
+        description: "The processional begins.",
+        location: "{ceremony}",
+        image: "/weddingtimeline/assemble.png",
+        icon: "rings" as TimelineIconName,
+      },
+      {
+        show: true,
+        time: "4:30 PM",
         title: "Wedding Ceremony",
         description: "We exchange our vows before God, family and friends.",
         location: "{ceremony}",
@@ -907,71 +984,53 @@ export const siteConfig = {
       },
       {
         show: true,
-        time: "3:30 PM",
-        title: "Photo Session",
-        description: "Join us for pictures with the newlyweds.",
+        time: "5:30 PM",
+        title: "Pictorials & Recessional",
+        description: "Join us for photos with the newlyweds.",
         location: "{ceremony}",
         image: "/weddingtimeline/PhotoSession.png",
         icon: "rings" as TimelineIconName,
       },
       {
         show: true,
-        time: "4:00 PM",
-        title: "Cocktail Hour",
-        description: "Refreshments while we make our way to the reception.",
+        time: "5:45 PM",
+        title: "Grazing Table, Photo Booth & Coffee Cart",
+        description: "Enjoy the grazing table, photo booth, coffee cart and tattoo station.",
         location: "{reception}",
         image: "/weddingtimeline/CockTailHour.png",
         icon: "cocktail" as TimelineIconName,
       },
       {
-        show: true,
-        time: TIMES.reception,
-        title: "Start of Program",
+        show: false,
+        time: "6:30 PM",
+        title: "Couple's Retouch",
         description: "",
+        location: "{reception}",
+        image: "/weddingtimeline/arrival.png",
+        icon: "arrival" as TimelineIconName,
+      },
+      {
+        show: true,
+        time: "6:40 PM",
+        title: "Pre-Program",
+        description: "Our host warms up the evening.",
         location: "{reception}",
         image: "/weddingtimeline/reception welcom.png",
         icon: "fireworks" as TimelineIconName,
       },
       {
         show: true,
-        time: "5:20 PM",
-        title: "Grand Entrance",
-        description: "Welcome the newlyweds as husband and wife.",
-        location: "{reception}",
-        image: "/weddingtimeline/assemble.png",
-        icon: "fireworks" as TimelineIconName,
-      },
-      {
-        show: true,
-        time: "6:40 PM",
-        title: "Wedding Feast",
-        description: "Let's share a meal and celebrate together.",
+        time: "7:00 PM",
+        title: "Reception Program & Dinner",
+        description: "Dinner is served as the program begins.",
         location: "{reception}",
         image: "/weddingtimeline/DinnerService.png",
         icon: "cocktail" as TimelineIconName,
       },
       {
         show: true,
-        time: "7:20 PM",
-        title: "Cake Cutting",
-        description: "",
-        location: "{reception}",
-        image: "/weddingtimeline/cakecutting.png",
-        icon: "fireworks" as TimelineIconName,
-      },
-      {
-        show: true,
-        time: "7:40 PM",
-        title: "First Dance",
-        description: "Our first dance as husband and wife.",
-        location: "{reception}",
-        image: "/weddingtimeline/dance.png",
-        icon: "dance" as TimelineIconName,
-      },
-      {
-        show: true,
-        time: "8:00 PM",
-        title: "Send-off",
+        time: "9:30 PM",
+        title: "End of Program",
         description: "Thank you for celebrating with us!",
         location: "{reception}",
         image: "/weddingtimeline/SendOff.png",
