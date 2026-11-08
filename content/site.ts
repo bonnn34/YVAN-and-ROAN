@@ -311,7 +311,7 @@ guests: {
 
 // ── Website address (used for QR codes, link previews, table finder) ────────
 // NEXT_PUBLIC_SITE_URL (env) overrides this when set.
-const SITE_URL = "https://yvan-and-roan.vercel.app/"
+const SITE_URL = "https://yvan-and-roan.weddinginvitationrsvp.com/"
 // Image shown when the link is shared (Facebook, Messenger, Viber, WhatsApp, X, …).
 // Keep it a 1200×630 JPG under ~300 KB — Messenger/WhatsApp silently drop larger images,
 // which is why forwarded links can lose their preview. Exported from /Details/imagepreview.png.
@@ -333,7 +333,7 @@ const BRAND = {
   monogram: "/monogram/new-monogram.png", // monogram (loader, envelope, closing)
   coupleNameImage: "/Details/newcoupelNames.png", // couple-name lettering (loader, envelope)
   seal: "/monogram/seal-new.png", // envelope wax seal
-  backgroundMusic: "/background_music/David Pomeranz - On This Day (Lyrics) (mp3cut.net).mp3",
+  backgroundMusic: "/background_music/ON THIS DAY - DAVID POMERANZ Saxophone Cover - Live Performance Recording.mp3",
 }
 
 // Couple photos reused across the site (gallery, loader, reminders, snap & share, closing)
