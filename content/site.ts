@@ -333,7 +333,7 @@ const BRAND = {
   monogram: "/monogram/new-monogram.png", // monogram (loader, envelope, closing)
   coupleNameImage: "/Details/newcoupelNames.png", // couple-name lettering (loader, envelope)
   seal: "/monogram/seal-new.png", // envelope wax seal
-  backgroundMusic: "/background_music/ON THIS DAY - DAVID POMERANZ Saxophone Cover - Live Performance Recording.mp3",
+  backgroundMusic: "/background_music/David Pomeranz - On This Day (Lyrics) (mp3cut.net).mp3",
 }
 
 // Couple photos reused across the site (gallery, loader, reminders, snap & share, closing)

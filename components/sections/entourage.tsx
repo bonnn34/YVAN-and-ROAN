@@ -80,16 +80,16 @@ function OutsideDivider() {
   )
 }
 
-const SECTION_TITLE_CLASS = `${theSeasons.className} text-[0.68rem] sm:text-[0.88rem] md:text-[1rem] tracking-[0.08em] sm:tracking-[0.12em] md:tracking-[0.14em] uppercase leading-tight`
+const SECTION_TITLE_CLASS = `${theSeasons.className} text-[0.66rem] sm:text-[1rem] md:text-[1.15rem] tracking-[0.08em] sm:tracking-[0.12em] md:tracking-[0.14em] uppercase leading-tight`
 
 const nameStyle: React.CSSProperties = {
-  fontSize: "clamp(0.64rem, min(2.3vw, 5.4cqi), 1.1rem)",
+  fontSize: "clamp(0.64rem, min(2.8vw, 6.2cqi), 1.3rem)",
   lineHeight: 1.25,
   letterSpacing: "0.02em",
 }
 
 const roleTitleStyle: React.CSSProperties = {
-  fontSize: "clamp(0.54rem, min(1.75vw, 4cqi), 0.78rem)",
+  fontSize: "clamp(0.54rem, min(2.1vw, 4.6cqi), 0.92rem)",
   lineHeight: 1.1,
 }
 
@@ -390,7 +390,7 @@ function NameItem({
           ...nameStyle,
           ...(featured
             ? {
-                fontSize: "clamp(0.82rem, min(2.55vw, 6.1cqi), 1.24rem)",
+                fontSize: "clamp(0.76rem, min(3.1vw, 7cqi), 1.45rem)",
               }
             : {}),
           color: NAVY,
@@ -558,10 +558,11 @@ const ROLE_CATEGORY_ORDER = [
   // Side-by-side pairs (see PAIRED_COLUMN_SECTIONS)
   "Little Groomsmen",
   "Little Bridesmaids",
-  // Ring | Coin side by side, Bible centered below (see BEARER_BLOCK_CATEGORIES)
+  // Ring, Coin, Bible — each centered (see BEARER_BLOCK_CATEGORIES)
   "Ring Bearer",
   "Coin Bearer",
   "Bible Bearer",
+  "Banner Bearer",
   "Flower Ladies",
   "Escorts",
   "Petal Maidens",
@@ -578,7 +579,7 @@ const PAIRED_COLUMN_SECTIONS: { key: string; left: string; right: string }[] = [
 const TWO_COLUMN_SECONDARY_GROUPS = new Set(["Little Love Bearer", "Candle Bearer", "Cord Sponsors", "Veil Sponsors"])
 
 // Always split into left | right columns, even with only two names
-const TWO_COLUMN_SECTIONS = new Set(["Bridesmen", "Escorts", "Petal Maidens"])
+const TWO_COLUMN_SECTIONS = new Set(["Bridesmen", "Banner Bearer", "Escorts", "Petal Maidens"])
 
 const SINGLE_COLUMN_SECTIONS = new Set([
   "Best Man",
@@ -612,6 +613,7 @@ function normalizeRoleCategory(category: string): string {
   if (alias) return alias
   if (/^little love bearers?$/i.test(normalized)) return "Little Love Bearer"
   if (/^candle bearers?$/i.test(normalized)) return "Candle Bearer"
+  if (/^banner bearers?$/i.test(normalized)) return "Banner Bearer"
   if (/^ch?ord sponsors?$/i.test(normalized)) return "Cord Sponsors"
   if (normalized.toLowerCase() === "peer sponsors") {
     return "Peer Sponsors"
@@ -1356,14 +1358,13 @@ export function Entourage({ sponsorsList }: { sponsorsList?: SponsorsList } = {}
                   )
                 }
 
-                // Ring Bearer | Coin Bearer side by side, Bible Bearer centered below
+                // Ring, Coin and Bible Bearer — each centered under its own title
                 if ((BEARER_BLOCK_CATEGORIES as readonly string[]).includes(category)) {
                   const firstBearer = BEARER_BLOCK_CATEGORIES.find((c) => (grouped[c]?.length ?? 0) > 0)
                   if (category !== firstBearer) return null
                   const ringBearer = grouped["Ring Bearer"] || []
                   const coinBearer = grouped["Coin Bearer"] || []
                   const bibleBearer = grouped["Bible Bearer"] || []
-                  const hasSidePair = ringBearer.length > 0 || coinBearer.length > 0
 
                   return (
                     <div key="BearerBlock">
@@ -1372,24 +1373,24 @@ export function Entourage({ sponsorsList }: { sponsorsList?: SponsorsList } = {}
                           <GroupDivider />
                         </div>
                       )}
-                      {hasSidePair && (
-                        <TwoColumnLayout
-                          leftTitle={ringBearer.length > 0 ? "Ring Bearer" : undefined}
-                          rightTitle={coinBearer.length > 0 ? "Coin Bearer" : undefined}
-                        >
-                          {renderPairRows("bearer", ringBearer, coinBearer)}
-                        </TwoColumnLayout>
-                      )}
-                      {bibleBearer.length > 0 && (
-                        <TwoColumnLayout singleTitle="Bible Bearer" centerContent={true}>
-                          <div className="col-span-full">
-                            <div className="flex flex-col items-center gap-5 sm:gap-6">
-                              {bibleBearer.map((member, idx) => (
-                                <NameItem key={`bible-bearer-${idx}-${member.name}`} member={member} align="center" />
-                              ))}
+                      {(
+                        [
+                          ["Ring Bearer", ringBearer],
+                          ["Coin Bearer", coinBearer],
+                          ["Bible Bearer", bibleBearer],
+                        ] as const
+                      ).map(([title, list]) =>
+                        list.length > 0 ? (
+                          <TwoColumnLayout key={title} singleTitle={title} centerContent={true}>
+                            <div className="col-span-full">
+                              <div className="flex flex-col items-center gap-0.5 sm:gap-1">
+                                {list.map((member, idx) => (
+                                  <NameItem key={`${title}-${idx}-${member.name}`} member={member} align="center" />
+                                ))}
+                              </div>
                             </div>
-                          </div>
-                        </TwoColumnLayout>
+                          </TwoColumnLayout>
+                        ) : null
                       )}
                     </div>
                   )
@@ -1654,7 +1655,7 @@ export function Entourage({ sponsorsList }: { sponsorsList?: SponsorsList } = {}
                       {(() => {
                         // Special rule: paired sponsor roles with exactly 2 names should meet at center
                         const PAIRED_SECTIONS = new Set(["Candle Sponsors", "Cord Sponsors", "Veil Sponsors", "Little Love Bearer", "Little Promise Bearer"])
-                        if (TWO_COLUMN_SECTIONS.has(category)) {
+                        if (TWO_COLUMN_SECTIONS.has(category) && members.length > 1) {
                           const half = Math.ceil(members.length / 2)
                           return renderPairRows(category, members.slice(0, half), members.slice(half))
                         }
