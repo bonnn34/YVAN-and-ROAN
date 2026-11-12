@@ -74,7 +74,7 @@ const COUPLE = {
 }
 
 // ── Date & times ────────────────────────────────────────────────────────────
-const WEDDING_DATE = "March 06, 2027" // e.g. "June 5, 2027"
+const WEDDING_DATE = "April 10, 2027" // e.g. "June 5, 2027"
 const WEDDING_DAY = "Saturday" // 
 const TIMES = {
   entourageCall: "2:00 PM", // entourage assembly
@@ -140,7 +140,7 @@ const VENUE_CARDS = {
 
 // ── RSVP & contact ──────────────────────────────────────────────────────────
 const RSVP = {
-  deadline: " January 31, 2026",
+  deadline: " March 31, 2026",
   coordinator: "{groom} / {bride}", // {groom} / {bride} → couple nicknames
   phone: "to be announced",
 }
