@@ -37,7 +37,7 @@ import {
 
 const playfair = Playfair_Display({ subsets: ["latin"], weight: ["500", "600"] })
 
-const PLAYFUL_ROLE_IDS = new Set(["flower-girl", "ring-bearer", "coin-bearer", "bible-bearer", "herald-bearer"])
+const PLAYFUL_ROLE_IDS = new Set(["flower-girl", "ring-bearer", "coin-bearer", "bible-bearer", "herald-bearer", "banner-bearer"])
 
 const CATEGORY_TABS = ["all", "Entourage", "Principal Sponsor"] as const
 

@@ -131,7 +131,7 @@ const secondaryBtnClass =
 
 type CopyKey = "party" | "sponsor" | "bearer" | "flowerGirl"
 
-const CEREMONY_BEARER_ROLE_IDS = new Set(["ring-bearer", "coin-bearer", "bible-bearer", "herald-bearer"])
+const CEREMONY_BEARER_ROLE_IDS = new Set(["ring-bearer", "coin-bearer", "bible-bearer", "herald-bearer", "banner-bearer"])
 
 function copyKeyFor(role: ProposalRole): CopyKey {
   if (role.type === "sponsor-ninong" || role.type === "sponsor-ninang") return "sponsor"

@@ -92,6 +92,15 @@ export const proposalRoleDefinitions: ProposalRoleDefinition[] = [
       "To carry the herald with reverence during our wedding ceremony — honoring the symbol of our faith and our marriage, and playing a meaningful part as we pledge our lives to one another before God.",
   },
   {
+    id: "banner-bearer",
+    title: "Banner Bearer",
+    category: "Entourage",
+    type: "entourage",
+    roleCategory: "Banner Bearer",
+    description:
+      "To carry our wedding banner down the aisle with joy and pride — announcing the bride's arrival and bringing a little extra excitement to the beginning of our forever.",
+  },
+  {
     id: "little-bride",
     title: "Little Bride",
     category: "Entourage",

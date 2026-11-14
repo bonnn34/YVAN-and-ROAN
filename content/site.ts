@@ -995,8 +995,8 @@ export const siteConfig = {
         show: true,
         time: "5:45 PM",
         title: "Grazing Table, Photo Booth & Coffee Cart",
-        description: "Enjoy the grazing table, photo booth, coffee cart and tattoo station.",
-        location: "{reception}",
+        description: "Enjoy the grazing table, photo booth, coffee cart.",
+        //location: "{reception}",
         image: "/weddingtimeline/CockTailHour.png",
         icon: "cocktail" as TimelineIconName,
       },
@@ -1014,7 +1014,7 @@ export const siteConfig = {
         time: "6:40 PM",
         title: "Pre-Program",
         description: "Our host warms up the evening.",
-        location: "{reception}",
+        //location: "{reception}",
         image: "/weddingtimeline/reception welcom.png",
         icon: "fireworks" as TimelineIconName,
       },
@@ -1456,7 +1456,7 @@ export const siteConfig = {
     // {couple} → "Groom & Bride" nicknames. "" hides a line or image.
     qrCard: {
       coupleNameImage: BRAND.coupleNameImage, // unused: the card sets the names in type like the loader
-      coupleImage: "/Details/couple-image.png", // couple illustration beside the text
+      coupleImage: "/Details/couple-img.png", // couple illustration beside the text
       eyebrow: "The wedding of",
       title: "Find Your Table",
       script: "please be seated",
@@ -1473,19 +1473,19 @@ export const siteConfig = {
   // Each invitation type has its own wording:
   //   party      → Best Man, Maid/Matron of Honor, Bridesmaid, Groomsman, Little Bride, secondary sponsors
   //   sponsor    → Principal Sponsors (Ninong / Ninang)
-  //   bearer     → Ring / Coin / Bible / Herald Bearer
+  //   bearer     → Ring / Coin / Bible / Herald / Banner Bearer
   //   flowerGirl → Flower Girl
   // A list ([...]) shows one paragraph per line; "" or [] hides that part.
   proposal: {
     decos: { ...CORNER_DECOS },
     coupleNameImage: BRAND.coupleNameImage, // unused: names are set in type like the loader
-    coupleImage: "/Details/couple-image.png", // couple illustration above the question
+    coupleImage: "/Details/couple-img.png", // couple illustration above the question
     ornament: DECOR.headerOrnament, // small sprig at the top of the card; "" to hide
     // Eucalyptus sprigs on either side of the couple name; "" to hide one
     nameDecos: { left: DECOR.sideLeft, right: DECOR.sideRight },
     showDate: true, // big date under the couple name (Month / Day / Day-number / Time / Year)
     // Use "Maid of Honor" for unmarried, "Matron of Honor" for married
-    honorAttendant: "Matron of Honor" as "Matron of Honor" | "Maid of Honor",
+    honorAttendant: "Maid of Honor" as "Matron of Honor" | "Maid of Honor",
     roles: proposalRoleDefinitions,
     roleIdAliases: proposalRoleIdAliases,
     // Shared labels used on every invitation.
