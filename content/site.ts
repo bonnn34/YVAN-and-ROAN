@@ -316,7 +316,7 @@ const SITE_URL = "https://yvan-and-roan.weddinginvitationrsvp.com/"
 // Keep it a 1200×630 JPG under ~300 KB — Messenger/WhatsApp silently drop larger images,
 // which is why forwarded links can lose their preview. Exported from /Details/imagepreview.png.
 // Use a NEW filename whenever the image changes — Facebook caches images by URL.
-const LINK_PREVIEW_IMAGE = "/Details/LinkPreview.png"
+const LINK_PREVIEW_IMAGE = "/Details/new-LinkPreview.png"
 // Square fallback (600×600) for apps that show a small square thumbnail
 const LINK_PREVIEW_IMAGE_SQUARE = "/Details/LinkPreview.png"
 
@@ -996,7 +996,7 @@ export const siteConfig = {
         time: "5:45 PM",
         title: "Grazing Table, Photo Booth & Coffee Cart",
         description: "Enjoy the grazing table, photo booth, coffee cart.",
-        //location: "{reception}",
+        //location: "{ceremony}",
         image: "/weddingtimeline/CockTailHour.png",
         icon: "cocktail" as TimelineIconName,
       },
@@ -1005,7 +1005,7 @@ export const siteConfig = {
         time: "6:30 PM",
         title: "Couple's Retouch",
         description: "",
-        location: "{reception}",
+        location: "{ceremony}",
         image: "/weddingtimeline/arrival.png",
         icon: "arrival" as TimelineIconName,
       },
@@ -1014,7 +1014,7 @@ export const siteConfig = {
         time: "6:40 PM",
         title: "Pre-Program",
         description: "Our host warms up the evening.",
-        //location: "{reception}",
+        //location: "{ceremony}",
         image: "/weddingtimeline/reception welcom.png",
         icon: "fireworks" as TimelineIconName,
       },
@@ -1023,7 +1023,7 @@ export const siteConfig = {
         time: "7:00 PM",
         title: "Reception Program & Dinner",
         description: "Dinner is served as the program begins.",
-        location: "{reception}",
+        location: "{ceremony}",
         image: "/weddingtimeline/DinnerService.png",
         icon: "cocktail" as TimelineIconName,
       },
@@ -1032,7 +1032,7 @@ export const siteConfig = {
         time: "9:30 PM",
         title: "End of Program",
         description: "Thank you for celebrating with us!",
-        location: "{reception}",
+        location: "{ceremony}",
         image: "/weddingtimeline/SendOff.png",
         icon: "departure" as TimelineIconName,
       },
@@ -1456,7 +1456,7 @@ export const siteConfig = {
     // {couple} → "Groom & Bride" nicknames. "" hides a line or image.
     qrCard: {
       coupleNameImage: BRAND.coupleNameImage, // unused: the card sets the names in type like the loader
-      coupleImage: "/Details/couple-img.png", // couple illustration beside the text
+      coupleImage: "/Details/couple.png", // couple illustration beside the text
       eyebrow: "The wedding of",
       title: "Find Your Table",
       script: "please be seated",
@@ -1479,7 +1479,7 @@ export const siteConfig = {
   proposal: {
     decos: { ...CORNER_DECOS },
     coupleNameImage: BRAND.coupleNameImage, // unused: names are set in type like the loader
-    coupleImage: "/Details/couple-img.png", // couple illustration above the question
+    coupleImage: "/Details/couple.png", // couple illustration above the question
     ornament: DECOR.headerOrnament, // small sprig at the top of the card; "" to hide
     // Eucalyptus sprigs on either side of the couple name; "" to hide one
     nameDecos: { left: DECOR.sideLeft, right: DECOR.sideRight },

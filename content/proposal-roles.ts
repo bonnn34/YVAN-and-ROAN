@@ -65,6 +65,15 @@ export const proposalRoleDefinitions: ProposalRoleDefinition[] = [
       "To carry the rings with care and present them at the altar — holding symbols of our promise with pride and tenderness, and playing a cherished part in the moment we exchange our vows.",
   },
   {
+    id: "banner-bearer",
+    title: "Banner Bearer",
+    category: "Entourage",
+    type: "entourage",
+    roleCategory: "Banner Bearer",
+    description:
+      "To proudly carry the wedding banner and lead the way during the ceremony — adding a meaningful and festive touch to the celebration while being part of the beautiful journey toward the altar.",
+  },
+  {
     id: "coin-bearer",
     title: "Coin Bearer",
     category: "Entourage",

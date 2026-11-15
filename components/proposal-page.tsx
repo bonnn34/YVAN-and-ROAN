@@ -387,6 +387,8 @@ function ProposalCard({ children }: { children: ReactNode }) {
           aria-hidden
         />
 
+        <CardHearts />
+
         {/* Top padding clears the dome: a little more than a third of its height */}
         <div
           className="relative z-20 px-4 pb-10 text-center min-[400px]:px-5 sm:px-14 sm:pb-16 md:px-16"
@@ -395,6 +397,126 @@ function ProposalCard({ children }: { children: ReactNode }) {
           {children}
         </div>
       </div>
+    </div>
+  )
+}
+
+// Peach / blush only: the navy accents read as grey smudges at low opacity
+const CARD_HEART_COLORS = [
+  "var(--color-motif-blush)",
+  "var(--color-motif-medium)",
+  "color-mix(in srgb, var(--color-motif-medium) 60%, white)",
+  "#F9C9BA",
+] as const
+
+// Fixed layout (no Math.random) so server and client render the same hearts
+const CARD_HEARTS = Array.from({ length: 14 }, (_, i) => ({
+  left: ((i * 41 + 7) % 86) + 5,
+  top: ((i * 29 + 13) % 82) + 8,
+  size: 10 + ((i * 7) % 5) * 4,
+  delay: (i * 0.9) % 7,
+  duration: 5.5 + (i % 4) * 1.3,
+  rotate: (i % 2 ? 1 : -1) * (8 + (i % 3) * 7),
+  peak: 0.22 + ((i * 3) % 4) * 0.07,
+  color: CARD_HEART_COLORS[i % CARD_HEART_COLORS.length],
+}))
+
+/** Soft peach glow + a thin arch outline behind the couple so the cutout sits on something. */
+function CoupleHalo() {
+  const reduceMotion = useReducedMotion()
+  return (
+    <div className="pointer-events-none absolute inset-x-[-14%] bottom-[8%] top-[4%] -z-0" aria-hidden>
+      <motion.div
+        className="absolute inset-0"
+        style={{
+          borderRadius: "50% 50% 0 0 / 38% 38% 0 0",
+          background:
+            "radial-gradient(60% 55% at 50% 42%, color-mix(in srgb, var(--color-motif-blush) 55%, transparent) 0%, color-mix(in srgb, var(--color-motif-blush) 18%, transparent) 55%, transparent 75%)",
+        }}
+        animate={reduceMotion ? undefined : { opacity: [0.75, 1, 0.75], scale: [0.98, 1.02, 0.98] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <div
+        className="absolute inset-x-[12%] bottom-[18%] top-0"
+        style={{
+          borderRadius: "999px 999px 0 0",
+          border: "1px solid color-mix(in srgb, var(--color-motif-medium) 35%, transparent)",
+          borderBottom: "none",
+          WebkitMaskImage: "linear-gradient(to bottom, #000 40%, transparent 100%)",
+          maskImage: "linear-gradient(to bottom, #000 40%, transparent 100%)",
+        }}
+      />
+    </div>
+  )
+}
+
+// Hearts that rise from around the couple's heads, one after another
+const BURST_HEARTS = [
+  { x: -18, size: 11, delay: 0 },
+  { x: 14, size: 14, delay: 1.4 },
+  { x: -6, size: 9, delay: 2.8 },
+  { x: 22, size: 10, delay: 4.2 },
+  { x: -24, size: 13, delay: 5.6 },
+]
+
+function CoupleHeartBurst() {
+  const reduceMotion = useReducedMotion()
+  if (reduceMotion) return null
+  return (
+    <div className="pointer-events-none absolute left-1/2 top-[14%] z-10 h-0 w-0" aria-hidden>
+      {BURST_HEARTS.map((h, i) => (
+        <motion.svg
+          key={i}
+          viewBox="0 0 24 24"
+          className="absolute -translate-x-1/2"
+          style={{ width: h.size, height: h.size, fill: CARD_HEART_COLORS[i % 2] }}
+          initial={{ opacity: 0, x: 0, y: 0, scale: 0.3 }}
+          animate={{
+            opacity: [0, 0.9, 0.7, 0],
+            x: [0, h.x * 0.4, h.x, h.x * 1.2],
+            y: [0, -18, -42, -64],
+            scale: [0.3, 1, 1, 0.8],
+          }}
+          transition={{ duration: 3.6, delay: 1.2 + h.delay, repeat: Infinity, repeatDelay: 3.4, ease: "easeOut" }}
+        >
+          <path d={HEART_PATH} />
+        </motion.svg>
+      ))}
+    </div>
+  )
+}
+
+/** Hearts that bloom, drift up a little and fade, scattered behind the card's content. */
+function CardHearts() {
+  const reduceMotion = useReducedMotion()
+  if (reduceMotion) return null
+  return (
+    <div className="pointer-events-none absolute inset-0 z-[1] overflow-hidden" aria-hidden>
+      {CARD_HEARTS.map((h, i) => (
+        <motion.svg
+          key={i}
+          viewBox="0 0 24 24"
+          className="absolute"
+          style={{ left: `${h.left}%`, top: `${h.top}%`, width: h.size, height: h.size, fill: h.color }}
+          initial={{ opacity: 0, scale: 0, y: 0, rotate: 0 }}
+          animate={{
+            opacity: [0, h.peak, h.peak, 0],
+            scale: [0, 1.15, 1, 0.85],
+            y: [0, -8, -22, -34],
+            rotate: [0, h.rotate * 0.5, h.rotate, h.rotate],
+          }}
+          transition={{
+            duration: h.duration,
+            delay: h.delay,
+            times: [0, 0.2, 0.7, 1],
+            ease: "easeOut",
+            repeat: Infinity,
+            repeatDelay: 1 + (i % 3),
+          }}
+        >
+          <path d={HEART_PATH} />
+        </motion.svg>
+      ))}
     </div>
   )
 }
@@ -504,18 +626,27 @@ function ProposalDirectAsk({
 
       {/* Wedding party illustration (site.ts → proposal.coupleImage) — shown as is, no frame */}
       {coupleImage ? (
-        <motion.div variants={headerItem} className="relative -mx-2 mt-4 sm:mx-0 sm:mt-6">
+        <div className="relative mx-auto mt-4 w-[68%] max-w-[17rem] sm:mt-6 sm:w-[60%] sm:max-w-[19rem]">
+          <CoupleHalo />
+          <div className="relative">
           <Image
             src={encodeURI(coupleImage)}
             alt="Our wedding party"
             width={1536}
             height={1024}
-            sizes="(max-width: 640px) 92vw, 512px"
+            sizes="(max-width: 640px) 68vw, 304px"
             className="block h-auto w-full select-none"
+            // Softly dissolves into the card at the bottom
+            style={{
+              WebkitMaskImage: "linear-gradient(to bottom, #000 0%, #000 58%, rgb(0 0 0 / 55%) 78%, transparent 100%)",
+              maskImage: "linear-gradient(to bottom, #000 0%, #000 58%, rgb(0 0 0 / 55%) 78%, transparent 100%)",
+            }}
             draggable={false}
             priority
           />
-        </motion.div>
+          </div>
+          <CoupleHeartBurst />
+        </div>
       ) : null}
 
       <motion.div variants={headerItem} className="mt-6 sm:mt-7">
