@@ -540,7 +540,7 @@ export const siteConfig = {
     // (A YouTube link pasted here is detected and played through YouTube.)
     videoSrc: "",
     // YouTube video ID or full link (youtu.be/…, watch?v=…, /shorts/…, /embed/…)
-    youtubeId: "aaHv22-giH0",
+    youtubeId: "fTSxDRPR4bk",
     // Cover image shown before the video plays
     thumbnail: "/desktop-background/couple (35).webp",
     thumbnailAlt: `${COUPLE_LABEL} — video cover`,
